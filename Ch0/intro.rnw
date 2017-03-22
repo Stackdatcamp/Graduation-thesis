@@ -1,0 +1,23 @@
+% LỜI MỞ ĐẦU  
+%
+% - Nêu vấn đề
+Đối với các ngân hàng việc chấm điểm tín dụng và phân loại các khách hàng là yếu tố thiết yếu cho lợi nhuận của ngân hàng.
+%
+Phương pháp truyền thống của việc ra quyết định có cho một cá nhân cụ thể vay hay không là dựa trên đánh giá cảm tính dựa trên kinh nghiệm cá nhân.
+%
+Tuy nhiên, sự phát triển về quy mô của nền kinh tế đã tạo ra sức ép về nhu cầu vay, đi kèm với đó là sự cạnh tranh giữa các ngân hàng và công nghệ máy tính ngày càng phát triển đã khiến cho việc sử dụng các mô hình thống kê trong việc phân loại các khách hàng tín dụng là bắt buộc đối với các ngân hàng trên thế giới mà ở Việt Nam cũng không phải là ngoại lệ.
+%
+
+Đã có rất nhiều nghiên cứu với các phương pháp khác nhau dành cho việc chấm điểm tín dụng.
+Hiệu quả của các phương pháp khác nhau là có sự khác biệt, phụ thuộc vào việc ứng dụng các mô hình và trường hợp cụ thể của từng bộ số liệu.
+Trong bài này, chúng ta sẽ tiếp cận đến một số phương pháp phân loại các khách hàng tín dụng và rút ra một số kết luận về việc sử dụng các phương pháp thống kê khác nhau sao cho hợp lý.
+
+% - Hướng tiếp cận 
+Văn bản này được soạn thảo bằng \LaTeX, \texttt{Sweave} và \texttt{knitr} 
+\citep{r:knitr}. Tất cả phân tích được thực hiện trên phần mềm thống kê 
+\Sexpr{R.Version()$version.string} \citep{r:rbase},  
+các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{ggplot2} \citep{r:ggplot2},...
+
+%  Cảm ơn bla bla
+Em xin cảm ơn giáo viên hướng dẫn, cô Nguyễn Thị Minh, bộ trưởng khoa 
+Toán Ứng dụng trong Kinh tế, cùng với các thầy cô giáo khác trong khoa đã tạo điều kiện cho em thực hiện đề tài này.

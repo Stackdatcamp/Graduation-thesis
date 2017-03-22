@@ -1,0 +1,19 @@
+\begin{thebibliography}{}
+
+\bibitem[{R Core Team}, 2017]{r:rbase}
+{R Core Team} (2017).
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria.
+
+\bibitem[Wickham, 2009]{r:ggplot2}
+Wickham, H. (2009).
+\newblock {\em ggplot2: Elegant Graphics for Data Analysis}.
+\newblock Springer-Verlag New York.
+
+\bibitem[Xie, 2015]{r:knitr}
+Xie, Y. (2015).
+\newblock {\em Dynamic Documents with {R} and knitr}.
+\newblock Chapman and Hall/CRC, Boca Raton, Florida, 2nd edition.
+\newblock ISBN 978-1498716963.
+
+\end{thebibliography}

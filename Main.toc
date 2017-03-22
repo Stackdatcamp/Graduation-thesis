@@ -1,0 +1,24 @@
+\contentsline {section}{L\IeC {\`\ohorn }i m\IeC {\h \ohorn } \IeC {\dj }\IeC {\`\acircumflex }u}{1}{chapter*.1}
+\contentsline {section}{M\IeC {\d u}c l\IeC {\d u}c}{3}{chapter*.2}
+\contentsline {section}{Danh s\IeC {\'a}ch b\IeC {\h a}ng}{4}{chapter*.3}
+\contentsline {section}{Danh s\IeC {\'a}ch h\IeC {\`\i }nh}{5}{chapter*.4}
+\contentsline {chapter}{\numberline {1}T\IeC {\h \ocircumflex }ng quan}{6}{chapter.1}
+\contentsline {section}{\numberline {1.1}Kh\IeC {\'a}i ni\IeC {\d \ecircumflex }m}{6}{section.1.1}
+\contentsline {section}{\numberline {1.2}M\IeC {\d \ocircumflex }t s\IeC {\'\ocircumflex } m\IeC {\^o} h\IeC {\`\i }nh ch\IeC {\'\acircumflex }m \IeC {\dj }i\IeC {\h \ecircumflex }m t\IeC {\'\i }n d\IeC {\d u}ng}{6}{section.1.2}
+\contentsline {section}{\numberline {1.3}Th\IeC {\d \uhorn }c tr\IeC {\d a}ng s\IeC {\h \uhorn } d\IeC {\d u}ng c\IeC {\'a}c m\IeC {\^o} h\IeC {\`\i }nh t\IeC {\'\i }n d\IeC {\d u}ng t\IeC {\d a}i Vi\IeC {\d \ecircumflex }t Nam}{6}{section.1.3}
+\contentsline {section}{\numberline {1.4}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{6}{section.1.4}
+\contentsline {chapter}{\numberline {2}C\IeC {\'a}c ph\IeC {\uhorn }\IeC {\ohorn }ng ph\IeC {\'a}p ph\IeC {\^a}n lo\IeC {\d a}i kh\IeC {\'a}ch h\IeC {\`a}ng s\IeC {\h \uhorn } d\IeC {\d u}ng th\IeC {\h e} t\IeC {\'\i }n d\IeC {\d u}ng}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}C\IeC {\'a}c m\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i}{7}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}M\IeC {\^o} h\IeC {\`\i }nh logistic}{7}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}M\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i tuy\IeC {\'\ecircumflex }n t\IeC {\'\i }nh}{7}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}M\IeC {\^o} h\IeC {\`\i }nh SVM (Support Vector Machine)}{7}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}\IeC {\DJ }\IeC {\'a}nh gi\IeC {\'a} m\IeC {\^o} h\IeC {\`\i }nh}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}\IeC {\DJ }\IeC {\uhorn }\IeC {\`\ohorn }ng ROC v\IeC {\`a} ph\IeC {\`\acircumflex }n di\IeC {\d \ecircumflex }n t\IeC {\'\i }ch d\IeC {\uhorn }\IeC {\'\ohorn }i \IeC {\dj }\IeC {\uhorn }\IeC {\`\ohorn }ng cong (AUC)}{7}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Thang \IeC {\dj }o H}{7}{subsection.2.2.2}
+\contentsline {chapter}{\numberline {3}T\IeC {\`\i }nh hu\IeC {\'\ocircumflex }ng nghi\IeC {\^e}n c\IeC {\'\uhorn }u}{8}{chapter.3}
+\contentsline {section}{\numberline {3.1}S\IeC {\'\ocircumflex } li\IeC {\d \ecircumflex }u v\IeC {\`a} c\IeC {\'a}c bi\IeC {\'\ecircumflex }n s\IeC {\'\ocircumflex }}{8}{section.3.1}
+\contentsline {section}{\numberline {3.2}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh logit}{9}{section.3.2}
+\contentsline {section}{\numberline {3.3}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i tuy\IeC {\'\ecircumflex }n t\IeC {\'\i }nh}{9}{section.3.3}
+\contentsline {section}{\numberline {3.4}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh SVM}{9}{section.3.4}
+\contentsline {chapter}{\numberline {4}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{10}{chapter.4}
+\contentsline {section}{T\IeC {\`a}i li\IeC {\d \ecircumflex }u tham kh\IeC {\h a}o}{11}{chapter*.5}

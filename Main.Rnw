@@ -2,6 +2,10 @@
 \usepackage[fontsize=13pt]{scrextend}
 \usepackage[utf8]{vietnam}
 
+<<echo=FALSE>>=
+opts_chunk$set(dev='CairoPDF',fig.width = 5, fig.height = 5, echo = FALSE, result = "asis")
+@
+
 \makeatletter
 \title{Ứng dụng, đánh giá, và so sánh một số mô hình phân loại vào việc phân loại khách hàng thẻ tín dụng}\let\Title\@title
 \author{Nguyễn Đức Hiếu}\let\Author\@author
@@ -30,6 +34,7 @@
   bottom=25mm,
   right=25mm
   }
+
 %%%%%%%%%%%%%%%%%%%%%
 % HEADER AND FOOTER %
 %%%%%%%%%%%%%%%%%%%%%
@@ -68,10 +73,10 @@
 {\MakeUppercase}
 
 \titleformat{\subsection}[hang]
-{}
+{\bfseries}
 {\thesubsection}{1em}
 {}
-
+  
 
 %%%%%%%%%%%%
 % CITATION %
@@ -125,12 +130,11 @@
 %%%%%%%%%%%%
 % Chương 1 %
 %%%%%%%%%%%%
-\chapter{Tổng quan}
-\section{Khái niệm}
+\chapter{Tổng quan về quản trị rủi ro tín dụng đối với khách hàng cá nhân}
 
-\section{Một số mô hình chấm điểm tín dụng}
+\section{Một số khái niệm}
 
-\section{Thực trạng sử dụng các mô hình tín dụng tại Việt Nam}
+\section{Thực trạng của việc chấm điểm tín dụng tại Việt Nam}
 
 \section{Kết luận}
 
@@ -138,9 +142,12 @@
 % Chương 2 %
 %%%%%%%%%%%%
 
-\chapter{Các phương pháp phân loại khách hàng sử dụng thẻ tín dụng}
+\chapter{Các phương pháp phân loại khách hàng vay thẻ tín dụng}
 \section{Các mô hình phân loại}
+
 \subsection{Mô hình logistic}
+\Sexpr{knit_child('./Ch2/2.1/def-logistics.rnw')}
+
 \subsection{Mô hình phân loại tuyến tính}
 \subsection{Mô hình SVM (Support Vector Machine)}
 
@@ -154,9 +161,8 @@
 
 \chapter{Tình huống nghiên cứu}
 
-
 \section{Số liệu và các biến số}
-\input{./Ch2/2.1/info.tex}
+\input{./Ch3/3.1/info.tex}
 
 \section{Ứng dụng mô hình logit}
 

@@ -8,15 +8,27 @@ Phương pháp truyền thống của việc ra quyết định có cho một c�
 Tuy nhiên, sự phát triển về quy mô của nền kinh tế đã tạo ra sức ép về nhu cầu vay, đi kèm với đó là sự cạnh tranh giữa các ngân hàng và công nghệ máy tính ngày càng phát triển đã khiến cho việc sử dụng các mô hình thống kê trong việc phân loại các khách hàng tín dụng là bắt buộc đối với các ngân hàng trên thế giới mà ở Việt Nam cũng không phải là ngoại lệ.
 %
 
-Đã có rất nhiều nghiên cứu với các phương pháp khác nhau dành cho việc chấm điểm tín dụng.
-Hiệu quả của các phương pháp khác nhau là có sự khác biệt, phụ thuộc vào việc ứng dụng các mô hình và trường hợp cụ thể của từng bộ số liệu.
-Trong bài này, chúng ta sẽ tiếp cận đến một số phương pháp phân loại các khách hàng tín dụng và rút ra một số kết luận về việc sử dụng các phương pháp thống kê khác nhau sao cho hợp lý.
+Vậy, phương pháp ước lượng nào có thể giúp chúng ta xây dựng được hệ thống chấm điểm tín dụng chính xác nhất? Đã có một số nghiên cứu mang tính chất so sánh hiệu năng giữa các mô hình \citep{baesens2003benchmarking, xiao2006comparative, lessmann2015benchmarking}. 
+Sự khác biệt về hiệu năng của các phương pháp khác nhau là có, tuy nhiên hầu như là không đáng kể, và không phải các mô hình hiệu quả hơn đều là các mô hình mới và tân tiến.
+Theo \citet{thomas2010consumer}, cách hiệu quả để xây dựng một hệ thống lượng định hiệu quả là phối hợp nhiều mô hình khác nhau thay vì tìm kiếm một mô hình toàn diện có thể áp dụng với tất cả các ngân hàng.
 
+Trong bài này, chúng ta sẽ tiếp cận đến một số phương pháp phân loại các khách hàng tín dụng phổ biến hiện nay và rút ra một số kết luận về việc sử dụng các phương pháp khác nhau sao cho hợp lý. Bài viết này được bố cục như sau:
+
+\begin{itemize}
+\item \textbf{Chương 1} đưa ra một cái nhìn tổng quan về lĩnh vực quản trị rủi ro tín dụng trong ngân hàng và đưa ra một số vấn đề của việc chấm điểm tín dụng tại các ngân hàng Việt Nam.
+\item Các mô hình được thực hiện trong bài này sẽ được giới thiệu ở \textbf{Chương 2}, đi kèm với đó là một số chỉ tiêu sẽ được dùng để đánh giá mô hình trong bài này.
+\item Trong \textbf{Chương 3}, chúng ta sẽ ứng dụng các phương pháp được giới thiệu ở \textbf{Chương 2} trong một bộ số liệu mẫu về các khách hàng thẻ tín dụng trong một ngân hàng ở Đài Loan.
+\item Kết quả của các mô hình sẽ được thảo luận ở \textbf{Chương 4}, cùng với một số kết luận rút ra được sau khi áp dụng mô hình.
+\end{itemize}
 % - Hướng tiếp cận 
-Văn bản này được soạn thảo bằng \LaTeX, \texttt{Sweave} và \texttt{knitr} 
+Đề tài này được soạn thảo bằng \LaTeX kết hợp với \texttt{Sweave} và \texttt{knitr} 
 \citep{r:knitr}. Tất cả phân tích được thực hiện trên phần mềm thống kê 
 \Sexpr{R.Version()$version.string} \citep{r:rbase},  
-các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{ggplot2} \citep{r:ggplot2},...
+các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{ggplot2} \citep{r:ggplot2}... Trong quá trình thực hiện các mô hình có bao gồm các lệnh tạo giá trị ngẫu nhiên, để đảm bảo khả năng tái lập các kết quả trong mô hình, ta gieo seed cho R:
+
+<<echo=TRUE>>=
+set.seed(0)
+@
 
 %  Cảm ơn bla bla
 Em xin cảm ơn giáo viên hướng dẫn, cô Nguyễn Thị Minh, trưởng khoa 

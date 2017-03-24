@@ -19,5 +19,5 @@
 \contentsline {section}{\numberline {3.2}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh logit}{9}{section.3.2}
 \contentsline {section}{\numberline {3.3}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i tuy\IeC {\'\ecircumflex }n t\IeC {\'\i }nh}{9}{section.3.3}
 \contentsline {section}{\numberline {3.4}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh SVM}{9}{section.3.4}
-\contentsline {chapter}{\numberline {4}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{10}{chapter.4}
-\contentsline {section}{T\IeC {\`a}i li\IeC {\d \ecircumflex }u tham kh\IeC {\h a}o}{11}{chapter*.5}
+\contentsline {chapter}{\numberline {4}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{11}{chapter.4}
+\contentsline {section}{T\IeC {\`a}i li\IeC {\d \ecircumflex }u tham kh\IeC {\h a}o}{12}{chapter*.5}

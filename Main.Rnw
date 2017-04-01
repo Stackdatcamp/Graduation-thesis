@@ -1,14 +1,49 @@
 \documentclass[a4paper]{report}
 \usepackage[fontsize=13pt]{scrextend}
 \usepackage[utf8]{vietnam}
-
+\usepackage{verbatim} 
+\usepackage{lipsum}
+\usepackage{listings}
 <<echo=FALSE,include=FALSE>>=
-opts_chunk$set(dev='CairoPDF',fig.width = 5, fig.height = 5, echo = FALSE, result = "asis")
+# Chunk options
+options(width=60)
 
-pkgs <- c("readr", "dplyr", "GGally")
+opts_chunk$set(dev='cairo_pdf',fig.width = 7, fig.asp = 1, echo = FALSE, result = "asis", out.width = "\\textwidth", size = 'small')
+
+# Packages loadings
+pkgs <- c("readr", "tidyr", "dplyr", "caret", "GGally", "ggfortify", 
+          "ggthemes","bestglm")
 sapply(pkgs, require, character.only = TRUE)
-credit <- read_csv("./Data/UCI_Credit_Card.csv")
 
+
+# Set theme for all plots in the thesis
+theme_thesis <- theme_bw() + 
+  theme(legend.background = element_blank(), 
+        legend.key = element_blank(), 
+        panel.background = element_blank(), 
+        panel.border = element_blank(), 
+        strip.background = element_blank(), 
+        plot.background = element_blank(), 
+        axis.line = element_line(), 
+        panel.grid.minor =   element_blank(),
+        panel.grid.major =   element_line(colour = "lightgrey",
+                                          linetype = "dashed"),
+        legend.box.background = element_rect(fill = "white")
+        )
+
+theme_set(theme_thesis)
+
+# Data loadings
+credit <- read_csv("./Data/UCI_Credit_Card.csv", col_types = list(
+  ID = col_skip(),
+  DEFAULT = col_logical()
+))
+
+set.seed(0)
+
+train_obs <- createDataPartition(credit$DEFAULT, p = 0.75)[[1]]
+train_set <- credit[train_obs, ]
+test_set <- credit[-train_obs, ]
 @
 
 \makeatletter
@@ -39,7 +74,6 @@ credit <- read_csv("./Data/UCI_Credit_Card.csv")
   bottom=25mm,
   right=25mm
   }
-
 %%%%%%%%%%%%%%%%%%%%%
 % HEADER AND FOOTER %
 %%%%%%%%%%%%%%%%%%%%%
@@ -81,25 +115,40 @@ credit <- read_csv("./Data/UCI_Credit_Card.csv")
 {\bfseries}
 {\thesubsection}{1em}
 {}
-  
 
-%%%%%%%%%%%%
-% CITATION %
-%%%%%%%%%%%%
-% Setting up for citation styles
-\usepackage{natbib}
+%%%%%%%%%%%%%%%%%%%%%%  
+% FIGURES AND TABLES %
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[section]{placeins}
 
 %%%%%%%%%%%%%%%%%%%
 % TOC FORMATTING  %
 %%%%%%%%%%%%%%%%%%%
 
-% Package hyperref should be loaded last, as it rewrite many commands.
+% Package hyperref should be loaded last, as it rewrites many commands.
 % \usepackage{tocloft}
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
+\usepackage[all]{hypcap}
 % Customise for table of contents labeling
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{4}
-
+%%%%%%%%%%%%
+% CITATION %
+%%%%%%%%%%%%
+% Setting up for citation styles
+% \usepackage{natbib}
+\usepackage[backend=bibtex,bibstyle=luanan,sorting=ydnt,style=authoryear]{biblatex}
+\addbibresource{reference.bib}
+% Add number to bibliography
+\defbibenvironment{bibliography}
+  {\enumerate
+     {}
+     {\setlength{\leftmargin}{\bibhang}%
+      \setlength{\itemindent}{-\leftmargin}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endenumerate}
+  {\item}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%---------DOCUMENT CONTENTS----------%%%%
@@ -107,7 +156,7 @@ credit <- read_csv("./Data/UCI_Credit_Card.csv")
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-\bibliographystyle{apalike}
+% \bibliographystyle{apalike}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %         TITLE PAGE          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,20 +166,19 @@ credit <- read_csv("./Data/UCI_Credit_Card.csv")
 % Lời mở đầu %
 %%%%%%%%%%%%%%%
 \chapter*{Lời mở đầu}
-\addcontentsline{toc}{section}{Lời mở đầu}
+\addcontentsline{toc}{chapter}{Lời mở đầu}
 \Sexpr{knit_child('./Ch0/intro.rnw')}
-
 %%%%%%%
 % TOC %
 %%%%%%%
 \clearpage\tableofcontents
-\addcontentsline{toc}{section}{Mục lục}
+\addcontentsline{toc}{chapter}{Mục lục}
 
 \listoftables
-\addcontentsline{toc}{section}{Danh sách bảng}
+\addcontentsline{toc}{chapter}{Danh sách bảng}
 
 \listoffigures
-\addcontentsline{toc}{section}{Danh sách hình}
+\addcontentsline{toc}{chapter}{Danh sách hình}
 
 %%%%%%%%%%%%
 % Chương 1 %
@@ -169,7 +217,10 @@ credit <- read_csv("./Data/UCI_Credit_Card.csv")
 \section{Số liệu và các biến số}
 \Sexpr{knit_child('./Ch3/3.1/info.rnw')}
 
+
 \section{Ứng dụng mô hình logit}
+\subsection{Chọn biến}
+\Sexpr{knit_child('./Ch3/3.2/var_select.rnw')}
 
 \section{Ứng dụng mô hình phân loại tuyến tính}
 
@@ -181,10 +232,16 @@ credit <- read_csv("./Data/UCI_Credit_Card.csv")
 
 \chapter{Kết luận}
 
+%%%%%%%%%%%
+% Phụ lục %
+%%%%%%%%%%%
+\appendix
+\Sexpr{knit_child('./Appendices/appendices.rnw')}
+
 %%%%%%%%%%%%%%%%%%%%%%%
 % Danh mục tham khảo  %
 %%%%%%%%%%%%%%%%%%%%%%%
-\bibliography{./reference.bib}
-\addcontentsline{toc}{section}{Tài liệu tham khảo}
+\printbibliography
+\addcontentsline{toc}{chapter}{Tài liệu tham khảo}
 
 \end{document}

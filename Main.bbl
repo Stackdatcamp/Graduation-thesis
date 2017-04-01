@@ -1,49 +1,313 @@
-\begin{thebibliography}{}
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
 
-\bibitem[Baesens et~al., 2003]{baesens2003benchmarking}
-Baesens, B., Van~Gestel, T., Viaene, S., Stepanova, M., Suykens, J., and
-  Vanthienen, J. (2003).
-\newblock Benchmarking state-of-the-art classification algorithms for credit
-  scoring.
-\newblock {\em Journal of the operational research society}, 54(6):627--635.
+\sortlist[entry]{ydnt/global/}
+  \entry{r:rbase}{manual}{}
+    \name{author}{1}{}{%
+      {{hash=R}{%
+         family={{R Core Team}},
+         familyi={R\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {R Foundation for Statistical Computing}%
+    }
+    \strng{namehash}{R1}
+    \strng{fullhash}{R1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2017}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{R: A Language and Environment for Statistical Computing}
+    \verb{url}
+    \verb https://www.R-project.org/
+    \endverb
+    \list{location}{1}{%
+      {Vienna, Austria}%
+    }
+    \field{year}{2017}
+  \endentry
 
-\bibitem[Hosmer~Jr et~al., 2013]{hosmer2013applied}
-Hosmer~Jr, D.~W., Lemeshow, S., and Sturdivant, R.~X. (2013).
-\newblock {\em Applied logistic regression}, volume 398.
-\newblock John Wiley \& Sons.
+  \entry{lessmann2015benchmarking}{article}{}
+    \name{author}{4}{}{%
+      {{hash=LS}{%
+         family={Lessmann},
+         familyi={L\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BB}{%
+         family={Baesens},
+         familyi={B\bibinitperiod},
+         given={Bart},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=SHV}{%
+         family={Seow},
+         familyi={S\bibinitperiod},
+         given={Hsin-Vonn},
+         giveni={H\bibinitperiod-V\bibinitperiod},
+      }}%
+      {{hash=TLC}{%
+         family={Thomas},
+         familyi={T\bibinitperiod},
+         given={Lyn\bibnamedelima C},
+         giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{LS+1}
+    \strng{fullhash}{LSBBSHVTLC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{1}
+    \field{pages}{124\bibrangedash 136}
+    \field{title}{Benchmarking state-of-the-art classification algorithms for
+  credit scoring: An update of research}
+    \field{volume}{247}
+    \field{journaltitle}{European Journal of Operational Research}
+    \field{year}{2015}
+  \endentry
 
-\bibitem[Lessmann et~al., 2015]{lessmann2015benchmarking}
-Lessmann, S., Baesens, B., Seow, H.-V., and Thomas, L.~C. (2015).
-\newblock Benchmarking state-of-the-art classification algorithms for credit
-  scoring: An update of research.
-\newblock {\em European Journal of Operational Research}, 247(1):124--136.
+  \entry{r:knitr}{book}{}
+    \name{author}{1}{}{%
+      {{hash=XY}{%
+         family={Xie},
+         familyi={X\bibinitperiod},
+         given={Yihui},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {Chapman}%
+      {Hall/CRC}%
+    }
+    \strng{namehash}{XY1}
+    \strng{fullhash}{XY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2015}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{edition}{2nd}
+    \field{note}{ISBN 978-1498716963}
+    \field{title}{Dynamic Documents with {R} and knitr}
+    \verb{url}
+    \verb http://yihui.name/knitr/
+    \endverb
+    \list{location}{1}{%
+      {Boca Raton, Florida}%
+    }
+    \field{year}{2015}
+  \endentry
 
-\bibitem[{R Core Team}, 2017]{r:rbase}
-{R Core Team} (2017).
-\newblock {\em R: A Language and Environment for Statistical Computing}.
-\newblock R Foundation for Statistical Computing, Vienna, Austria.
+  \entry{hosmer2013applied}{book}{}
+    \name{author}{3}{}{%
+      {{hash=HJDW}{%
+         family={Hosmer\bibnamedelima Jr},
+         familyi={H\bibinitperiod\bibinitdelim J\bibinitperiod},
+         given={David\bibnamedelima W},
+         giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Lemeshow},
+         familyi={L\bibinitperiod},
+         given={Stanley},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SRX}{%
+         family={Sturdivant},
+         familyi={S\bibinitperiod},
+         given={Rodney\bibnamedelima X},
+         giveni={R\bibinitperiod\bibinitdelim X\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {John Wiley \& Sons}%
+    }
+    \strng{namehash}{HJDWLSSRX1}
+    \strng{fullhash}{HJDWLSSRX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{Applied logistic regression}
+    \field{volume}{398}
+    \field{year}{2013}
+  \endentry
 
-\bibitem[Thomas, 2010]{thomas2010consumer}
-Thomas, L.~C. (2010).
-\newblock Consumer finance: Challenges for operational research.
-\newblock {\em Journal of the Operational Research Society}, 61(1):41--52.
+  \entry{thomas2010consumer}{article}{}
+    \name{author}{1}{}{%
+      {{hash=TLC}{%
+         family={Thomas},
+         familyi={T\bibinitperiod},
+         given={Lyn\bibnamedelima C},
+         giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{TLC1}
+    \strng{fullhash}{TLC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2010}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{1}
+    \field{pages}{41\bibrangedash 52}
+    \field{title}{Consumer finance: Challenges for operational research}
+    \field{volume}{61}
+    \field{journaltitle}{Journal of the Operational Research Society}
+    \field{year}{2010}
+  \endentry
 
-\bibitem[Wickham, 2009]{r:ggplot2}
-Wickham, H. (2009).
-\newblock {\em ggplot2: Elegant Graphics for Data Analysis}.
-\newblock Springer-Verlag New York.
+  \entry{r:ggplot2}{book}{}
+    \name{author}{1}{}{%
+      {{hash=WH}{%
+         family={Wickham},
+         familyi={W\bibinitperiod},
+         given={Hadley},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer-Verlag New York}%
+    }
+    \strng{namehash}{WH1}
+    \strng{fullhash}{WH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2009}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{isbn}{978-0-387-98140-6}
+    \field{title}{ggplot2: Elegant Graphics for Data Analysis}
+    \verb{url}
+    \verb http://ggplot2.org
+    \endverb
+    \field{year}{2009}
+  \endentry
 
-\bibitem[Xiao et~al., 2006]{xiao2006comparative}
-Xiao, W., Zhao, Q., and Fei, Q. (2006).
-\newblock A comparative study of data mining methods in consumer loans credit
-  scoring management.
-\newblock {\em Journal of Systems Science and Systems Engineering},
-  15(4):419--435.
+  \entry{xiao2006comparative}{article}{}
+    \name{author}{3}{}{%
+      {{hash=XW}{%
+         family={Xiao},
+         familyi={X\bibinitperiod},
+         given={Wenbing},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=ZQ}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Qian},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=FQ}{%
+         family={Fei},
+         familyi={F\bibinitperiod},
+         given={Qi},
+         giveni={Q\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{XWZQFQ1}
+    \strng{fullhash}{XWZQFQ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2006}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{4}
+    \field{pages}{419\bibrangedash 435}
+    \field{title}{A comparative study of data mining methods in consumer loans
+  credit scoring management}
+    \field{volume}{15}
+    \field{journaltitle}{Journal of Systems Science and Systems Engineering}
+    \field{year}{2006}
+  \endentry
 
-\bibitem[Xie, 2015]{r:knitr}
-Xie, Y. (2015).
-\newblock {\em Dynamic Documents with {R} and knitr}.
-\newblock Chapman and Hall/CRC, Boca Raton, Florida, 2nd edition.
-\newblock ISBN 978-1498716963.
-
-\end{thebibliography}
+  \entry{baesens2003benchmarking}{article}{}
+    \name{author}{6}{}{%
+      {{hash=BB}{%
+         family={Baesens},
+         familyi={B\bibinitperiod},
+         given={Bart},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=VGT}{%
+         family={Van\bibnamedelima Gestel},
+         familyi={V\bibinitperiod\bibinitdelim G\bibinitperiod},
+         given={Tony},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=VS}{%
+         family={Viaene},
+         familyi={V\bibinitperiod},
+         given={Stijn},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Stepanova},
+         familyi={S\bibinitperiod},
+         given={Maria},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Suykens},
+         familyi={S\bibinitperiod},
+         given={Johan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=VJ}{%
+         family={Vanthienen},
+         familyi={V\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{BB+1}
+    \strng{fullhash}{BBVGTVSSMSJVJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2003}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{6}
+    \field{pages}{627\bibrangedash 635}
+    \field{title}{Benchmarking state-of-the-art classification algorithms for
+  credit scoring}
+    \field{volume}{54}
+    \field{journaltitle}{Journal of the operational research society}
+    \field{year}{2003}
+  \endentry
+\endsortlist
+\endinput

@@ -1,0 +1,14 @@
+\chapter{Thông tin về phiên làm việc trên R}
+
+<<>>=
+sessionInfo()
+@
+
+\chapter{Code}
+
+<<eval=FALSE, ref.label='corr_mat',echo=TRUE>>=
+@
+
+<<eval=FALSE, ref.label='pca',echo=TRUE>>=
+@
+

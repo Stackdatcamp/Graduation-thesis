@@ -1,15 +1,12 @@
-
 Chúng ta thực hành trên bộ số liệu mẫu bao gồm 30000 quan sát và 25 biến bao gồm tình trạng trả nợ, các thông tin nhân khẩu học cơ bản cùng với số liệu về tín dụng và tình trạng hồ sơ của các khách hàng thẻ tín dụng ở Đài Loan từ tháng 4 năm 2005 đến tháng 9 năm 2005.
 
 Các tên biến đã được thay đổi để tiện lợi cho việc đọc hiểu và phân tích, cụ thể như sau:
 
-
-
 \begin{description}
   \item [\texttt{ID}] Số ID của mỗi khách hàng tín dụng
   \item [\texttt{LIMIT\_BAL}] Lượng tín dụng cho vay tính bằng Đô la Đài Loan (bao gồm cả các khoản vay cá nhân và các khoản vay với thẻ tín dụng phụ)
-  \item [\texttt{SEX}] Giới tính (1=Nam, 2=Nữ)
-  \item [\texttt{EDUCATION}] (1=sau đại học, 2=đại học, 3=phổ thông, 4=khác, 5=không rõ, 6=không rõ)
+  \item [\texttt{SEX}] Giới tính (0=Nữ, 1=Nam)
+  \item [\texttt{EDUCATION}] (1=sau đại học, 2=đại học, 3=phổ thông, 4=khác)
   \item [\texttt{MARRIAGE}] Trạng thái hôn nhân (1=đã cưới, 2=độc thân, 3=khác)
   \item [\texttt{AGE}] Số tuổi tính bằng năm
   \item [\texttt{PAY\_0}] Tình trạng hồ sơ vào thời điểm tháng 9/2005 (-1=trả đúng hạn, 1=chậm 1 tháng, 2=chậm 2 tháng, ... 8=chậm 8 tháng, 9=chậm 9 tháng hoặc nhiều hơn)
@@ -30,18 +27,77 @@ Các tên biến đã được thay đổi để tiện lợi cho việc đọc 
   \item [\texttt{PAY\_AMT4}] Lượng tiền đã thanh toán vào thời điểm tháng 6/2015 (Đô la Đài Loan)
   \item [\texttt{PAY\_AMT5}] Lượng tiền đã thanh toán vào thời điểm tháng 5/2015 (Đô la Đài Loan)
   \item [\texttt{PAY\_AMT6}] Lượng tiền đã thanh toán vào thời điểm tháng 4/2015 (Đô la Đài Loan)
-  \item [\texttt{default}] Có trả nợ hay không (1=có, 0=không)
+  \item [\texttt{DEFAULT}] Có trả nợ hay không (1=có, 0=không)
 \end{description}
-Hình \ref{fig:data_corr_mat} mô tả ma trận hệ số tương quan giữa các biến số trong bộ số liệu
 
-\begin{figure}
-\begin{center}
-<<corr_mat, echo=FALSE, fig.width=11, fig.height=11>>=
-credit %>% select(everything(), -ID) %>%
-  ggcorr(palette = "RdBu", label = TRUE, size=3)
+
+Hình \ref{fig:corr_mat} (trang \pageref{fig:corr_mat}) mô tả ma trận hệ số tương quan Pearson giữa các biến số trong bộ số liệu. 
+Lưu ý tương quan giữa các biến trong nhóm biến \texttt{PAY} (tình trạng hồ sơ) và 
+giữa các biến trong nhóm biến \texttt{BILL\_AMT} (hoá đơn thanh toán) là khá cao, thể hiện sự tương đồng cao về mặt thông tin thể hiện của các biến này.
+Trong số các biến trong bộ số liệu, các biến \texttt{PAY} là có thể hiện tương quan dương với biến \texttt{DEFAULT}, gợi ý rằng chúng ta có thể sử dụng biến này là biến chính để dự đoán tỉ lệ vỡ nợ của khách hàng.
+
+\begin{figure}[h]
+\centering
+\capstart
+<<corr_mat,echo=FALSE, fig.width=10>>=
+train_set %>% select(everything(), - MARRIAGE, -SEX, 
+                     -EDUCATION, - DEFAULT) %>% 
+  ggcorr(palette = "RdBu", label = TRUE, layout.exp = 1,
+         hjust=0.75,size =3, name = "Hệ số tương quan")
 @
-\caption{Ma trận hệ số tương quan giữa các biến trong bộ số liệu.}
-\label{fig:data_corr_mat}
-\end{center}
+\caption[Ma trận hệ số tương quan Pearson]{Ma trận hệ số tương quan Pearson giữa các biến trong bộ số liệu.}
+\label{fig:corr_mat}
 \end{figure}
 
+Để có cái nhìn cụ thể hơn vào bộ số liệu này, chúng ta sử dụng phương pháp phân tích thành phần chính (PCA - Principal Component Analysis) để phân tích bộ số liệu.
+Với phương pháp này, chúng ta tìm một hệ tọa độ trực giao mới để thể hiện bộ số liệu, sao cho với thành phần chính thứ nhất (chiều thứ nhất của hệ tọa độ mới) thể hiện được nhiều nhất có thể thông tin của bộ số liệu, thành phần chính thứ hai (chiều thứ hai của hệ tọa độ mới) thể hiện nhiều nhất có thể lượng thông tin còn lại của bộ số liệu, v...v... Lưu ý rằng vì các biến trong bộ số liệu có thang đo khác nhau, để đảm bảo hiệu quả cho phương pháp phân tích đa biến này, chúng ta chuẩn hóa các biến trước khi thực hiện PCA. Đồng thời, các biến phân loại như \texttt{EDUCATION} và \texttt{MARRIAGE} cũng được lược bỏ.
+
+\begin{figure}[h]
+\centering
+\capstart
+<<pca,out.height='10cm', out.width='10cm'>>=
+train_set1 <- train_set %>% 
+  mutate(
+    DEFAULT = ifelse(DEFAULT == 1, "1 (Vỡ nợ)", "0 (Không vỡ nợ)")
+  )
+
+# Kết quả phân tích thành phần chính
+pca_result <- train_set1 %>%
+  select(everything(), -DEFAULT, -EDUCATION, - MARRIAGE) %>% 
+  prcomp(scale = TRUE)
+
+# Phần trăm phương sai thể hiện trên các thành phần chính
+pc_percent <- pca_result$sdev^2/sum(pca_result$sdev^2)*100
+
+# Vẽ đồ thị
+pca_result %>% 
+  autoplot(data = train_set1, colour = 'DEFAULT',
+           loadings = TRUE, 
+           loadings.colour = 'black',
+           loadings.label = TRUE, 
+           loadings.label.colour = "#005000",
+           loadings.label.repel = TRUE, 
+           label.size = 3,
+           alpha = 0.5) +
+  scale_color_manual(values = c("#5192ba", 
+                                "#d60003")) +
+  labs(x = paste0("Thành phần chính 1 (giải thích ", 
+                  round(pc_percent[1], 2),
+                  "% phương sai)"),
+       y = paste0("Thành phần chính 2 (giải thích ", 
+                  round(pc_percent[2], 2),
+                  "% phương sai)"),
+       color = "Giá trị của biến\nDEFAULT") +
+  theme(legend.position = c(0.8, 0.8))
+@
+\caption{Phép chiếu bộ số liệu trên hai thành phần chính.}
+\label{fig:pca}
+\end{figure}
+
+Phép chiếu của các biến và các quan sát trong bộ số liệu trên hai thành phần chính đầu tiên được thể hiện trong hình \ref{fig:pca} (trang \pageref{fig:pca}), với mỗi véc tơ thể hiện một biến và mỗi điểm thể hiện một quan sát trong bộ số liệu. Các quan sát thuộc vào nhóm vỡ nợ (biến \texttt{DEFAULT} bằng 1) có màu đỏ và các quan sát thuộc nhóm không vỡ nợ (biến \texttt{DEFAULT} bằng 0) có màu xanh. 
+Quan sát đồ thị này, chúng ta nhận thấy các quan sát thuộc nhóm vỡ nợ (màu đỏ) tập trung nhiều ở phía trên đồ thị, hay là giá trị của các biến này chiếu trên thành phần chính thứ 2 (trục tung) là cao hơn. 
+Như chúng ta nhận xét ở ma trận hệ số tương quan phía trên, véc tơ chiếu các biến thuộc cùng nhóm \texttt{PAY}, \texttt{PAY\_ATM} và \texttt{BILL\_ATM} nằm khá gần nhau, thể hiện mức độ tương quan cao giữa các biến số thuộc cùng một trong ba nhóm này. Các biến thuộc nhóm \texttt{PAY} có hướng trùng với hướng phân bố của các quan sát thuộc nhóm vỡ nợ, trong khi các biến thuộc nhóm \texttt{PAY\_ATM} có hướng trùng với hướng phân bố của các quan sát thuộc nhóm không vỡ nợ, gợi ý tiềm năng dùng để dự báo của các nhóm biến này. 
+Ngoài ra các quan sát nhóm vỡ nợ cũng có xu hướng thể hiện cao trên biến 
+\texttt{SEX}. Nhóm các quan sát không vỡ nợ cũng phân bố nhiều theo chiều tăng của các biến \texttt{AGE} và \texttt{LIMIT\_BAL}.
+
+Lưu ý rằng đồ thị \ref{fig:pca} chỉ thể hiện $\Sexpr{round(sum(pc_percent[1:2]),2)}$ phần trăm lượng thông tin của bộ số liệu, chưa kể các biến \texttt{EDUCATION} và \texttt{MARRIAGE}. Bằng cách sử dụng các phương pháp phân tích cụ thể hơn, chúng ta có thể đưa ra một mô hình phân loại chính xác hơn đối với khả năng vỡ nợ của các khách hàng dùng thẻ tín dụng trong bộ số liệu này.

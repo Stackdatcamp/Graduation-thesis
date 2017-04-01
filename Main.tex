@@ -51,7 +51,9 @@
 \usepackage{alltt}
 \usepackage[fontsize=13pt]{scrextend}
 \usepackage[utf8]{vietnam}
-
+\usepackage{verbatim} 
+\usepackage{lipsum}
+\usepackage{listings}
 
 
 \makeatletter
@@ -82,7 +84,6 @@
   bottom=25mm,
   right=25mm
   }
-
 %%%%%%%%%%%%%%%%%%%%%
 % HEADER AND FOOTER %
 %%%%%%%%%%%%%%%%%%%%%
@@ -124,25 +125,40 @@
 {\bfseries}
 {\thesubsection}{1em}
 {}
-  
 
-%%%%%%%%%%%%
-% CITATION %
-%%%%%%%%%%%%
-% Setting up for citation styles
-\usepackage{natbib}
+%%%%%%%%%%%%%%%%%%%%%%  
+% FIGURES AND TABLES %
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[section]{placeins}
 
 %%%%%%%%%%%%%%%%%%%
 % TOC FORMATTING  %
 %%%%%%%%%%%%%%%%%%%
 
-% Package hyperref should be loaded last, as it rewrite many commands.
+% Package hyperref should be loaded last, as it rewrites many commands.
 % \usepackage{tocloft}
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
+\usepackage[all]{hypcap}
 % Customise for table of contents labeling
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{4}
-
+%%%%%%%%%%%%
+% CITATION %
+%%%%%%%%%%%%
+% Setting up for citation styles
+% \usepackage{natbib}
+\usepackage[backend=bibtex,bibstyle=luanan,sorting=ydnt,style=authoryear]{biblatex}
+\addbibresource{reference.bib}
+% Add number to bibliography
+\defbibenvironment{bibliography}
+  {\enumerate
+     {}
+     {\setlength{\leftmargin}{\bibhang}%
+      \setlength{\itemindent}{-\leftmargin}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endenumerate}
+  {\item}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%---------DOCUMENT CONTENTS----------%%%%
@@ -150,7 +166,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
-\bibliographystyle{apalike}
+% \bibliographystyle{apalike}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %         TITLE PAGE          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -160,7 +176,7 @@
 % Lời mở đầu %
 %%%%%%%%%%%%%%%
 \chapter*{Lời mở đầu}
-\addcontentsline{toc}{section}{Lời mở đầu}
+\addcontentsline{toc}{chapter}{Lời mở đầu}
 
 % LỜI MỞ ĐẦU  
 %
@@ -172,9 +188,9 @@ Phương pháp truyền thống của việc ra quyết định có cho một c�
 Tuy nhiên, sự phát triển về quy mô của nền kinh tế đã tạo ra sức ép về nhu cầu vay, đi kèm với đó là sự cạnh tranh giữa các ngân hàng và công nghệ máy tính ngày càng phát triển đã khiến cho việc sử dụng các mô hình thống kê trong việc phân loại các khách hàng tín dụng là bắt buộc đối với các ngân hàng trên thế giới mà ở Việt Nam cũng không phải là ngoại lệ.
 %
 
-Vậy, phương pháp ước lượng nào có thể giúp chúng ta xây dựng được hệ thống chấm điểm tín dụng chính xác nhất? Đã có một số nghiên cứu mang tính chất so sánh hiệu năng giữa các mô hình \citep{baesens2003benchmarking, xiao2006comparative, lessmann2015benchmarking}. 
+Vậy, phương pháp ước lượng nào có thể giúp chúng ta xây dựng được hệ thống chấm điểm tín dụng chính xác nhất? Đã có một số nghiên cứu mang tính chất so sánh hiệu năng giữa các mô hình \parencite{baesens2003benchmarking, xiao2006comparative, lessmann2015benchmarking}. 
 Sự khác biệt về hiệu năng của các phương pháp khác nhau là có, tuy nhiên hầu như là không đáng kể, và không phải các mô hình hiệu quả hơn đều là các mô hình mới và tân tiến.
-Theo \citet{thomas2010consumer}, cách hiệu quả để xây dựng một hệ thống lượng định hiệu quả là phối hợp nhiều mô hình khác nhau thay vì tìm kiếm một mô hình toàn diện có thể áp dụng với tất cả các ngân hàng.
+Theo \textcite{thomas2010consumer}, cách hiệu quả để xây dựng một hệ thống lượng định hiệu quả là phối hợp nhiều mô hình khác nhau thay vì tìm kiếm một mô hình toàn diện có thể áp dụng với tất cả các ngân hàng.
 
 Trong bài này, chúng ta sẽ tiếp cận đến một số phương pháp phân loại các khách hàng tín dụng phổ biến hiện nay và rút ra một số kết luận về việc sử dụng các phương pháp khác nhau sao cho hợp lý. Bài viết này được bố cục như sau:
 
@@ -185,34 +201,25 @@ Trong bài này, chúng ta sẽ tiếp cận đến một số phương pháp ph
 \item Kết quả của các mô hình sẽ được thảo luận ở \textbf{Chương 4}, cùng với một số kết luận rút ra được sau khi áp dụng mô hình.
 \end{itemize}
 % - Hướng tiếp cận 
-Đề tài này được soạn thảo bằng \LaTeX kết hợp với \texttt{Sweave} và \texttt{knitr} 
-\citep{r:knitr}. Tất cả phân tích được thực hiện trên phần mềm thống kê 
-R version 3.3.3 (2017-03-06) \citep{r:rbase},  
-các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{ggplot2} \citep{r:ggplot2}... Trong quá trình thực hiện các mô hình có bao gồm các lệnh tạo giá trị ngẫu nhiên, để đảm bảo khả năng tái lập các kết quả trong mô hình, ta gieo seed cho R:
-
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{set.seed}\hlstd{(}\hlnum{0}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+Đề tài này được soạn thảo bằng \LaTeX{} kết hợp với \texttt{Sweave} và \texttt{knitr} 
+\parencite{r:knitr}. Tất cả phân tích được thực hiện trên phần mềm thống kê 
+R version 3.3.3 (2017-03-06) \parencite{r:rbase},  
+các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{ggplot2} \parencite{r:ggplot2}... 
 
 %  Cảm ơn bla bla
 Em xin cảm ơn giáo viên hướng dẫn, cô Nguyễn Thị Minh, trưởng khoa 
 Toán Ứng dụng trong Kinh tế, cùng với các thầy cô giáo khác trong khoa đã tạo điều kiện cho em thực hiện đề tài này.
-
 %%%%%%%
 % TOC %
 %%%%%%%
 \clearpage\tableofcontents
-\addcontentsline{toc}{section}{Mục lục}
+\addcontentsline{toc}{chapter}{Mục lục}
 
 \listoftables
-\addcontentsline{toc}{section}{Danh sách bảng}
+\addcontentsline{toc}{chapter}{Danh sách bảng}
 
 \listoffigures
-\addcontentsline{toc}{section}{Danh sách hình}
+\addcontentsline{toc}{chapter}{Danh sách hình}
 
 %%%%%%%%%%%%
 % Chương 1 %
@@ -234,6 +241,8 @@ Toán Ứng dụng trong Kinh tế, cùng với các thầy cô giáo khác tron
 
 \subsection{Mô hình logistic}
 
+% \subsection{Khái niệm}
+
 Mô hình hồi quy Logistic được dùng để nghiên cứu mối quan hệ giữa xác suất của các biến nhị phân hoặc phân loại và các biến giải thích khác. Hướng tiếp cận của mô hình Logistic cho bài toán phân loại là bằng cách ước lượng giá trị xác suất $P(y = 1|X)$ như sau:
 
 {\large
@@ -242,7 +251,18 @@ P(y = 1|X) = \frac{e^{\beta_0 + \sum\beta_1X_1 +\beta_2X_2 + \ldots + \beta_nX_n
 $$
 }
 
-Với $y$ là biến dùng để phân loại, chỉ nhận hai giá trị 0 hoặc 1, $X$ là các vector của biến độc lập, $\beta_0$, $\beta_1$, $\beta_2$, ..., $\beta_n$ là các hệ số cần ước lượng. Các hệ số $\beta$ thường được ước lượng bằng phương pháp ước lượng hợp lý tối đa \citep{hosmer2013applied}.
+Với $y$ là biến dùng để phân loại, chỉ nhận hai giá trị 0 hoặc 1, $X$ là các vector của biến độc lập, $\beta_0$, $\beta_1$, $\beta_2$, ..., $\beta_n$ là các hệ số cần ước lượng. 
+% Các biến định tính thường được đưa vào mô hình dưới dạng biến giả, vì giá trị của các biến này chỉ mang ý nghĩa phân biệt.	
+Các hệ số $\beta$ thường được ước lượng bằng phương pháp ước lượng hợp lý tối đa \parencite{hosmer2013applied}.
+
+
+%If some of the independent variables are discrete, nominal scale variables such as race, sex, treatment group, and so forth, it is inappropriate to include them in the model as if they were interval scale variables. The numbers used to represent the various levels of these nominal scale variables are merely identifiers, and have no numeric significance. In this situation, the method of choice is to use a collection of design variables (or dummy variables). Suppose, for example, that one of the independent variables is race, which has been coded as “white,” “black,” and “other.” In this case, two design variables are necessary. One possible coding strategy is that when the respondent is “white,” the two design variables, D 1 and D 2 , would both be set equal to zero; when the respondent is “black,” D 1 would be set equal to 1 while D 2 would still equal 0; when the race of the respondent is “other,” we would use D 1 = 0 and D 2 = 1.
+
+% \subsection{Kiểm định ý nghĩa thống kê của mô hình} page 52
+% Or how to add or remove variables => Chap. 4-5 applied logistic models.
+
+
+% \subsection{Diễn giải kết quả ước lượng mô hình}
 
 \subsection{Mô hình phân loại tuyến tính}
 \subsection{Mô hình SVM (Support Vector Machine)}
@@ -259,18 +279,15 @@ Với $y$ là biến dùng để phân loại, chỉ nhận hai giá trị 0 ho�
 
 \section{Số liệu và các biến số}
 
-
 Chúng ta thực hành trên bộ số liệu mẫu bao gồm 30000 quan sát và 25 biến bao gồm tình trạng trả nợ, các thông tin nhân khẩu học cơ bản cùng với số liệu về tín dụng và tình trạng hồ sơ của các khách hàng thẻ tín dụng ở Đài Loan từ tháng 4 năm 2005 đến tháng 9 năm 2005.
 
 Các tên biến đã được thay đổi để tiện lợi cho việc đọc hiểu và phân tích, cụ thể như sau:
 
-
-
 \begin{description}
   \item [\texttt{ID}] Số ID của mỗi khách hàng tín dụng
   \item [\texttt{LIMIT\_BAL}] Lượng tín dụng cho vay tính bằng Đô la Đài Loan (bao gồm cả các khoản vay cá nhân và các khoản vay với thẻ tín dụng phụ)
-  \item [\texttt{SEX}] Giới tính (1=Nam, 2=Nữ)
-  \item [\texttt{EDUCATION}] (1=sau đại học, 2=đại học, 3=phổ thông, 4=khác, 5=không rõ, 6=không rõ)
+  \item [\texttt{SEX}] Giới tính (0=Nữ, 1=Nam)
+  \item [\texttt{EDUCATION}] (1=sau đại học, 2=đại học, 3=phổ thông, 4=khác)
   \item [\texttt{MARRIAGE}] Trạng thái hôn nhân (1=đã cưới, 2=độc thân, 3=khác)
   \item [\texttt{AGE}] Số tuổi tính bằng năm
   \item [\texttt{PAY\_0}] Tình trạng hồ sơ vào thời điểm tháng 9/2005 (-1=trả đúng hạn, 1=chậm 1 tháng, 2=chậm 2 tháng, ... 8=chậm 8 tháng, 9=chậm 9 tháng hoặc nhiều hơn)
@@ -291,24 +308,65 @@ Các tên biến đã được thay đổi để tiện lợi cho việc đọc 
   \item [\texttt{PAY\_AMT4}] Lượng tiền đã thanh toán vào thời điểm tháng 6/2015 (Đô la Đài Loan)
   \item [\texttt{PAY\_AMT5}] Lượng tiền đã thanh toán vào thời điểm tháng 5/2015 (Đô la Đài Loan)
   \item [\texttt{PAY\_AMT6}] Lượng tiền đã thanh toán vào thời điểm tháng 4/2015 (Đô la Đài Loan)
-  \item [\texttt{default}] Có trả nợ hay không (1=có, 0=không)
+  \item [\texttt{DEFAULT}] Có trả nợ hay không (1=có, 0=không)
 \end{description}
-Hình \ref{fig:data_corr_mat} mô tả ma trận hệ số tương quan giữa các biến số trong bộ số liệu
 
-\begin{figure}
-\begin{center}
-\begin{knitrout}
+
+Hình \ref{fig:corr_mat} (trang \pageref{fig:corr_mat}) mô tả ma trận hệ số tương quan Pearson giữa các biến số trong bộ số liệu. 
+Lưu ý tương quan giữa các biến trong nhóm biến \texttt{PAY} (tình trạng hồ sơ) và 
+giữa các biến trong nhóm biến \texttt{BILL\_AMT} (hoá đơn thanh toán) là khá cao, thể hiện sự tương đồng cao về mặt thông tin thể hiện của các biến này.
+Trong số các biến trong bộ số liệu, các biến \texttt{PAY} là có thể hiện tương quan dương với biến \texttt{DEFAULT}, gợi ý rằng chúng ta có thể sử dụng biến này là biến chính để dự đoán tỉ lệ vỡ nợ của khách hàng.
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\maxwidth]{figure/corr_mat-1} 
+\includegraphics[width=\textwidth]{figure/corr_mat-1} 
 
 \end{knitrout}
-\caption{Ma trận hệ số tương quan giữa các biến trong bộ số liệu.}
-\label{fig:data_corr_mat}
-\end{center}
+\caption[Ma trận hệ số tương quan Pearson]{Ma trận hệ số tương quan Pearson giữa các biến trong bộ số liệu.}
+\label{fig:corr_mat}
 \end{figure}
+
+Để có cái nhìn cụ thể hơn vào bộ số liệu này, chúng ta sử dụng phương pháp phân tích thành phần chính (PCA - Principal Component Analysis) để phân tích bộ số liệu.
+Với phương pháp này, chúng ta tìm một hệ tọa độ trực giao mới để thể hiện bộ số liệu, sao cho với thành phần chính thứ nhất (chiều thứ nhất của hệ tọa độ mới) thể hiện được nhiều nhất có thể thông tin của bộ số liệu, thành phần chính thứ hai (chiều thứ hai của hệ tọa độ mới) thể hiện nhiều nhất có thể lượng thông tin còn lại của bộ số liệu, v...v... Lưu ý rằng vì các biến trong bộ số liệu có thang đo khác nhau, để đảm bảo hiệu quả cho phương pháp phân tích đa biến này, chúng ta chuẩn hóa các biến trước khi thực hiện PCA. Đồng thời, các biến phân loại như \texttt{EDUCATION} và \texttt{MARRIAGE} cũng được lược bỏ.
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=10cm,height=10cm]{figure/pca-1} 
+
+\end{knitrout}
+\caption{Phép chiếu bộ số liệu trên hai thành phần chính.}
+\label{fig:pca}
+\end{figure}
+
+Phép chiếu của các biến và các quan sát trong bộ số liệu trên hai thành phần chính đầu tiên được thể hiện trong hình \ref{fig:pca} (trang \pageref{fig:pca}), với mỗi véc tơ thể hiện một biến và mỗi điểm thể hiện một quan sát trong bộ số liệu. Các quan sát thuộc vào nhóm vỡ nợ (biến \texttt{DEFAULT} bằng 1) có màu đỏ và các quan sát thuộc nhóm không vỡ nợ (biến \texttt{DEFAULT} bằng 0) có màu xanh. 
+Quan sát đồ thị này, chúng ta nhận thấy các quan sát thuộc nhóm vỡ nợ (màu đỏ) tập trung nhiều ở phía trên đồ thị, hay là giá trị của các biến này chiếu trên thành phần chính thứ 2 (trục tung) là cao hơn. 
+Như chúng ta nhận xét ở ma trận hệ số tương quan phía trên, véc tơ chiếu các biến thuộc cùng nhóm \texttt{PAY}, \texttt{PAY\_ATM} và \texttt{BILL\_ATM} nằm khá gần nhau, thể hiện mức độ tương quan cao giữa các biến số thuộc cùng một trong ba nhóm này. Các biến thuộc nhóm \texttt{PAY} có hướng trùng với hướng phân bố của các quan sát thuộc nhóm vỡ nợ, trong khi các biến thuộc nhóm \texttt{PAY\_ATM} có hướng trùng với hướng phân bố của các quan sát thuộc nhóm không vỡ nợ, gợi ý tiềm năng dùng để dự báo của các nhóm biến này. 
+Ngoài ra các quan sát nhóm vỡ nợ cũng có xu hướng thể hiện cao trên biến 
+\texttt{SEX}. Nhóm các quan sát không vỡ nợ cũng phân bố nhiều theo chiều tăng của các biến \texttt{AGE} và \texttt{LIMIT\_BAL}.
+
+Lưu ý rằng đồ thị \ref{fig:pca} chỉ thể hiện $50.67$ phần trăm lượng thông tin của bộ số liệu, chưa kể các biến \texttt{EDUCATION} và \texttt{MARRIAGE}. Bằng cách sử dụng các phương pháp phân tích cụ thể hơn, chúng ta có thể đưa ra một mô hình phân loại chính xác hơn đối với khả năng vỡ nợ của các khách hàng dùng thẻ tín dụng trong bộ số liệu này.
 
 
 \section{Ứng dụng mô hình logit}
+\subsection{Chọn biến}
+
+\begin{figure}
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\textwidth]{figure/model_selection-1} 
+
+\end{knitrout}
+\caption{Chọn biến với phương pháp tập con tốt nhất.}
+\label{fig:model_selection}
+\end{figure}
 
 \section{Ứng dụng mô hình phân loại tuyến tính}
 
@@ -320,10 +378,125 @@ Hình \ref{fig:data_corr_mat} mô tả ma trận hệ số tương quan giữa c
 
 \chapter{Kết luận}
 
+%%%%%%%%%%%
+% Phụ lục %
+%%%%%%%%%%%
+\appendix
+
+\chapter{Thông tin về phiên làm việc trên R}
+
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## R version 3.3.3 (2017-03-06)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.2 LTS
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8    LC_NUMERIC=C           
+##  [3] LC_TIME=vi_VN           LC_COLLATE=en_US.UTF-8 
+##  [5] LC_MONETARY=vi_VN       LC_MESSAGES=en_US.UTF-8
+##  [7] LC_PAPER=vi_VN          LC_NAME=C              
+##  [9] LC_ADDRESS=C            LC_TELEPHONE=C         
+## [11] LC_MEASUREMENT=vi_VN    LC_IDENTIFICATION=C    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets 
+## [6] methods   base     
+## 
+## other attached packages:
+##  [1] bestglm_0.36    leaps_3.0       ggthemes_3.4.0 
+##  [4] ggfortify_0.4.1 GGally_1.3.0    caret_6.0-73   
+##  [7] ggplot2_2.2.1   lattice_0.20-34 dplyr_0.5.0    
+## [10] tidyr_0.6.1     readr_1.1.0     knitr_1.15.1   
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.10       RColorBrewer_1.1-2
+##  [3] nloptr_1.0.4       plyr_1.8.4        
+##  [5] iterators_1.0.8    tools_3.3.3       
+##  [7] digest_0.6.12      lme4_1.1-12       
+##  [9] evaluate_0.10      tibble_1.2        
+## [11] nlme_3.1-131       gtable_0.2.0      
+## [13] mgcv_1.8-16        Matrix_1.2-8      
+## [15] foreach_1.4.3      DBI_0.6           
+## [17] ggrepel_0.6.5      parallel_3.3.3    
+## [19] SparseM_1.76       gridExtra_2.2.1   
+## [21] stringr_1.2.0      MatrixModels_0.4-1
+## [23] hms_0.3            glmnet_2.0-5      
+## [25] stats4_3.3.3       grid_3.3.3        
+## [27] nnet_7.3-12        reshape_0.8.6     
+## [29] R6_2.2.0           grpreg_3.0-2      
+## [31] minqa_1.2.4        reshape2_1.4.2    
+## [33] car_2.1-4          magrittr_1.5      
+## [35] scales_0.4.1       codetools_0.2-15  
+## [37] ModelMetrics_1.1.0 MASS_7.3-45       
+## [39] splines_3.3.3      assertthat_0.1    
+## [41] pbkrtest_0.4-7     colorspace_1.3-2  
+## [43] labeling_0.3       quantreg_5.29     
+## [45] stringi_1.1.3      lazyeval_0.2.0    
+## [47] munsell_0.4.3
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\chapter{Code}
+
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{train_set} \hlopt{%>%} \hlkwd{select}\hlstd{(}\hlkwd{everything}\hlstd{(),} \hlopt{-} \hlstd{MARRIAGE,} \hlopt{-}\hlstd{SEX,}
+                     \hlopt{-}\hlstd{EDUCATION,} \hlopt{-} \hlstd{DEFAULT)} \hlopt{%>%}
+  \hlkwd{ggcorr}\hlstd{(}\hlkwc{palette} \hlstd{=} \hlstr{"RdBu"}\hlstd{,} \hlkwc{label} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{layout.exp} \hlstd{=} \hlnum{1}\hlstd{,}
+         \hlkwc{hjust}\hlstd{=}\hlnum{0.75}\hlstd{,}\hlkwc{size} \hlstd{=}\hlnum{3}\hlstd{,} \hlkwc{name} \hlstd{=} \hlstr{"Hệ số tương quan"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{train_set1} \hlkwb{<-} \hlstd{train_set} \hlopt{%>%}
+  \hlkwd{mutate}\hlstd{(}
+    \hlkwc{DEFAULT} \hlstd{=} \hlkwd{ifelse}\hlstd{(DEFAULT} \hlopt{==} \hlnum{1}\hlstd{,} \hlstr{"1 (Vỡ nợ)"}\hlstd{,} \hlstr{"0 (Không vỡ nợ)"}\hlstd{)}
+  \hlstd{)}
+
+\hlcom{# Kết quả phân tích thành phần chính}
+\hlstd{pca_result} \hlkwb{<-} \hlstd{train_set1} \hlopt{%>%}
+  \hlkwd{select}\hlstd{(}\hlkwd{everything}\hlstd{(),} \hlopt{-}\hlstd{DEFAULT,} \hlopt{-}\hlstd{EDUCATION,} \hlopt{-} \hlstd{MARRIAGE)} \hlopt{%>%}
+  \hlkwd{prcomp}\hlstd{(}\hlkwc{scale} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+
+\hlcom{# Phần trăm phương sai thể hiện trên các thành phần chính}
+\hlstd{pc_percent} \hlkwb{<-} \hlstd{pca_result}\hlopt{$}\hlstd{sdev}\hlopt{^}\hlnum{2}\hlopt{/}\hlkwd{sum}\hlstd{(pca_result}\hlopt{$}\hlstd{sdev}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{*}\hlnum{100}
+
+\hlcom{# Vẽ đồ thị}
+\hlstd{pca_result} \hlopt{%>%}
+  \hlkwd{autoplot}\hlstd{(}\hlkwc{data} \hlstd{= train_set1,} \hlkwc{colour} \hlstd{=} \hlstr{'DEFAULT'}\hlstd{,}
+           \hlkwc{loadings} \hlstd{=} \hlnum{TRUE}\hlstd{,}
+           \hlkwc{loadings.colour} \hlstd{=} \hlstr{'black'}\hlstd{,}
+           \hlkwc{loadings.label} \hlstd{=} \hlnum{TRUE}\hlstd{,}
+           \hlkwc{loadings.label.colour} \hlstd{=} \hlstr{"#005000"}\hlstd{,}
+           \hlkwc{loadings.label.repel} \hlstd{=} \hlnum{TRUE}\hlstd{,}
+           \hlkwc{label.size} \hlstd{=} \hlnum{3}\hlstd{,}
+           \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
+  \hlkwd{scale_color_manual}\hlstd{(}\hlkwc{values} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"#5192ba"}\hlstd{,}
+                                \hlstr{"#d60003"}\hlstd{))} \hlopt{+}
+  \hlkwd{labs}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{paste0}\hlstd{(}\hlstr{"Thành phần chính 1 (giải thích "}\hlstd{,}
+                  \hlkwd{round}\hlstd{(pc_percent[}\hlnum{1}\hlstd{],} \hlnum{2}\hlstd{),}
+                  \hlstr{"% phương sai)"}\hlstd{),}
+       \hlkwc{y} \hlstd{=} \hlkwd{paste0}\hlstd{(}\hlstr{"Thành phần chính 2 (giải thích "}\hlstd{,}
+                  \hlkwd{round}\hlstd{(pc_percent[}\hlnum{2}\hlstd{],} \hlnum{2}\hlstd{),}
+                  \hlstr{"% phương sai)"}\hlstd{),}
+       \hlkwc{color} \hlstd{=} \hlstr{"Giá trị của biến\textbackslash{}nDEFAULT"}\hlstd{)} \hlopt{+}
+  \hlkwd{theme}\hlstd{(}\hlkwc{legend.position} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.8}\hlstd{,} \hlnum{0.8}\hlstd{))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%
 % Danh mục tham khảo  %
 %%%%%%%%%%%%%%%%%%%%%%%
-\bibliography{./reference.bib}
-\addcontentsline{toc}{section}{Tài liệu tham khảo}
+\printbibliography
+\addcontentsline{toc}{chapter}{Tài liệu tham khảo}
 
 \end{document}

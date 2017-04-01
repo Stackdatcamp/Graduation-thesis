@@ -1,3 +1,5 @@
+% \subsection{Khái niệm}
+
 Mô hình hồi quy Logistic được dùng để nghiên cứu mối quan hệ giữa xác suất của các biến nhị phân hoặc phân loại và các biến giải thích khác. Hướng tiếp cận của mô hình Logistic cho bài toán phân loại là bằng cách ước lượng giá trị xác suất $P(y = 1|X)$ như sau:
 
 {\large
@@ -6,4 +8,15 @@ P(y = 1|X) = \frac{e^{\beta_0 + \sum\beta_1X_1 +\beta_2X_2 + \ldots + \beta_nX_n
 $$
 }
 
-Với $y$ là biến dùng để phân loại, chỉ nhận hai giá trị 0 hoặc 1, $X$ là các vector của biến độc lập, $\beta_0$, $\beta_1$, $\beta_2$, ..., $\beta_n$ là các hệ số cần ước lượng. Các hệ số $\beta$ thường được ước lượng bằng phương pháp ước lượng hợp lý tối đa \citep{hosmer2013applied}.
+Với $y$ là biến dùng để phân loại, chỉ nhận hai giá trị 0 hoặc 1, $X$ là các vector của biến độc lập, $\beta_0$, $\beta_1$, $\beta_2$, ..., $\beta_n$ là các hệ số cần ước lượng. 
+% Các biến định tính thường được đưa vào mô hình dưới dạng biến giả, vì giá trị của các biến này chỉ mang ý nghĩa phân biệt.	
+Các hệ số $\beta$ thường được ước lượng bằng phương pháp ước lượng hợp lý tối đa \parencite{hosmer2013applied}.
+
+
+%If some of the independent variables are discrete, nominal scale variables such as race, sex, treatment group, and so forth, it is inappropriate to include them in the model as if they were interval scale variables. The numbers used to represent the various levels of these nominal scale variables are merely identifiers, and have no numeric significance. In this situation, the method of choice is to use a collection of design variables (or dummy variables). Suppose, for example, that one of the independent variables is race, which has been coded as “white,” “black,” and “other.” In this case, two design variables are necessary. One possible coding strategy is that when the respondent is “white,” the two design variables, D 1 and D 2 , would both be set equal to zero; when the respondent is “black,” D 1 would be set equal to 1 while D 2 would still equal 0; when the race of the respondent is “other,” we would use D 1 = 0 and D 2 = 1.
+
+% \subsection{Kiểm định ý nghĩa thống kê của mô hình} page 52
+% Or how to add or remove variables => Chap. 4-5 applied logistic models.
+
+
+% \subsection{Diễn giải kết quả ước lượng mô hình}

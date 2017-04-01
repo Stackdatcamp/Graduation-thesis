@@ -1,0 +1,31 @@
+\begin{figure}
+\centering
+\capstart
+<<model_selection>>=
+selected_var <- train_set %>% select(-DEFAULT) %>% names()
+
+bestglm <- 
+  bestglm::bestglm(cbind(train_set %>% select(-DEFAULT),train_set$DEFAULT),
+                 IC = "BIC")
+bestglm_var <- bestglm$BestModel$coefficients %>% names() %>% 
+  recode("(Intercept)" = "Hệ số chặn")
+
+
+bestglm$Subsets %>% 
+  mutate(`Số biến` = 1:n(), `Hệ số chặn` = `(Intercept)`, 
+         `(Intercept)` = NULL) %>% 
+  gather(`Tên biến`, included, everything(), 
+                           -logLikelihood, -BIC, -`Số biến`) %>% 
+  filter(`Số biến` != 1, included == TRUE) %>% 
+  ggplot(aes(x = `Số biến`, y = `Tên biến`)) +
+  geom_tile(aes(y = `Tên biến`, x = bestglm$ModelReport$Bestk),
+            fill = "#fff999") +
+  geom_tile(aes(fill = BIC)) +
+  scale_fill_gradient(low="darkblue", high="grey") +
+  scale_x_continuous(breaks=seq(2, 24, by = 2)) +
+  theme(panel.grid.major = element_blank())
+
+@
+\caption{Chọn biến với phương pháp tập con tốt nhất.}
+\label{fig:model_selection}
+\end{figure}

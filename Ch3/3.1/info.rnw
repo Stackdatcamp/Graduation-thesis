@@ -43,7 +43,8 @@ Trong số các biến trong bộ số liệu, các biến \texttt{PAY} là có 
 train_set %>% select(everything(), - MARRIAGE, -SEX, 
                      -EDUCATION, - DEFAULT) %>% 
   ggcorr(palette = "RdBu", label = TRUE, layout.exp = 1,
-         hjust=0.75,size =3, name = "Hệ số tương quan")
+         hjust=0.75,size =3, name = "Hệ số tương quan") +
+  theme(legend.box.background = element_blank())
 @
 \caption[Ma trận hệ số tương quan Pearson]{Ma trận hệ số tương quan Pearson giữa các biến trong bộ số liệu.}
 \label{fig:corr_mat}
@@ -63,7 +64,7 @@ train_set1 <- train_set %>%
 
 # Kết quả phân tích thành phần chính
 pca_result <- train_set1 %>%
-  select(everything(), -DEFAULT, -EDUCATION, - MARRIAGE) %>% 
+  select(everything(), -DEFAULT, -EDUCATION, - MARRIAGE, -SEX) %>% 
   prcomp(scale = TRUE)
 
 # Phần trăm phương sai thể hiện trên các thành phần chính

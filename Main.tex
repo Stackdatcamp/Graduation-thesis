@@ -48,12 +48,14 @@
 \definecolor{errorcolor}{rgb}{1, 0, 0}
 \newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
 
+\usepackage{amsmath}
 \usepackage{alltt}
 \usepackage[fontsize=13pt]{scrextend}
 \usepackage[utf8]{vietnam}
 \usepackage{verbatim} 
 \usepackage{lipsum}
 \usepackage{listings}
+
 
 
 \makeatletter
@@ -130,6 +132,7 @@
 % FIGURES AND TABLES %
 %%%%%%%%%%%%%%%%%%%%%%
 \usepackage[section]{placeins}
+\usepackage[justification=centering]{caption}
 
 %%%%%%%%%%%%%%%%%%%
 % TOC FORMATTING  %
@@ -166,7 +169,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
-% \bibliographystyle{apalike}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %         TITLE PAGE          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -322,7 +324,7 @@ Trong số các biến trong bộ số liệu, các biến \texttt{PAY} là có 
 \capstart
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\textwidth]{figure/corr_mat-1} 
+\includegraphics[width=\textwidth]{Figures/corr_mat-1} 
 
 \end{knitrout}
 \caption[Ma trận hệ số tương quan Pearson]{Ma trận hệ số tương quan Pearson giữa các biến trong bộ số liệu.}
@@ -337,7 +339,7 @@ Với phương pháp này, chúng ta tìm một hệ tọa độ trực giao m�
 \capstart
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=10cm,height=10cm]{figure/pca-1} 
+\includegraphics[width=10cm,height=10cm]{Figures/pca-1} 
 
 \end{knitrout}
 \caption{Phép chiếu bộ số liệu trên hai thành phần chính.}
@@ -350,23 +352,116 @@ Như chúng ta nhận xét ở ma trận hệ số tương quan phía trên, vé
 Ngoài ra các quan sát nhóm vỡ nợ cũng có xu hướng thể hiện cao trên biến 
 \texttt{SEX}. Nhóm các quan sát không vỡ nợ cũng phân bố nhiều theo chiều tăng của các biến \texttt{AGE} và \texttt{LIMIT\_BAL}.
 
-Lưu ý rằng đồ thị \ref{fig:pca} chỉ thể hiện $50.67$ phần trăm lượng thông tin của bộ số liệu, chưa kể các biến \texttt{EDUCATION} và \texttt{MARRIAGE}. Bằng cách sử dụng các phương pháp phân tích cụ thể hơn, chúng ta có thể đưa ra một mô hình phân loại chính xác hơn đối với khả năng vỡ nợ của các khách hàng dùng thẻ tín dụng trong bộ số liệu này.
+Lưu ý rằng đồ thị \ref{fig:pca} chỉ thể hiện $\text{53,02}$ phần trăm lượng thông tin của bộ số liệu, chưa kể các biến \texttt{EDUCATION} và \texttt{MARRIAGE}. Bằng cách sử dụng các phương pháp phân tích cụ thể hơn, chúng ta có thể đưa ra một mô hình phân loại chính xác hơn đối với khả năng vỡ nợ của các khách hàng dùng thẻ tín dụng trong bộ số liệu này.
 
 
 \section{Ứng dụng mô hình logit}
-\subsection{Chọn biến}
+
+\subsection{Tiền xử lý bộ số liệu}
+Mô hình logit giả định xác suất dự báo  $P(y = 1|X)$  phân phối chuẩn với trung bình là 0,5 và thực hiện ước lượng có hiệu quả hơn trên bộ số liệu có tỉ lệ biến phụ thiộc là 0,5. 
+Tuy nhiên trong bộ số liệu chúng ta nghiên cứu này, tỷ lệ  $\texttt{DEFAULT} = 1$ là $22.34\%$.
+Để đảm bảo cho hiệu quả của mô hình logit, trong bộ số liệu dùng để ước lượng mô hình, chúng ta lấy tập con của số mẫu thuộc nhóm $\texttt{DEFAULT} = 1$ một cách ngẫu nhiên, sao cho tỷ lệ  $P(\texttt{DEFAULT} = 1)$ trong bộ số liệu ước lượng bây giờ là 0,5. 
+
+\subsection{Ước lượng mô hình} 
+
+
+Chúng ta thực hiện mô hình logit, sử dụng phương pháp Lasso để giới hạn giá trị của các hệ số ước lượng. 
+Với mỗi gía trị của tham số $\lambda$, giá trị của các hệ số ước lượng $\beta$ càng bị ràng buộc chặt, các hệ số ước lượng có giá trị bằng 0 có thể coi là bị loại khỏi mô hình.
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\textwidth,height=12cm]{Figures/lasso_coef-1} 
+
+\end{knitrout}
+\caption{}
+\label{fig:lasso_coef}
+\end{figure}
+
+Hình \ref{fig:lasso_coef} mô tả xu hướng của các hệ số ước lượng $\beta$ khi giá trị của $\log\lambda$ thay đổi.
+Với hướng tăng của $\log\lambda$ các biến thuộc nhóm \texttt{BILL} nhanh chóng hội tụ về $0$, thể hiện mức ý nghĩa thống kê thấp của các hệ số này trong mô hình. Trong khi đó, các biến thuộc nhóm \texttt{PAY} chậm hội tụ về $0$ hơn, với biến \texttt{PAY\_0} là biến cuối cùng có hệ số ước lượng $\beta$ tương ứng hội tụ về 0.
+Với các giá trị $\lambda$ lớn hơn từ sau thời điểm này, có thể nói mô hình chỉ còn hệ số chặn $\beta_0$.
+
+Để xác định giá trị hợp lý cho tham số $\lambda$ trong mô hình này. Chúng ta thực hiện bằng cách chia bộ số liệu thử nghiệm thành 10 phần nhỏ, chạy mô hình logit sử dụng phương pháp Lasso này trên từng bộ số liệu con này, rồi kiểm định kết quả mô hình dựa trên các bộ số liệu còn lại.
+Từ kết quả của 10 phép ước lượng kiểm định chéo này, chúng ta có thể tính được giá trị trung bình của Deviance tại các giá trị của $\lambda$, qua đó chúng ta có thể xác định được giá trị của $\lambda$ mà Deviance là thấp nhất.
 
 \begin{figure}
 \centering
 \capstart
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=\textwidth]{figure/model_selection-1} 
+\includegraphics[width=10cm,height=10cm]{Figures/lasso_cv-1} 
 
 \end{knitrout}
-\caption{Chọn biến với phương pháp tập con tốt nhất.}
-\label{fig:model_selection}
+\caption{Giá trị trung bình của Deviance tương ứng với mỗi giá trị tương ứng của $\lambda$}
+\label{fig:lasso_cv}
 \end{figure}
+
+Hình \ref{fig:lasso_cv} mô tả mối quan hệ của Deviance (trên trục tung) khi giá trị của $\lambda$ thay đổi (giá trị của $\lambda$ trên trục hoành đã được logarit hóa). Các chấm màu đỏ biểu diễn giá trị Deviance trung bình của kiểm định chéo tại các giá trị khác nhau của $\log(\lambda)$, thanh màu đen thể hiện sai số chuẩn tương ứng của giá trị trung bình này. Đường kẻ dọc màu xanh đậm đánh dấu giá trị của $\log(\lambda)$ mà tại đó gía trị của Deviance là thấp nhất($\lambda \approx\ $\text{0,001421}), tương đương với giá trị của $\lambda$ mà chúng ta lựa chọn cho mô hình này.
+
+Hệ số ước lượng $\beta$ của mô hình được thể hiện trong bảng \ref{tab:lasso_final}). 
+
+% latex table generated in R 3.3.3 by xtable 1.8-2 package
+% Thu Apr 13 06:22:48 2017
+\begin{table}[ht]
+\centering
+\begin{tabular}{rll}
+  \hline
+ & Tên biến & Hệ số \\ 
+  \hline
+1 & Hệ số chặn & 0,0488178 \\ 
+  2 & LIMIT\_BAL & -7e-07 \\ 
+  3 & SEXFALSE & -0,0741289 \\ 
+  4 & EDUCATION\_Sau đại học & 0,0072849 \\ 
+  5 & EDUCATION\_Đại học & -0,0296278 \\ 
+  6 & EDUCATION\_Khác & -0,6249096 \\ 
+  7 & MARRIAGE\_Đã cưới & 0,0109769 \\ 
+  8 & MARRIAGE\_Độc thân & -0,1256848 \\ 
+  9 & AGE & 0,008362 \\ 
+  10 & PAY\_0 & 0,5365426 \\ 
+  11 & PAY\_2 & 0,0705397 \\ 
+  12 & PAY\_3 & 0,08174 \\ 
+  13 & PAY\_4 & 0,0045188 \\ 
+  14 & PAY\_5 & 0,0259231 \\ 
+  15 & BILL\_AMT1 & -2e-06 \\ 
+  16 & BILL\_AMT4 & 7e-07 \\ 
+  17 & PAY\_AMT1 & -1,5e-05 \\ 
+  18 & PAY\_AMT2 & -5,7e-06 \\ 
+  19 & PAY\_AMT3 & -4,1e-06 \\ 
+  20 & PAY\_AMT4 & -4,4e-06 \\ 
+  21 & PAY\_AMT5 & -1,2e-06 \\ 
+  22 & PAY\_AMT6 & -3,6e-06 \\ 
+   \hline
+\end{tabular}
+\caption{Hệ số ước lượng} 
+\label{tab:lasso_final}
+\end{table}
+
+
+\subsection{Kiểm tra hiệu quả của mô hình}
+
+
+\begin{figure}
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=10cm]{Figures/lasso_confusion_mat-1} 
+
+\end{knitrout}
+\caption{}
+\label{fig:lasso_confusion_mat}
+\end{figure}
+
+Sử dụng mô hình ước lượng được chúng ta dùng để dự báo trên tập số liệu kiểm tra. Hình \ref{fig:lasso_confusion_mat} minh họa một ma trận thể hiện độ chính xác của mô hình khi áp dụng lên tập số liệu kiểm tra, với màu xanh thể hiện các quan sát được dự đoán đúng và màu đỏ thể hiện các quan sát được dự đoán sai.
+
+Trong tổng cộng \text{7382} dòng của bộ số liệu dùng để kiểm tra, có \text{1649} trường hợp vỡ nợ, trong đó mô hình dự đoán đúng \text{722} trường hợp. 
+Đồng thời, trong các quan sát thuộc nhóm không vỡ nợ còn lại, có \text{519} quan sát bị mô hình đánh giá nhầm là có vỡ nợ.
+
+Nhìn chung tỉ lệ dự đoán chính xác của mô hình là \text{80,41}\%, tỷ lệ của sai lầm loại I (không vỡ nợ nhưng mô hình dự đoán là có) là \text{7,03}\%, tỷ lệ của sai lầm loại II (có vỡ nợ nhưng dự đoán là không vỡ nợ) là \text{12,56}\%.
+
 
 \section{Ứng dụng mô hình phân loại tuyến tính}
 
@@ -382,116 +477,7 @@ Lưu ý rằng đồ thị \ref{fig:pca} chỉ thể hiện $50.67$ phần trăm
 % Phụ lục %
 %%%%%%%%%%%
 \appendix
-
-\chapter{Thông tin về phiên làm việc trên R}
-
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{verbatim}
-## R version 3.3.3 (2017-03-06)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.2 LTS
-## 
-## locale:
-##  [1] LC_CTYPE=en_US.UTF-8    LC_NUMERIC=C           
-##  [3] LC_TIME=vi_VN           LC_COLLATE=en_US.UTF-8 
-##  [5] LC_MONETARY=vi_VN       LC_MESSAGES=en_US.UTF-8
-##  [7] LC_PAPER=vi_VN          LC_NAME=C              
-##  [9] LC_ADDRESS=C            LC_TELEPHONE=C         
-## [11] LC_MEASUREMENT=vi_VN    LC_IDENTIFICATION=C    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets 
-## [6] methods   base     
-## 
-## other attached packages:
-##  [1] bestglm_0.36    leaps_3.0       ggthemes_3.4.0 
-##  [4] ggfortify_0.4.1 GGally_1.3.0    caret_6.0-73   
-##  [7] ggplot2_2.2.1   lattice_0.20-34 dplyr_0.5.0    
-## [10] tidyr_0.6.1     readr_1.1.0     knitr_1.15.1   
-## 
-## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.10       RColorBrewer_1.1-2
-##  [3] nloptr_1.0.4       plyr_1.8.4        
-##  [5] iterators_1.0.8    tools_3.3.3       
-##  [7] digest_0.6.12      lme4_1.1-12       
-##  [9] evaluate_0.10      tibble_1.2        
-## [11] nlme_3.1-131       gtable_0.2.0      
-## [13] mgcv_1.8-16        Matrix_1.2-8      
-## [15] foreach_1.4.3      DBI_0.6           
-## [17] ggrepel_0.6.5      parallel_3.3.3    
-## [19] SparseM_1.76       gridExtra_2.2.1   
-## [21] stringr_1.2.0      MatrixModels_0.4-1
-## [23] hms_0.3            glmnet_2.0-5      
-## [25] stats4_3.3.3       grid_3.3.3        
-## [27] nnet_7.3-12        reshape_0.8.6     
-## [29] R6_2.2.0           grpreg_3.0-2      
-## [31] minqa_1.2.4        reshape2_1.4.2    
-## [33] car_2.1-4          magrittr_1.5      
-## [35] scales_0.4.1       codetools_0.2-15  
-## [37] ModelMetrics_1.1.0 MASS_7.3-45       
-## [39] splines_3.3.3      assertthat_0.1    
-## [41] pbkrtest_0.4-7     colorspace_1.3-2  
-## [43] labeling_0.3       quantreg_5.29     
-## [45] stringi_1.1.3      lazyeval_0.2.0    
-## [47] munsell_0.4.3
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
-
-\chapter{Code}
-
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{train_set} \hlopt{%>%} \hlkwd{select}\hlstd{(}\hlkwd{everything}\hlstd{(),} \hlopt{-} \hlstd{MARRIAGE,} \hlopt{-}\hlstd{SEX,}
-                     \hlopt{-}\hlstd{EDUCATION,} \hlopt{-} \hlstd{DEFAULT)} \hlopt{%>%}
-  \hlkwd{ggcorr}\hlstd{(}\hlkwc{palette} \hlstd{=} \hlstr{"RdBu"}\hlstd{,} \hlkwc{label} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{layout.exp} \hlstd{=} \hlnum{1}\hlstd{,}
-         \hlkwc{hjust}\hlstd{=}\hlnum{0.75}\hlstd{,}\hlkwc{size} \hlstd{=}\hlnum{3}\hlstd{,} \hlkwc{name} \hlstd{=} \hlstr{"Hệ số tương quan"}\hlstd{)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{train_set1} \hlkwb{<-} \hlstd{train_set} \hlopt{%>%}
-  \hlkwd{mutate}\hlstd{(}
-    \hlkwc{DEFAULT} \hlstd{=} \hlkwd{ifelse}\hlstd{(DEFAULT} \hlopt{==} \hlnum{1}\hlstd{,} \hlstr{"1 (Vỡ nợ)"}\hlstd{,} \hlstr{"0 (Không vỡ nợ)"}\hlstd{)}
-  \hlstd{)}
-
-\hlcom{# Kết quả phân tích thành phần chính}
-\hlstd{pca_result} \hlkwb{<-} \hlstd{train_set1} \hlopt{%>%}
-  \hlkwd{select}\hlstd{(}\hlkwd{everything}\hlstd{(),} \hlopt{-}\hlstd{DEFAULT,} \hlopt{-}\hlstd{EDUCATION,} \hlopt{-} \hlstd{MARRIAGE)} \hlopt{%>%}
-  \hlkwd{prcomp}\hlstd{(}\hlkwc{scale} \hlstd{=} \hlnum{TRUE}\hlstd{)}
-
-\hlcom{# Phần trăm phương sai thể hiện trên các thành phần chính}
-\hlstd{pc_percent} \hlkwb{<-} \hlstd{pca_result}\hlopt{$}\hlstd{sdev}\hlopt{^}\hlnum{2}\hlopt{/}\hlkwd{sum}\hlstd{(pca_result}\hlopt{$}\hlstd{sdev}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{*}\hlnum{100}
-
-\hlcom{# Vẽ đồ thị}
-\hlstd{pca_result} \hlopt{%>%}
-  \hlkwd{autoplot}\hlstd{(}\hlkwc{data} \hlstd{= train_set1,} \hlkwc{colour} \hlstd{=} \hlstr{'DEFAULT'}\hlstd{,}
-           \hlkwc{loadings} \hlstd{=} \hlnum{TRUE}\hlstd{,}
-           \hlkwc{loadings.colour} \hlstd{=} \hlstr{'black'}\hlstd{,}
-           \hlkwc{loadings.label} \hlstd{=} \hlnum{TRUE}\hlstd{,}
-           \hlkwc{loadings.label.colour} \hlstd{=} \hlstr{"#005000"}\hlstd{,}
-           \hlkwc{loadings.label.repel} \hlstd{=} \hlnum{TRUE}\hlstd{,}
-           \hlkwc{label.size} \hlstd{=} \hlnum{3}\hlstd{,}
-           \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
-  \hlkwd{scale_color_manual}\hlstd{(}\hlkwc{values} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"#5192ba"}\hlstd{,}
-                                \hlstr{"#d60003"}\hlstd{))} \hlopt{+}
-  \hlkwd{labs}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{paste0}\hlstd{(}\hlstr{"Thành phần chính 1 (giải thích "}\hlstd{,}
-                  \hlkwd{round}\hlstd{(pc_percent[}\hlnum{1}\hlstd{],} \hlnum{2}\hlstd{),}
-                  \hlstr{"% phương sai)"}\hlstd{),}
-       \hlkwc{y} \hlstd{=} \hlkwd{paste0}\hlstd{(}\hlstr{"Thành phần chính 2 (giải thích "}\hlstd{,}
-                  \hlkwd{round}\hlstd{(pc_percent[}\hlnum{2}\hlstd{],} \hlnum{2}\hlstd{),}
-                  \hlstr{"% phương sai)"}\hlstd{),}
-       \hlkwc{color} \hlstd{=} \hlstr{"Giá trị của biến\textbackslash{}nDEFAULT"}\hlstd{)} \hlopt{+}
-  \hlkwd{theme}\hlstd{(}\hlkwc{legend.position} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.8}\hlstd{,} \hlnum{0.8}\hlstd{))}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
-
+% knit_child('./Appendices/appendices.rnw')
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Danh mục tham khảo  %

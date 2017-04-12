@@ -36,18 +36,18 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.1}S\IeC {\'\ocircumflex } li\IeC {\d \ecircumflex }u v\IeC {\`a} c\IeC {\'a}c bi\IeC {\'\ecircumflex }n s\IeC {\'\ocircumflex }}{9}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh logit}{13}{section.3.2}
+\contentsline {section}{\numberline {3.2}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh logit}{12}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.1}Ch\IeC {\d o}n bi\IeC {\'\ecircumflex }n}{13}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.1}Ti\IeC {\`\ecircumflex }n x\IeC {\h \uhorn } l\IeC {\'y} b\IeC {\d \ocircumflex } s\IeC {\'\ocircumflex } li\IeC {\d \ecircumflex }u}{12}{subsection.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i tuy\IeC {\'\ecircumflex }n t\IeC {\'\i }nh}{13}{section.3.3}
+\contentsline {subsection}{\numberline {3.2.2}\IeC {\UHORN }\IeC {\'\ohorn }c l\IeC {\uhorn }\IeC {\d \ohorn }ng m\IeC {\^o} h\IeC {\`\i }nh}{13}{subsection.3.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh SVM}{13}{section.3.4}
+\contentsline {subsection}{\numberline {3.2.3}Ki\IeC {\h \ecircumflex }m tra hi\IeC {\d \ecircumflex }u qu\IeC {\h a} c\IeC {\h u}a m\IeC {\^o} h\IeC {\`\i }nh}{15}{subsection.3.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{14}{chapter.4}
+\contentsline {section}{\numberline {3.3}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i tuy\IeC {\'\ecircumflex }n t\IeC {\'\i }nh}{17}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Th\IeC {\^o}ng tin v\IeC {\`\ecircumflex } phi\IeC {\^e}n l\IeC {\`a}m vi\IeC {\d \ecircumflex }c tr\IeC {\^e}n R}{15}{appendix.A}
+\contentsline {section}{\numberline {3.4}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh SVM}{17}{section.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {B}Code}{17}{appendix.B}
+\contentsline {chapter}{\numberline {4}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{18}{chapter.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{T\IeC {\`a}i li\IeC {\d \ecircumflex }u tham kh\IeC {\h a}o}{19}{Item.8}

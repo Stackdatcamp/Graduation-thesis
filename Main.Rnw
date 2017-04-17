@@ -220,7 +220,7 @@ train_x_matrix <- downSample(x = train_x_matrix,
 \chapter{Các phương pháp phân loại khách hàng vay thẻ tín dụng}
 \section{Các mô hình phân loại}
 
-\subsection{Mô hình logistic}
+\subsection{Mô hình logit}
 \Sexpr{knit_child('./Ch2/2.1/def-logistics.rnw')}
 
 \subsection{Mô hình phân loại tuyến tính}
@@ -257,7 +257,7 @@ train_x_matrix <- downSample(x = train_x_matrix,
 % Phụ lục %
 %%%%%%%%%%%
 \appendix
-% \Sexpr{knit_child('./Appendices/appendices.rnw')}
+\Sexpr{knit_child('./Appendices/appendices.rnw')}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Danh mục tham khảo  %

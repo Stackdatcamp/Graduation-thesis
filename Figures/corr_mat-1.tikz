@@ -1,0 +1,142 @@
+% Created by tikzDevice version 0.10.1 on 2017-04-07 09:51:45
+% !TEX encoding = UTF-8 Unicode
+\documentclass[a4paper]{report}
+\nonstopmode
+
+\usepackage{tikz}
+
+\usepackage[active,tightpage,psfixbb]{preview}
+
+\PreviewEnvironment{pgfpicture}
+
+\setlength\PreviewBorder{0pt}
+
+\newcommand{\SweaveOpts}[1]{}  % do not interfere with LaTeX
+\newcommand{\SweaveInput}[1]{} % because they are not real TeX commands
+\newcommand{\Sexpr}[1]{}       % will only be parsed by R
+
+
+\usepackage[fontsize=13pt]{scrextend}
+\usepackage[utf8]{vietnam}
+\usepackage{tikz}
+\usepackage{verbatim} 
+\usepackage{lipsum}
+\usepackage{listings}
+
+
+
+\makeatletter
+\title{Ứng dụng, đánh giá, và so sánh một số mô hình phân loại vào việc phân loại khách hàng thẻ tín dụng}\let\Title\@title
+\author{Nguyễn Đức Hiếu}\let\Author\@author
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% TITLE PAGE FORMATTING %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{afterpage}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% PARAGRAPH FORMATTING %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{enumitem}
+% Indent first paragraphs after each sections
+\usepackage{indentfirst}
+
+% Document formatting
+\usepackage{mathptmx}
+\renewcommand{\baselinestretch}{1.3}
+\usepackage[a4paper]{geometry}
+  \geometry{
+  top=25mm,
+  left=35mm,
+  bottom=25mm,
+  right=25mm
+  }
+%%%%%%%%%%%%%%%%%%%%%
+% HEADER AND FOOTER %
+%%%%%%%%%%%%%%%%%%%%%
+\usepackage{etoolbox}
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{}
+\chead{\normalsize Chuyên đề thực tập chuyên ngành Toán Kinh tế}
+\rhead{}
+\lfoot{}
+\cfoot{\normalsize 11131371 - Nguyễn Đức Hiếu}
+\rfoot{\normalsize Trang \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%%%%%%%%%%%%%%%%%%%%%%
+% SECTION FORMATTING %
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+{\centering\Large\bfseries}
+{\MakeUppercase{\chaptertitlename}  \thechapter}{1em}
+{\MakeUppercase}
+
+\titleformat{name=\chapter,numberless}[display]
+  {\normalfont\Large\bfseries\filcenter}{}{1ex}
+  {\MakeUppercase}[\vspace{1ex}]
+
+\titleformat{\section}[hang]
+{\bfseries}
+{\thesection}{1em}
+{\MakeUppercase}
+
+\titleformat{\subsection}[hang]
+{\bfseries}
+{\thesubsection}{1em}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%  
+% FIGURES AND TABLES %
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[section]{placeins}
+\usepackage[justification=centering]{caption}
+
+%%%%%%%%%%%%%%%%%%%
+% TOC FORMATTING  %
+%%%%%%%%%%%%%%%%%%%
+
+% Package hyperref should be loaded last, as it rewrites many commands.
+% \usepackage{tocloft}
+\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
+\usepackage[all]{hypcap}
+% Customise for table of contents labeling
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{4}
+%%%%%%%%%%%%
+% CITATION %
+%%%%%%%%%%%%
+% Setting up for citation styles
+% \usepackage{natbib}
+\usepackage[backend=bibtex,bibstyle=luanan,sorting=ydnt,style=authoryear]{biblatex}
+\addbibresource{reference.bib}
+% Add number to bibliography
+\defbibenvironment{bibliography}
+  {\enumerate
+     {}
+     {\setlength{\leftmargin}{\bibhang}%
+      \setlength{\itemindent}{-\leftmargin}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endenumerate}
+  {\item}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%---------DOCUMENT CONTENTS----------%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+
+\end{document}

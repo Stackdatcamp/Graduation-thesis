@@ -28,7 +28,7 @@ lasso_fit$beta %>% as.matrix() %>% t() %>% as.data.frame() %>%
        y = "Hệ số ước lượng", color = "Biến") +
   theme(legend.position = "top")
 @
-\caption{}
+\caption{Giá trị ước lượng của các hệ số theo chiều tăng của $\log(\lambda)$}
 \label{fig:lasso_coef}
 \end{figure}
 
@@ -49,7 +49,7 @@ do.call(data.frame, lasso_cv[1:6]) %>%
              color = "darkblue") +
   geom_errorbar(aes(ymax = cvup, ymin = cvlo)) +
   geom_point(color = "red") +
-  labs(y = "Deviance trung bình của kiểm định chéo",
+  labs(y = "Deviance trung bình kiểm định chéo",
        x = latex2exp::TeX("$\\log(\\lambda)$"))
 @
 \caption{Giá trị trung bình của Deviance tương ứng với mỗi giá trị tương ứng của $\lambda$}
@@ -99,14 +99,14 @@ result %>%
         axis.line = element_blank(),
         axis.ticks = element_blank())
 @
-\caption{}
+\caption{Confusion matrix cho mô hình logit (phương pháp Lasso)}
 \label{fig:lasso_confusion_mat}
 \end{figure}
 
-Sử dụng mô hình ước lượng được chúng ta dùng để dự báo trên tập số liệu kiểm tra. Hình \ref{fig:lasso_confusion_mat} minh họa một ma trận thể hiện độ chính xác của mô hình khi áp dụng lên tập số liệu kiểm tra, với màu xanh thể hiện các quan sát được dự đoán đúng và màu đỏ thể hiện các quan sát được dự đoán sai.
+Chúng ta sử dụng mô hình ước lượng được để dự báo trên tập số liệu kiểm tra. Hình \ref{fig:lasso_confusion_mat} minh họa một ma trận thể hiện độ chính xác của mô hình khi áp dụng lên tập số liệu kiểm tra, với màu xanh thể hiện các quan sát được dự đoán đúng và màu đỏ thể hiện các quan sát được dự đoán sai.
 
 Trong tổng cộng \Sexpr{nrow(test_set)} dòng của bộ số liệu dùng để kiểm tra, có \Sexpr{sum(result[result$Actual  == "Vỡ nợ", "Freq"])} trường hợp vỡ nợ, trong đó mô hình dự đoán đúng \Sexpr{sum(result[result$Actual == "Vỡ nợ" & result$Predict == "Vỡ nợ", "Freq"])} trường hợp. 
 Đồng thời, trong các quan sát thuộc nhóm không vỡ nợ còn lại, có \Sexpr{sum(result[result$Actual == "Không vỡ nợ" & result$Predict == "Vỡ nợ", "Freq"])} quan sát bị mô hình đánh giá nhầm là có vỡ nợ.
 
-Nhìn chung tỉ lệ dự đoán chính xác của mô hình là \Sexpr{sum(result[result$color > 0, "percent"])}\%, tỷ lệ của sai lầm loại I (không vỡ nợ nhưng mô hình dự đoán là có) là \Sexpr{sum(result[result$Actual == "Không vỡ nợ" & result$Predict == "Vỡ nợ", "percent"])}\%, tỷ lệ của sai lầm loại II (có vỡ nợ nhưng dự đoán là không vỡ nợ) là \Sexpr{sum(result[result$Predict == "Không vỡ nợ" & result$Actual == "Vỡ nợ", "percent"])}\%.
+Nhìn chung tỉ lệ dự đoán chính xác của mô hình trên tập số liệu kiểm tra là \Sexpr{sum(result[result$color > 0, "percent"])}\%, tỷ lệ của sai lầm loại I (không vỡ nợ nhưng mô hình dự đoán là có) là \Sexpr{sum(result[result$Actual == "Không vỡ nợ" & result$Predict == "Vỡ nợ", "percent"])}\%, tỷ lệ của sai lầm loại II (có vỡ nợ nhưng dự đoán là không vỡ nợ) là \Sexpr{sum(result[result$Predict == "Không vỡ nợ" & result$Actual == "Vỡ nợ", "percent"])}\%.
 

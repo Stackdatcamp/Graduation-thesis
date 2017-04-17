@@ -96,9 +96,11 @@ pca_result %>%
 \end{figure}
 
 Phép chiếu của các biến và các quan sát trong bộ số liệu trên hai thành phần chính đầu tiên được thể hiện trong hình \ref{fig:pca} (trang \pageref{fig:pca}), với mỗi véc tơ thể hiện một biến và mỗi điểm thể hiện một quan sát trong bộ số liệu. Các quan sát thuộc vào nhóm vỡ nợ (biến \texttt{DEFAULT} bằng 1) có màu đỏ và các quan sát thuộc nhóm không vỡ nợ (biến \texttt{DEFAULT} bằng 0) có màu xanh. 
-Quan sát đồ thị này, chúng ta nhận thấy các quan sát thuộc nhóm vỡ nợ (màu đỏ) tập trung nhiều ở phía trên đồ thị, hay là giá trị của các biến này chiếu trên thành phần chính thứ 2 (trục tung) là cao hơn. 
+Quan sát đồ thị này, chúng ta nhận thấy các quan sát thuộc nhóm vỡ nợ (màu đỏ) tập trung nhiều ở phía dưới đồ thị, hay là giá trị của các biến này chiếu trên thành phần chính thứ 2 (trục tung) là thấp hơn. 
 Như chúng ta nhận xét ở ma trận hệ số tương quan phía trên, véc tơ chiếu các biến thuộc cùng nhóm \texttt{PAY}, \texttt{PAY\_ATM} và \texttt{BILL\_ATM} nằm khá gần nhau, thể hiện mức độ tương quan cao giữa các biến số thuộc cùng một trong ba nhóm này. Các biến thuộc nhóm \texttt{PAY} có hướng trùng với hướng phân bố của các quan sát thuộc nhóm vỡ nợ, trong khi các biến thuộc nhóm \texttt{PAY\_ATM} có hướng trùng với hướng phân bố của các quan sát thuộc nhóm không vỡ nợ, gợi ý tiềm năng dùng để dự báo của các nhóm biến này. 
 Ngoài ra các quan sát nhóm vỡ nợ cũng có xu hướng thể hiện cao trên biến 
 \texttt{SEX}. Nhóm các quan sát không vỡ nợ cũng phân bố nhiều theo chiều tăng của các biến \texttt{AGE} và \texttt{LIMIT\_BAL}.
 
-Lưu ý rằng đồ thị \ref{fig:pca} chỉ thể hiện $\Sexpr{round(sum(pc_percent[1:2]),2)}$ phần trăm lượng thông tin của bộ số liệu, chưa kể các biến \texttt{EDUCATION} và \texttt{MARRIAGE}. Bằng cách sử dụng các phương pháp phân tích cụ thể hơn, chúng ta có thể đưa ra một mô hình phân loại chính xác hơn đối với khả năng vỡ nợ của các khách hàng dùng thẻ tín dụng trong bộ số liệu này.
+Lưu ý rằng đồ thị \ref{fig:pca} chỉ thể hiện $\Sexpr{round(sum(pc_percent[1:2]),2)}$ phần trăm lượng thông tin của bộ số liệu, chưa kể các biến phân loại như \texttt{EDUCATION} hay \texttt{MARRIAGE}. Bằng cách sử dụng các phương pháp phân tích cụ thể hơn, chúng ta có thể đưa ra một mô hình phân loại chính xác hơn đối với khả năng vỡ nợ của các khách hàng dùng thẻ tín dụng trong bộ số liệu này.
+
+Trong 30000 quan sát của bộ số liệu này, sau khi làm sạch, chúng ta chọn ngẫu nhiên 75\% (Khoảng hơn 22000 quan sát) để xây dựng các mô hình. Số lượng quan sát còn lại sẽ được dùng để kiểm tra các mô hình xây dựng được và cho chúng ta cái nhìn về hiệu quả của chúng.

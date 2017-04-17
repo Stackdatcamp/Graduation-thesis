@@ -4,11 +4,6 @@
 sessionInfo()
 @
 
-\chapter{Code}
+% \chapter{Code}
 
-<<eval=FALSE, ref.label='corr_mat',echo=TRUE>>=
-@
-
-<<eval=FALSE, ref.label='pca',echo=TRUE>>=
-@
 

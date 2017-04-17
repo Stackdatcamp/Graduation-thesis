@@ -20,11 +20,12 @@ Trong bài này, chúng ta sẽ tiếp cận đến một số phương pháp ph
 \item Trong \textbf{Chương 3}, chúng ta sẽ ứng dụng các phương pháp được giới thiệu ở \textbf{Chương 2} trong một bộ số liệu mẫu về các khách hàng thẻ tín dụng trong một ngân hàng ở Đài Loan.
 \item Kết quả của các mô hình sẽ được thảo luận ở \textbf{Chương 4}, cùng với một số kết luận rút ra được sau khi áp dụng mô hình.
 \end{itemize}
+
 % - Hướng tiếp cận 
 Đề tài này được soạn thảo bằng \LaTeX{} kết hợp với \texttt{Sweave} và \texttt{knitr} 
 \parencite{r:knitr}. Tất cả phân tích được thực hiện trên phần mềm thống kê 
 \Sexpr{R.Version()$version.string} \parencite{r:rbase},  
-các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{ggplot2} \parencite{r:ggplot2}... 
+các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{caret}\parencite{r:caret}, \texttt{glmnet}\parencite{r:glmnet}, \texttt{tidyverse} \parencite{r:tidyverse}... 
 
 %  Cảm ơn bla bla
 Em xin cảm ơn giáo viên hướng dẫn, cô Nguyễn Thị Minh, trưởng khoa 

@@ -80,6 +80,7 @@ pca_result %>%
            loadings.label.repel = TRUE, 
            label.size = 3,
            alpha = 0.5) +
+  geom_rug(aes(color = DEFAULT), alpha = 0.5) +
   scale_color_manual(values = c("#5192ba", 
                                 "#d60003")) +
   labs(x = paste0("Thành phần chính 1 (giải thích ", 

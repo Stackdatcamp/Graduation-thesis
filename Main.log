@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.3.27)  20 APR 2017 15:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.3.27)  21 APR 2017 14:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2323,47 +2323,30 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 
 Package xcolor Warning: Incompatible color definition on input line 540.
 
-LaTeX Font Info:    Font shape `T5/cmtt/bx/n' in size <11.86258> not available
-(Font)              Font shape `T5/cmtt/m/n' tried instead on input line 543.
-
-Package xcolor Warning: Incompatible color definition on input line 543.
-
-
-Overfull \hbox (61.4313pt too wide) in paragraph at lines 543--543
-[]\T5/cmtt/m/n/11.86258 ## Error in system(paste(which, shQuote(names[i])), int
-ern = TRUE, ignore.stderr
- []
-
-
-Overfull \hbox (30.91739pt too wide) in paragraph at lines 543--543
-\T5/cmtt/m/n/11.86258 = TRUE): cannot popen '/usr/bin/which 'uname' 2>/dev/null
-', probable reason
- []
-
 [22
 
-] [23
+] [23] [24
 
 ]
 
 Package hyperref Warning: Composite letter `\textdotbelow+\ecircumflex'
 (hyperref)                not defined in PD1 encoding,
-(hyperref)                removing `\textdotbelow' on input line 554.
+(hyperref)                removing `\textdotbelow' on input line 602.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\ecircumflex' on input line 554.
+(hyperref)                removing `\ecircumflex' on input line 602.
 
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\h' on input line 554.
+(hyperref)                removing `\h' on input line 602.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 556.
-[24]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 556.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 604.
+[25]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 604.
  (./Main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 556.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 556.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 604.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 604.
 Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: C52632B7645E894636AFE5880B6D145D;2250.
 
@@ -2371,16 +2354,16 @@ Package rerunfilecheck Info: File `Main.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 556.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 604.
 Package logreq Info: Writing requests to 'Main.run.xml'.
 \openout1 = `Main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19292 strings out of 493013
- 306320 string characters out of 6135682
+ 19294 strings out of 493013
+ 306325 string characters out of 6135682
  700091 words of memory out of 5000000
- 22420 multiletter control sequences out of 15000+600000
+ 22421 multiletter control sequences out of 15000+600000
  84467 words of font info for 114 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,12n,51p,981b,1543s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2397,10 +2380,10 @@ pe1/vntex/urwvn/utmb8v.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/vntex/urwvn/utmri8v.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/vntex/vnr/vntt12.pfb>
-Output written on Main.pdf (25 pages, 2194915 bytes).
+Output written on Main.pdf (26 pages, 2197062 bytes).
 PDF statistics:
- 489 PDF objects out of 1000 (max. 8388607)
- 419 compressed objects within 5 object streams
- 86 named destinations out of 1000 (max. 500000)
+ 493 PDF objects out of 1000 (max. 8388607)
+ 422 compressed objects within 5 object streams
+ 87 named destinations out of 1000 (max. 500000)
  271 words of extra memory for PDF output out of 10000 (max. 10000000)
 

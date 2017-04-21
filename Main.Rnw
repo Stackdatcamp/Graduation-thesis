@@ -23,7 +23,8 @@ theme_thesis <- theme_bw() +
         legend.key = element_blank(), 
         panel.background = element_blank(), 
         panel.border = element_blank(), 
-        strip.background = element_blank(), 
+        strip.background = element_rect(fill = "#2c3e50"),
+        strip.text = element_text(color = "white"),
         plot.background = element_blank(), 
         axis.line = element_line(), 
         panel.grid.minor =   element_blank(),
@@ -31,8 +32,7 @@ theme_thesis <- theme_bw() +
                                           linetype = "dashed"),
         legend.box.background = element_rect(fill = "white"),
         text = element_text(size = 15)
-        )
-
+  )
 theme_set(theme_thesis)
 
 # Data loadings

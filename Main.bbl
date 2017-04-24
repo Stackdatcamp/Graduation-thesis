@@ -264,40 +264,37 @@
     \field{year}{2015}
   \endentry
 
-  \entry{hosmer2013applied}{book}{}
-    \name{author}{3}{}{%
-      {{hash=HJDW}{%
-         family={Hosmer\bibnamedelima Jr},
-         familyi={H\bibinitperiod\bibinitdelim J\bibinitperiod},
-         given={David\bibnamedelima W},
-         giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+  \entry{CC01a}{article}{}
+    \name{author}{2}{}{%
+      {{hash=CCC}{%
+         family={Chang},
+         familyi={C\bibinitperiod},
+         given={Chih-Chung},
+         giveni={C\bibinitperiod-C\bibinitperiod},
       }}%
-      {{hash=LS}{%
-         family={Lemeshow},
+      {{hash=LCJ}{%
+         family={Lin},
          familyi={L\bibinitperiod},
-         given={Stanley},
-         giveni={S\bibinitperiod},
-      }}%
-      {{hash=SRX}{%
-         family={Sturdivant},
-         familyi={S\bibinitperiod},
-         given={Rodney\bibnamedelima X},
-         giveni={R\bibinitperiod\bibinitdelim X\bibinitperiod},
+         given={Chih-Jen},
+         giveni={C\bibinitperiod-J\bibinitperiod},
       }}%
     }
-    \list{publisher}{1}{%
-      {John Wiley \& Sons}%
-    }
-    \strng{namehash}{HJDWLSSRX1}
-    \strng{fullhash}{HJDWLSSRX1}
+    \strng{namehash}{CCCLCJ1}
+    \strng{fullhash}{CCCLCJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{labelyear}{2013}
+    \field{labelyear}{2011}
     \field{sortinit}{7}
     \field{sortinithash}{7}
-    \field{title}{Applied logistic regression}
-    \field{volume}{398}
-    \field{year}{2013}
+    \field{issue}{3}
+    \field{note}{Software available at
+  \url{http://www.csie.ntu.edu.tw/~cjlin/libsvm}}
+    \field{pages}{27:1\bibrangedash 27:27}
+    \field{title}{{LIBSVM}: A library for support vector machines}
+    \field{volume}{2}
+    \field{journaltitle}{ACM Transactions on Intelligent Systems and
+  Technology}
+    \field{year}{2011}
   \endentry
 
   \entry{r:glmnet}{article}{}
@@ -405,6 +402,51 @@
     \field{volume}{15}
     \field{journaltitle}{Journal of Systems Science and Systems Engineering}
     \field{year}{2006}
+  \endentry
+
+  \entry{r:kernlab}{article}{}
+    \name{author}{4}{}{%
+      {{hash=KA}{%
+         family={Karatzoglou},
+         familyi={K\bibinitperiod},
+         given={Alexandros},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Smola},
+         familyi={S\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=HK}{%
+         family={Hornik},
+         familyi={H\bibinitperiod},
+         given={Kurt},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=ZA}{%
+         family={Zeileis},
+         familyi={Z\bibinitperiod},
+         given={Achim},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KA+1}
+    \strng{fullhash}{KASAHKZA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2004}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{number}{9}
+    \field{pages}{1\bibrangedash 20}
+    \field{title}{kernlab -- An {S4} Package for Kernel Methods in {R}}
+    \verb{url}
+    \verb http://www.jstatsoft.org/v11/i09/
+    \endverb
+    \field{volume}{11}
+    \field{journaltitle}{Journal of Statistical Software}
+    \field{year}{2004}
   \endentry
 
   \entry{baesens2003benchmarking}{article}{}

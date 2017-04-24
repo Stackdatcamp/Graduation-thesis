@@ -69,7 +69,7 @@ train_x_matrix <- downSample(x = train_x_matrix,
 @
 
 \makeatletter
-\title{Ứng dụng, đánh giá, và so sánh một số mô hình phân loại vào việc phân loại khách hàng thẻ tín dụng}\let\Title\@title
+\title{Ứng dụng, đánh giá, và so sánh một số mô hình phân loại trong phân loại khách hàng thẻ tín dụng}\let\Title\@title
 \author{Nguyễn Đức Hiếu}\let\Author\@author
 \makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,23 +120,36 @@ train_x_matrix <- downSample(x = train_x_matrix,
 \usepackage{titlesec}
 
 \titleformat{\chapter}[display]
-{\centering\Large\bfseries}
-{\MakeUppercase{\chaptertitlename}  \thechapter}{1em}
-{\MakeUppercase}
+  {\centering\Large\bfseries}
+  {\MakeUppercase{\chaptertitlename}  \thechapter}{1em}
+  {\MakeUppercase}
 
 \titleformat{name=\chapter,numberless}[display]
   {\normalfont\Large\bfseries\filcenter}{}{1ex}
   {\MakeUppercase}[\vspace{1ex}]
 
 \titleformat{\section}[hang]
-{\bfseries}
-{\thesection}{1em}
-{\MakeUppercase}
+  {\bfseries}
+  {\thesection}{1em}
+  {\MakeUppercase}
 
 \titleformat{\subsection}[hang]
-{\bfseries}
-{\thesubsection}{1em}
-{}
+  {\bfseries}
+  {\thesubsection}{1em}
+  {}
+
+% Appearance on table of contents
+\usepackage{titletoc}
+\titlecontents{chapter}% <section-type>
+  [0pt]% <left>
+  {\bfseries}% <above-code>
+  {\color{blue}CHƯƠNG \thecontentslabel:\quad}% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\titlerule*[1pc]{.}\contentspage}% <filler-page-format>
+
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\arabic{section}}
 
 %%%%%%%%%%%%%%%%%%%%%%  
 % FIGURES AND TABLES %
@@ -147,7 +160,11 @@ train_x_matrix <- downSample(x = train_x_matrix,
 %%%%%%%%%%%%%%%%%%%
 % TOC FORMATTING  %
 %%%%%%%%%%%%%%%%%%%
-
+% \usepackage{tocloft}
+% \renewcommand{\cftchappresnum}{\MakeUppercase\chaptername\ }
+% % \renewcommand{\cftchapaftersnum}{          }
+% % \renewcommand{\cftchapaftersnumb}{\newline}
+% \renewcommand{\cftchapdotsep}{\cftdotsep}
 % Package hyperref should be loaded last, as it rewrites many commands.
 % \usepackage{tocloft}
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
@@ -184,12 +201,6 @@ train_x_matrix <- downSample(x = train_x_matrix,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{./Cover/front-cover.tex}
 
-%%%%%%%%%%%%%%%
-% Lời mở đầu %
-%%%%%%%%%%%%%%%
-\chapter*{Lời mở đầu}
-\addcontentsline{toc}{chapter}{Lời mở đầu}
-\Sexpr{knit_child('./Ch0/intro.rnw')}
 %%%%%%%
 % TOC %
 %%%%%%%
@@ -201,6 +212,13 @@ train_x_matrix <- downSample(x = train_x_matrix,
 
 \listoffigures
 \addcontentsline{toc}{chapter}{Danh sách hình}
+
+%%%%%%%%%%%%%%%
+% Lời mở đầu %
+%%%%%%%%%%%%%%%
+\chapter*{Lời mở đầu}
+\addcontentsline{toc}{chapter}{Lời mở đầu}
+\Sexpr{knit_child('./Ch0/intro.rnw')}
 
 %%%%%%%%%%%%
 % Chương 1 %
@@ -221,7 +239,7 @@ train_x_matrix <- downSample(x = train_x_matrix,
 \section{Các mô hình phân loại}
 
 \subsection{Mô hình logit}
-\Sexpr{knit_child('./Ch2/2.1/def-logistics.rnw')}
+% \Sexpr{knit_child('./Ch2/2.1/def-logistics.rnw')}
 
 \subsection{Mô hình phân loại tuyến tính}
 \subsection{Mô hình SVM (Support Vector Machine)}
@@ -237,11 +255,11 @@ train_x_matrix <- downSample(x = train_x_matrix,
 \chapter{Tình huống nghiên cứu}
 
 \section{Số liệu và các biến số}
-\Sexpr{knit_child('./Ch3/3.1/info.rnw')}
+% \Sexpr{knit_child('./Ch3/3.1/info.rnw')}
 
 
 \section{Ứng dụng mô hình logit}
-\Sexpr{knit_child('./Ch3/3.2/var_select.rnw')}
+% \Sexpr{knit_child('./Ch3/3.2/var_select.rnw')}
 
 \section{Ứng dụng mô hình phân loại tuyến tính}
 
@@ -257,7 +275,11 @@ train_x_matrix <- downSample(x = train_x_matrix,
 % Phụ lục %
 %%%%%%%%%%%
 \appendix
+\titlecontents{chapter}[0pt]{\bfseries}
+  {\color{blue}PHỤ LỤC \thecontentslabel:\quad}
+  {}{\titlerule*[1pc]{.}\contentspage}
 \Sexpr{knit_child('./Appendices/appendices.rnw')}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Danh mục tham khảo  %

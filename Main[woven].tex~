@@ -430,12 +430,15 @@ Trong 30000 quan sát của bộ số liệu này, sau khi làm sạch, chúng t
 \section{Ứng dụng mô hình SVM}
 
 Trong xây dựng một mô hình SVM, việc lựa chọn kernel thích hợp và việc điềuchỉnh để có được tham số thích hợp cho kernel đó là yếu tố vô cùng quan trọng. 
-\cite{hsu2003practical} đưa ra một quy trình để có thể đạt được kết quả chấp nhận được đối với hầu hết tất cả mọi trường hợp. Quy trình đó như sau:
+\textcite{hsu2003practical} đưa ra một quy trình để có thể đạt được kết quả chấp nhận được đối với hầu hết tất cả mọi trường hợp. Quy trình đó như sau:
 
 \begin{itemize}
   \item Biến đổi số liệu phù hợp với gói ứng dụng SVM
   \item Thực hiện chuẩn hoá bộ số liệu
-  \item Sử dụng kernel RBF $K(x, y) = e^{-\gamma{\|x - y\|}^2}}$
+  \item Sử dụng kernel RBF $K(x, y) = e^{-\gamma{\|x - y\|}^2}$
+  \item Sử dụng kiểm định chéo để tìm tham số tốt nhất cho $C$ và $\gamma$
+  \item Sử dụng tham số $C$ và $\gamma$ tốt nhất ước lượng được để ước lượng trên toàn bộ bộ số liệu dùng để xây dựng mô hình.
+  \item Kiểm tra hiệu quả mô hình.
 \end{itemize}
 
 

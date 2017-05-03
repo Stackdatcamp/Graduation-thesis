@@ -1,0 +1,30 @@
+Thay vì đi tìm mô mô hình ước lượng tỷ lệ $P(Y =1)$ như trong mô hình logit. một hướng tiếp cận khác là đi tìm một siêu mặt phẳng có khả năng chia cắt không gian của bộ số liệu ra làm 2 phần. Nói cách khác là ước lượng một hàm:
+
+$$
+f(x) = \beta_0 + \beta1 x_1 + \beta_2 x2 ...\beta_p x_p
+$$
+
+sao cho các quan sát thuộc 2 nhóm khác nhau sẽ được quyết định bằng dấu của $f(x)$, tức là nămg ở 2 phía của siêu mặt phẳng:
+
+$$
+\beta_0 + \beta1 x_1 + \beta_2 x2 ...\beta_p x_p = 0
+$$
+
+Mô hình Support Vector Machine (SVM) là một trong những mô hình thuộc loại này. SVM phát triển từ những năm 1990 và nhanh chóng được mọi người đón nhận vì khả năng phân loại tốt trong nhiều trường hợp khác nhau.
+
+\subsection{Phân loại lề cực đại (Maximal Marginal Classifier)}
+Mô hình SVM được phát triển từ một phương pháp phân loại khá đơn giản gọi là phương pháp maximal margin classifier \parencite{boser1992training}. Thông thường, nếu như một bộ số liệu có thể được chia ra bởi một siêu mặt phẳng ngăn cách, chúng ta sẽ có thể tìm được vô siêu mặt phẳng như thế. Điều này là do các mặt phẳng có di chuyển nhẹ lên xuống hoặc quay mà không chạm tới các quan sát. Để xây dựng một mô hình phân loại dựa trên một siêu mặt phẳng phân loại,  chúng ta phải có một phương pháp hợp lý để chọn mặt phẳng hợp lý trong số vô số siêu mặt phẳng này.
+
+Phương pháp Maximal Marginal Classifier lựa chọn siêu mặt phẳng mà nằm xa nhất các quan sát trong bộ số liệu. Nếu chúng ta tính khoảng cách từ các quan sát tới siêu mặt phẳng đã cho, khoảng cách nhỏ nhất từ các quan sát đến siêu mặt phẳng này gọi là lề (margin) của siêu mặt phẳng. Siêu mặt phẳng lề cực đại mà chúng ta chọn trong phương pháp này là siêu mặt phẳng mà lề là lớn nhất.
+
+% Support vector
+
+Siêu mặt phẳng được ước lượng bằng cách giải phương trình:
+
+Tối ưu $\max_{\beta_0, \beta_1,...,\beta_p}M$ 
+
+Với điều kiện $\sum_{j = 1}^p \beta_j = 1$
+
+và $y_i(\beta_0 + \beta_1x_{i2} + ... + \beta_px_{ip}) \geq M \forall i = 1, 2, ...n$
+
+

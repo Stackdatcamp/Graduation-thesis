@@ -239,7 +239,7 @@ train_x_matrix <- downSample(x = train_x_matrix,
 \Sexpr{knit_child('./Ch2/2.1/def-logistics.rnw')}
 
 \subsection{Mô hình SVM (Support Vector Machine)}
-
+% \Sexp{knit_child('./Ch2/2.2/def-svm.tex')}
 % \section{Đánh giá mô hình}
 % \subsection{Đường ROC và phần diện tích dưới đường cong (AUC)}
 % \subsection{Thang đo H}
@@ -255,10 +255,10 @@ train_x_matrix <- downSample(x = train_x_matrix,
 
 
 \section{Ứng dụng mô hình logit}
-%\Sexpr{knit_child('./Ch3/3.2/var_select.rnw')}
+\Sexpr{knit_child('./Ch3/3.2/var_select.rnw')}
 
 \section{Ứng dụng mô hình SVM}
-\Sexpr{knit_child('./Ch3/3.3/svm.rnw')}
+% \Sexpr{knit_child('./Ch3/3.3/svm.rnw')}
 %%%%%%%%%%%%
 % Kết luận %
 %%%%%%%%%%%%
@@ -272,7 +272,7 @@ train_x_matrix <- downSample(x = train_x_matrix,
 \titlecontents{chapter}[0pt]{\bfseries}
   {\color{blue}PHỤ LỤC \thecontentslabel:\quad}
   {}{\titlerule*[1pc]{.}\contentspage}
-% \Sexpr{knit_child('./Appendices/appendices.rnw')}
+\Sexpr{knit_child('./Appendices/appendices.rnw')}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%

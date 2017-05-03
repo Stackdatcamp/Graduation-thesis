@@ -542,36 +542,5 @@
     \field{journaltitle}{Journal of the operational research society}
     \field{year}{2003}
   \endentry
-
-  \entry{hsu2003practical}{article}{}
-    \true{moreauthor}
-    \name{author}{3}{}{%
-      {{hash=HCW}{%
-         family={Hsu},
-         familyi={H\bibinitperiod},
-         given={Chih-Wei},
-         giveni={C\bibinitperiod-W\bibinitperiod},
-      }}%
-      {{hash=CCC}{%
-         family={Chang},
-         familyi={C\bibinitperiod},
-         given={Chih-Chung},
-         giveni={C\bibinitperiod-C\bibinitperiod},
-      }}%
-      {{hash=LCJ}{%
-         family={Lin},
-         familyi={L\bibinitperiod},
-         given={Chih-Jen},
-         giveni={C\bibinitperiod-J\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{HCWCCCLCJ+1}
-    \strng{fullhash}{HCWCCCLCJ+1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{9}
-    \field{sortinithash}{9}
-    \field{title}{A practical guide to support vector classification}
-  \endentry
 \endsortlist
 \endinput

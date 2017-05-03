@@ -81,8 +81,8 @@ pca_result %>%
            label.size = 3,
            alpha = 0.5) +
   geom_rug(aes(color = DEFAULT), alpha = 0.5) +
-  scale_color_manual(values = c("#5192ba", 
-                                "#d60003")) +
+  scale_color_manual(values = c("lightskyblue", 
+                                "darkred")) +
   labs(x = paste0("Thành phần chính 1 (giải thích ", 
                   round(pc_percent[1], 2),
                   "% phương sai)"),

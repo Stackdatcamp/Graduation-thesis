@@ -1,20 +1,20 @@
 \documentclass[a4paper]{report}
 \usepackage[fontsize=13pt]{scrextend}
 \usepackage[utf8]{vietnam}
-\usepackage{verbatim} 
-\usepackage{lipsum}
+\usepackage{verbatim}
 \usepackage{listings}
 
-<<echo=FALSE,include=FALSE>>=
+<<echo=FALSE,include=FALSE,eval=TRUE>>=
+# Packages loadings
+pkgs <- c("readr", "tidyr", "dplyr", "broom", "caret", "GGally",
+          "ggfortify", "glmnet", "knitr")
+sapply(pkgs, require, character.only = TRUE)
+
 # Chunk options
-options(width=60, OutDec= ",")
+options(width=60, OutDec= ",", texi2dvi = "/usr/bin/pdflatex")
 
 opts_chunk$set(dev='cairo_pdf', echo = FALSE, size = 'small', fig.path = "Figures/", out.width = "\\textwidth")
 
-# Packages loadings
-pkgs <- c("readr", "tidyr", "dplyr", "broom", "caret", "GGally",
-          "ggfortify", "glmnet")
-sapply(pkgs, require, character.only = TRUE)
 
 
 # Set theme for all plots in the thesis
@@ -149,8 +149,9 @@ train_x_matrix <- downSample(x = train_x_matrix,
 
 
 \renewcommand{\thechapter}{\Roman{chapter}}
-\renewcommand{\thesection}{\arabic{section}}
-
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}   
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 %%%%%%%%%%%%%%%%%%%%%%  
 % FIGURES AND TABLES %
 %%%%%%%%%%%%%%%%%%%%%%
@@ -199,6 +200,7 @@ train_x_matrix <- downSample(x = train_x_matrix,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %         TITLE PAGE          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \input{./Cover/front-cover.tex}
 
 %%%%%%%
@@ -224,29 +226,23 @@ train_x_matrix <- downSample(x = train_x_matrix,
 % Chương 1 %
 %%%%%%%%%%%%
 \chapter{Tổng quan về quản trị rủi ro tín dụng đối với khách hàng cá nhân}
-
-\section{Một số khái niệm}
-
-\section{Thực trạng của việc chấm điểm tín dụng tại Việt Nam}
-
-\section{Kết luận}
+\input{./Ch1/credit-risk.tex}
 
 %%%%%%%%%%%%
 % Chương 2 %
 %%%%%%%%%%%%
 
-\chapter{Các phương pháp phân loại khách hàng vay thẻ tín dụng}
+\chapter{Các Mô hình phân loại khách hàng vay thẻ tín dụng}
 \section{Các mô hình phân loại}
 
 \subsection{Mô hình logit}
-% \Sexpr{knit_child('./Ch2/2.1/def-logistics.rnw')}
+\Sexpr{knit_child('./Ch2/2.1/def-logistics.rnw')}
 
-\subsection{Mô hình phân loại tuyến tính}
 \subsection{Mô hình SVM (Support Vector Machine)}
 
-\section{Đánh giá mô hình}
-\subsection{Đường ROC và phần diện tích dưới đường cong (AUC)}
-\subsection{Thang đo H}
+% \section{Đánh giá mô hình}
+% \subsection{Đường ROC và phần diện tích dưới đường cong (AUC)}
+% \subsection{Thang đo H}
 
 %%%%%%%%%%%%
 % Chương 3 %
@@ -255,16 +251,14 @@ train_x_matrix <- downSample(x = train_x_matrix,
 \chapter{Tình huống nghiên cứu}
 
 \section{Số liệu và các biến số}
-% \Sexpr{knit_child('./Ch3/3.1/info.rnw')}
+\Sexpr{knit_child('./Ch3/3.1/info.rnw')}
 
 
 \section{Ứng dụng mô hình logit}
-% \Sexpr{knit_child('./Ch3/3.2/var_select.rnw')}
-
-\section{Ứng dụng mô hình phân loại tuyến tính}
+%\Sexpr{knit_child('./Ch3/3.2/var_select.rnw')}
 
 \section{Ứng dụng mô hình SVM}
-
+\Sexpr{knit_child('./Ch3/3.3/svm.rnw')}
 %%%%%%%%%%%%
 % Kết luận %
 %%%%%%%%%%%%
@@ -278,7 +272,7 @@ train_x_matrix <- downSample(x = train_x_matrix,
 \titlecontents{chapter}[0pt]{\bfseries}
   {\color{blue}PHỤ LỤC \thecontentslabel:\quad}
   {}{\titlerule*[1pc]{.}\contentspage}
-\Sexpr{knit_child('./Appendices/appendices.rnw')}
+% \Sexpr{knit_child('./Appendices/appendices.rnw')}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%

@@ -435,7 +435,7 @@ Trong xây dựng một mô hình SVM, việc lựa chọn kernel thích hợp v
 \begin{itemize}
   \item Biến đổi số liệu phù hợp với gói ứng dụng SVM
   \item Thực hiện chuẩn hoá bộ số liệu
-  \item Sử dụng kernel RBF $K(x, y) = e^{-\gamma{\|x - y\|}^2}$
+  \item Sử dụng kernel RBF $K(x, y) = e^{-\gamma{\|x - y\|}^2}}$
 \end{itemize}
 
 

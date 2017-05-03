@@ -264,6 +264,42 @@
     \field{year}{2015}
   \endentry
 
+  \entry{hosmer2013applied}{book}{}
+    \name{author}{3}{}{%
+      {{hash=HJDW}{%
+         family={Hosmer\bibnamedelima Jr},
+         familyi={H\bibinitperiod\bibinitdelim J\bibinitperiod},
+         given={David\bibnamedelima W},
+         giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Lemeshow},
+         familyi={L\bibinitperiod},
+         given={Stanley},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SRX}{%
+         family={Sturdivant},
+         familyi={S\bibinitperiod},
+         given={Rodney\bibnamedelima X},
+         giveni={R\bibinitperiod\bibinitdelim X\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {John Wiley \& Sons}%
+    }
+    \strng{namehash}{HJDWLSSRX1}
+    \strng{fullhash}{HJDWLSSRX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2013}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{Applied logistic regression}
+    \field{volume}{398}
+    \field{year}{2013}
+  \endentry
+
   \entry{CC01a}{article}{}
     \name{author}{2}{}{%
       {{hash=CCC}{%
@@ -505,6 +541,37 @@
     \field{volume}{54}
     \field{journaltitle}{Journal of the operational research society}
     \field{year}{2003}
+  \endentry
+
+  \entry{hsu2003practical}{article}{}
+    \true{moreauthor}
+    \name{author}{3}{}{%
+      {{hash=HCW}{%
+         family={Hsu},
+         familyi={H\bibinitperiod},
+         given={Chih-Wei},
+         giveni={C\bibinitperiod-W\bibinitperiod},
+      }}%
+      {{hash=CCC}{%
+         family={Chang},
+         familyi={C\bibinitperiod},
+         given={Chih-Chung},
+         giveni={C\bibinitperiod-C\bibinitperiod},
+      }}%
+      {{hash=LCJ}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Chih-Jen},
+         giveni={C\bibinitperiod-J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HCWCCCLCJ+1}
+    \strng{fullhash}{HCWCCCLCJ+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{9}
+    \field{sortinithash}{9}
+    \field{title}{A practical guide to support vector classification}
   \endentry
 \endsortlist
 \endinput

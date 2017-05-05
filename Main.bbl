@@ -542,5 +542,105 @@
     \field{journaltitle}{Journal of the operational research society}
     \field{year}{2003}
   \endentry
+
+  \entry{hsu2003practical}{article}{}
+    \true{moreauthor}
+    \name{author}{3}{}{%
+      {{hash=HCW}{%
+         family={Hsu},
+         familyi={H\bibinitperiod},
+         given={Chih-Wei},
+         giveni={C\bibinitperiod-W\bibinitperiod},
+      }}%
+      {{hash=CCC}{%
+         family={Chang},
+         familyi={C\bibinitperiod},
+         given={Chih-Chung},
+         giveni={C\bibinitperiod-C\bibinitperiod},
+      }}%
+      {{hash=LCJ}{%
+         family={Lin},
+         familyi={L\bibinitperiod},
+         given={Chih-Jen},
+         giveni={C\bibinitperiod-J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HCWCCCLCJ+1}
+    \strng{fullhash}{HCWCCCLCJ+1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2003}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{title}{A practical guide to support vector classification}
+    \field{year}{2003}
+  \endentry
+
+  \entry{scholkopf1999advances}{book}{}
+    \name{author}{2}{}{%
+      {{hash=SB}{%
+         family={Sch{\"o}lkopf},
+         familyi={S\bibinitperiod},
+         given={Bernhard},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=BCJ}{%
+         family={Burges},
+         familyi={B\bibinitperiod},
+         given={Christopher\bibnamedelima JC},
+         giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {MIT press}%
+    }
+    \strng{namehash}{SBBCJ1}
+    \strng{fullhash}{SBBCJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1999}
+    \field{sortinit}{8}
+    \field{sortinithash}{8}
+    \field{title}{Advances in kernel methods: support vector learning}
+    \field{year}{1999}
+  \endentry
+
+  \entry{boser1992training}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=BBE}{%
+         family={Boser},
+         familyi={B\bibinitperiod},
+         given={Bernhard\bibnamedelima E},
+         giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=GIM}{%
+         family={Guyon},
+         familyi={G\bibinitperiod},
+         given={Isabelle\bibnamedelima M},
+         giveni={I\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=VVN}{%
+         family={Vapnik},
+         familyi={V\bibinitperiod},
+         given={Vladimir\bibnamedelima N},
+         giveni={V\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {ACM}%
+    }
+    \strng{namehash}{BBEGIMVVN1}
+    \strng{fullhash}{BBEGIMVVN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1992}
+    \field{sortinit}{8}
+    \field{sortinithash}{8}
+    \field{booktitle}{Proceedings of the fifth annual workshop on Computational
+  learning theory}
+    \field{pages}{144\bibrangedash 152}
+    \field{title}{A training algorithm for optimal margin classifiers}
+    \field{year}{1992}
+  \endentry
 \endsortlist
 \endinput

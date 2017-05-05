@@ -24,9 +24,7 @@ $$
 Trong trường hợp các biến độc lập là biến phân loại không so sánh được (ví dụ: Giới tính, dân tộc, v..v..) chúng ta đưa các biến này vào mô hình bằng cách sử dụng một nhóm các biến giả tương ứng với từng giá trị khác nhau của biến phân loại.
 
 \subsubsection{Ước lượng mô hình logit}
-a, Ước lượng hợp lý tối đa
-
-\vspace{5mm}
+\paragraph{Ước lượng hợp lý tối đa}
 
 %Logistic regression models are usually fit by maximum likelihood, using the conditional likelihood of G given X. Since Pr(G|X) completely specifies the conditional distribution, the multinomial distribution is appropriate. The log-likelihood for N observations is
 
@@ -50,9 +48,7 @@ $$
 
 Tối ưu hóa hàm $L$ sẽ cho chúng ta ước lượng hợp lý tối đa cho các hệ số $\beta$ trong mô hình.
 
-b, Ràng buộc L1 hay mô hình Lasso
-
-\vspace{5mm}
+\paragraph{Ràng buộc L1 hay mô hình Lasso}
 
 Một vấn đề mô hình logit hay gặp phải đó là hiện tượng đa cộng tuyến giữa các biến khi số lượng biến $p$ tăng lên. Hậu quả của hiện tượng này là các ước lượng cho hệ số $\beta$ thường là có sai số lớn, mặc dù ước lượng vẫn là không chệch. Nói cách khác, các giá trị $\beta$ ước lượng được thường có hiệu quả kém khi áp dụng trên mẫu mới, mặc dù mô hình vẫn có độ chính xác cao khi áp dụng trên bộ số liệu mẫu dùng để ước lượng ra mô hình. 
 

@@ -127,16 +127,6 @@
   {\thesubsection}{1em}
   {}
 
-\titleformat{\subsubsection}[block]
-  {}
-  {\thesubsubsection}{1em}
-  {}
-
-\titleformat{\paragraph}[block]
-  {\hspace{2em}}
-  {\theparagraph}{1em}
-  {}
-
 % Appearance on table of contents
 \usepackage{titletoc}
 \titlecontents{chapter}% <section-type>
@@ -147,16 +137,13 @@
   {\titlerule*[1pc]{.}\contentspage}% <filler-page-format>
 
 
-
 \renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
-\renewcommand{\theparagraph}{\alph{paragraph},}
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}   
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 %%%%%%%%%%%%%%%%%%%%%%  
 % FIGURES AND TABLES %
 %%%%%%%%%%%%%%%%%%%%%%
-\usepackage{graphicx}
 \usepackage[section]{placeins}
 \usepackage[justification=centering]{caption}
 
@@ -251,7 +238,7 @@ Trong bài này, chúng ta sẽ tiếp cận đến một số phương pháp ph
 \parencite{r:knitr}. Tất cả phân tích được thực hiện trên phần mềm thống kê 
 R version 3.4.0 (2017-04-21) \parencite{r:rbase},  
 các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{caret}\parencite{r:caret}, \texttt{tidyverse} \parencite{r:tidyverse}... Mô hình logit được thực hiện với gói \texttt{glmnet}\parencite{r:glmnet}. 
-Mô hình SVM được thực hiện với gói \texttt{kernlab} \parencite{r:kernlab}, là một giao diện của phần mềm \texttt{LIBSVM} \parencite{CC01a} trong môi trường \texttt{R}.
+Mô hình SVM được thực hiện với gói \texttt{kernlab}\parencite{r:kernlab}, là một giao diện của phần mềm \texttt{LIBSVM} \parencite{CC01a} trong môi trường \texttt{R}.
 
 %  Cảm ơn bla bla
 Em xin cảm ơn giáo viên hướng dẫn, cô Nguyễn Thị Minh, cùng với các thầy cô giáo khác trong khoa đã tạo điều kiện cho em thực hiện đề tài này.
@@ -270,199 +257,38 @@ Em xin cảm ơn giáo viên hướng dẫn, cô Nguyễn Thị Minh, cùng vớ
 \section{Các mô hình phân loại}
 
 \subsection{Mô hình logit}
-
-\subsubsection{Khái niệm}
-
-Mô hình hồi quy Logistic (hay logit) được dùng để nghiên cứu mối quan hệ giữa xác suất của các biến nhị phân hoặc phân loại và các biến giải thích khác. Hướng tiếp cận của mô hình Logistic cho bài toán phân loại là bằng cách ước lượng giá trị xác suất $P(y = 1|X)$ như sau:
-
-{\large
-$$
-P(y = 1|X) = \frac{e^{\beta_0 + \sum\beta_1X_1 +\beta_2X_2 + \ldots + \beta_nX_n}}{1 + e^{\beta_0 + \sum\beta_1X_1 +\beta_2X_2 + \ldots + \beta_nX_n}}
-$$
-}
-
-Với $y$ là biến dùng để phân loại, chỉ nhận hai giá trị 0 hoặc 1, $X$ là các vector của biến độc lập, $\beta_0$, $\beta_1$, $\beta_2$, ..., $\beta_n$ là các hệ số cần ước lượng. 
-
-Hay còn được viết dưới dạng:
-
-{\large
-$$
-\log\frac{P(y = 1|X)}{P(y = 0|X)} = \beta_0 + \beta_1X_1 +\beta_2X_2 + \ldots + \beta_nX_n
-$$
-}
-
-% Trong đó giá trị $\log [P(y = 1|X)/P(y = 0|X) ]$ còn được gọi là 
- 
-%If some of the independent variables are discrete, nominal scale variables such as race, sex, treatment group, and so forth, it is inappropriate to include them in the model as if they were interval scale variables. The numbers used to represent the various levels of these nominal scale variables are merely identifiers, and have no numeric significance. In this situation, the method of choice is to use a collection of design variables (or dummy variables). Suppose, for example, that one of the independent variables is race, which has been coded as “white,” “black,” and “other.” In this case, two design variables are necessary. One possible coding strategy is that when the respondent is “white,” the two design variables, D 1 and D 2 , would both be set equal to zero; when the respondent is “black,” D 1 would be set equal to 1 while D 2 would still equal 0; when the race of the respondent is “other,” we would use D 1 = 0 and D 2 = 1.
-Trong trường hợp các biến độc lập là biến phân loại không so sánh được (ví dụ: Giới tính, dân tộc, v..v..) chúng ta đưa các biến này vào mô hình bằng cách sử dụng một nhóm các biến giả tương ứng với từng giá trị khác nhau của biến phân loại.
-
-\subsubsection{Ước lượng mô hình logit}
-\paragraph{Ước lượng hợp lý tối đa}
-
-%Logistic regression models are usually fit by maximum likelihood, using the conditional likelihood of G given X. Since Pr(G|X) completely specifies the conditional distribution, the multinomial distribution is appropriate. The log-likelihood for N observations is
-
-Các hệ số $\beta$ thường được ước lượng bằng phương pháp ước lượng hợp lý tối đa \parencite{hosmer2013applied}, sử dụng hàm hợp lý có điều kiện $G$ đối với mỗi giá trị của $X$. Hàm hợp lý logarit cho $N$ quan sát được viết như sau:
-
-{\large
-
-$$
-L(\theta) = \sum_{i = 1}^N P_{g_i} (x_i; \theta)
-$$
-}
-, với $p_k(x_i;\theta) = P(G = k|X = x_i; \theta)$.
-
-Trong trường hợp biến phụ thuộc $Y$ chỉ có 2 giá trị: $(0, 1)$, ta có thể mã hóa 2 nhóm của $g_i$ thành$y_i = 1$ khi $g_i = 1$ và $y_i = 0$ khi $g_i = 2$. Khi đó logarit của hàm hợp lý có thể viết lại như  sau: 
-
-{\large
-$$
-L(\beta) = \sum_{i = 1}^N \{  y_i log (x_i ; \beta) + (1- y_i)log (x_i; \beta) \}
-$$
-}
-
-Tối ưu hóa hàm $L$ sẽ cho chúng ta ước lượng hợp lý tối đa cho các hệ số $\beta$ trong mô hình.
-
-\paragraph{Ràng buộc L1 hay mô hình Lasso}
-
-Một vấn đề mô hình logit hay gặp phải đó là hiện tượng đa cộng tuyến giữa các biến khi số lượng biến $p$ tăng lên. Hậu quả của hiện tượng này là các ước lượng cho hệ số $\beta$ thường là có sai số lớn, mặc dù ước lượng vẫn là không chệch. Nói cách khác, các giá trị $\beta$ ước lượng được thường có hiệu quả kém khi áp dụng trên mẫu mới, mặc dù mô hình vẫn có độ chính xác cao khi áp dụng trên bộ số liệu mẫu dùng để ước lượng ra mô hình. 
-
-Để xử lý vấn đề này, chúng ta có thể áp dụng nhiều phương pháp để loại biến ra khỏi mô hình, hoặc sử dụng các phương pháp ước lượng khác mà các biến có ý nghĩa thống kê thấp bị loại ra khỏi mô hình trong quá trình ước lượng.
-
-Phương pháp Lasso là một cải tiến của các mô hình tuyến tính, trong mô hình này, chúng ta áp dụng thêm ràng bộc L1 đối với hàm hợp lý tối đa. Áp dụng với mô hình Logit, thay vì tối ưu hàm hợp lý tối đa, chúng ta tối ưu:
-
-{\large
-$$
-\max_{\beta_0, \beta} \left \{ \sum_{i = 1}^N [ y_i log (x_i ; \beta) + (1- y_i)log (x_i; \beta)] - \lambda \sum_{j = 1}^p|\beta_j|\right \}
-$$
-}
-
-%As with the lasso, we typically do not penalize the intercept term, and stan-dardize the predictors for the penalty to be meaningful. Criterion (4.31) is126 concave, and a solution can be found using nonlinear programming meth-ods (Koh et al., 2007, for example). Alternatively, using the same quadratic approximations that were used in the Newton algorithm in Section 4.4.1, we can solve (4.31) by repeated application of a weighted lasso algorithm. Interestingly, the score equations [see (4.24)] for the variables with non-zero coefficients have the form
-Sử dụng các giá trị khác nhau của tham số $\lambda$, phương pháp lasso thu nhỏ giá trị ước lượng của các $\beta$ so với phương pháp tối đa hóa hàm hợp lý truyền thống. Vì các giá trị thu nhỏ của $\beta$ có thể giảm về 0 và loại ra khỏi mô hình nếu $\lambda$ đủ lớn, phương pháp lasso có thể được dùng để thay thế cho việc chọn biến trong các mô hình đa biến.
-
-Đồng thời đối với lasso, ta thường không ràng buộc các hệ số chặn, và các biến giải thích phải được chuẩn hóa để ràng buộc chung cho các $\beta$ là có ý nghĩa. Vì hàm tối ưu của chúng ta là hàm lõm, lời giải có thể tính sử dụng các phương pháp phi tuyến. %need citation
-
-
-\subsubsection{Diễn giải kết quả ước lượng mô hình}
+%knit_child('./Ch2/2.1/def-logistics.rnw')
 
 \subsection{Mô hình SVM (Support Vector Machine)}
 
-\subsubsection{Khái niệm}
 Thay vì đi tìm mô mô hình ước lượng tỷ lệ $P(Y =1)$ như trong mô hình logit. một hướng tiếp cận khác là đi tìm một siêu mặt phẳng có khả năng chia cắt không gian của bộ số liệu ra làm 2 phần. Nói cách khác là ước lượng một hàm:
 
 $$
-\large
 f(x) = \beta_0 + \beta1 x_1 + \beta_2 x2 ...\beta_p x_p
 $$
 
 sao cho các quan sát thuộc 2 nhóm khác nhau sẽ được quyết định bằng dấu của $f(x)$, tức là nămg ở 2 phía của siêu mặt phẳng:
 
 $$
-\large
 \beta_0 + \beta1 x_1 + \beta_2 x2 ...\beta_p x_p = 0
 $$
 
-Mô hình véc tơ máy hỗ trợ (Support Vector Machine - SVM) là một trong những mô hình thuộc loại này. SVM phát triển từ những năm 1990 và nhanh chóng được mọi người đón nhận vì khả năng phân loại tốt trong nhiều trường hợp khác nhau.
+Mô hình Support Vector Machine (SVM) là một trong những mô hình thuộc loại này. SVM phát triển từ những năm 1990 và nhanh chóng được mọi người đón nhận vì khả năng phân loại tốt trong nhiều trường hợp khác nhau.
 
-\paragraph{Phân loại lề cực đại (Maximal Marginal Classifier)}
+\subsection{Phân loại lề cực đại (Maximal Marginal Classifier)}
 Mô hình SVM được phát triển từ một phương pháp phân loại khá đơn giản gọi là phương pháp maximal margin classifier \parencite{boser1992training}. Thông thường, nếu như một bộ số liệu có thể được chia ra bởi một siêu mặt phẳng ngăn cách, chúng ta sẽ có thể tìm được vô siêu mặt phẳng như thế. Điều này là do các mặt phẳng có di chuyển nhẹ lên xuống hoặc quay mà không chạm tới các quan sát. Để xây dựng một mô hình phân loại dựa trên một siêu mặt phẳng phân loại,  chúng ta phải có một phương pháp hợp lý để chọn mặt phẳng hợp lý trong số vô số siêu mặt phẳng này.
 
 Phương pháp Maximal Marginal Classifier lựa chọn siêu mặt phẳng mà nằm xa nhất các quan sát trong bộ số liệu. Nếu chúng ta tính khoảng cách từ các quan sát tới siêu mặt phẳng đã cho, khoảng cách nhỏ nhất từ các quan sát đến siêu mặt phẳng này gọi là lề (margin) của siêu mặt phẳng. Siêu mặt phẳng lề cực đại mà chúng ta chọn trong phương pháp này là siêu mặt phẳng mà lề là lớn nhất.
 
-\begin{figure}
-  \centering
-   \includegraphics[width=0.5\textwidth]{./Figures/maxim_margin_example.png}
-   \caption{Ví dụ về siêu mặt phẳng lề cực đại trong không gian 2 chiều.}
-   \label{fig:maxim_margin_example}
-\end{figure}
+% Support vector
 
 Siêu mặt phẳng được ước lượng bằng cách giải phương trình:
 
+Tối ưu $\max_{\beta_0, \beta_1,...,\beta_p}M$ 
 
- $$
-\large
-\begin{cases}
-\max\limits_{\beta_0, \beta_1,...,\beta_p}M\\
+Với điều kiện $\sum_{j = 1}^p \beta_j = 1$
 
-\sum_{j = 1}^p \beta_j^2 = 1\\
-
-y_i(\beta_0 + \beta_1x_{i2} + ... + \beta_px_{ip}) \geq M \qquad \forall i = 1, 2, ...n
-\end{cases}
-$$
-
-trong đó $M$ là độ rộng của lề, chúng ta tìm giá trị tối đa cho giá trị này, dưới ràng buộc rằng 
- $$
-\large
-y_i(\beta_0 + \beta_1x_{i2} + ... + \beta_px_{ip}) \geq M \qquad \forall i = 1, 2, ...n
-$$
-để đảm bảo rằng mỗi quan sát đều nằm trên đúng phía của siêu mặt phẳng phân loại, với điều kiện rằng $M$ không âm.
-Khoảng cách từ quan sát thứ $i$ đến siêu mặt phẳng có thể được tính bằng: 
-
-$$
-y_i(\beta_0 + \beta_1x_{i2} + ... + \beta_px_{ip})
-$$
-
-
-\paragraph{Phương pháp phân loại hỗ trợ máy}
-
-Phương pháp phân loại lề cực đại không thể thực hiện được trong trường hợp không tồn tại một siêu mặt phẳng nào có thể chia tách bộ số liệu ra thành 2 nhóm.
-
-Một cải tiến của phương pháp này là phương pháp hỗ trợ máy, trong đó siêu mặt phẳng được ước lượng bằng phương trình:
-
-$$
-\large
-\begin{cases}
-\max\limits_{\beta_0, \beta_1,...,\beta_p, \epsilon_1, ... , \epsilon_n}M\\
-
-\sum_{j = 1}^p \beta_j^2 = 1\\
-
-y_i(\beta_0 + \beta_1x_{i2} + ... + \beta_px_{ip}) \geq M(1-\epsilon_i) \\
-
-\epsilon_i \geq 0, \quad \sum_{i = 1}^n \epsilon_i \leq C
-\end{cases}
-$$
-
-Trong đó $C$ là một tham số không âm do ta lựa chọn. $\epsilon_i$ là các hệ số không âm cho phép quan sát thứ $i$ vi phạm quy tắc của siêu mặt phẳng biên cực đại, với $C$ là giới hạn cho số sai phạm này. Nếu $0 < \epsilon_i < 1$, điểm $i$ nằm ở phía trong biên nhưng vẫn đúng phía của siêu mặt phẳng phân loại. Nếu $\epsilon_i = 1$, điểm $i$ nằm ở sai phía của siêu mặt phẳng phân loại.
-
-\paragraph{Các kernel và mô hình véc tơ hỗ trợ máy}
-
-Mô hình véc tơ hỗ trợ máy (Support Vector Machine) là một mở rộng của mô hình phân loại vectơ hỗ trợ, giúp xây dựng các mô hình phân loại phi tuyến. Mô hình này sử dụng một phép chiếu $\Phi$, chiếu các quan sát từ một không gian không phân biệt tuyến tính lên một chiều không gian mới mà ở đó các quan sát trở nên phân biệt tuyến tính.
-
-Trong thực tế, việc thực hiện phép chiếu $\Phi$ này có thể trở nên rất khó khăn khi kích cỡ của bộ số liệu lớn. \textcite{scholkopf1999advances} chỉ ra rằng đối với một số phép chiếu, để ước lượng được mô hình véc tơ hỗ trợ, chúng ta chỉ cần tính được tích vô hướng của các quan sát trong bộ dữ liệu, thủ thuật này được gọi là thủ thuật kernel. Mô hình véc tơ hỗ trợ sử dụng thủ thuật kernel này được gọi là mô hình véc tơ hỗ trợ máy (SVM). Một cách tổng quát, mô hình SVM ước lượng:
-
-$$
-f(x) = \beta_0 + \sum\alpha_i K(x, x_i)
-$$
-
-trong đó $\beta0$, $\alpha_i$ là các hệ số cần ước lượng, $K(x, x_i)$ được gọi là hàm kernel, $x_i$ và $x$ lần lượt là véc tơ của quan sát thứ $i$ trong bộ số liệu và vectơ của quan sát mới cần phân loại.
-
-Một số hàm kernel phổ biến được sử dụng rộng rãi là:
-
-\begin{itemize}
-  \item{$K(x, x_i) = x_i^T x$}: Hàm kernel tuyến tính, đây thực chất là hàm kernel của mô hình phân loại vec tơ hỗ trợ bình thường.
-  \item{$K(x, x_i) =  (1 + \sum_{j = 1}^p x_i x)^d$}: Hàm kernel đa thức với tham số $d$ là bậc của đa thức ước lượng.
-  \item{$K(x, x_i) = e^{-\sigma{\|x - x_i\|}^2}$}: Hàm kernel tròn với tham số $\sigma$ quyết định bán kính của đường tròn phân chia các quan sát
-\end{itemize}
-
-\begin{figure}
-  \centering
-    \includegraphics[width=\textwidth]{./Figures/svm_kernel_example.png}
-  \caption[Ví dụ về phân loại sử dụng mô hình SVM]{Ví dụ về phân loại sử dụng mô hình SVM sử dụng kernel đa thức với d = 3 (trái) và kernel tròn (phải)}
-  \label{fig:svm_kernel_example}
-\end{figure}
-
-\subsubsection{Quy trình xây dựng một mô hình véc tơ máy hỗ trợ}
-
-Trong xây dựng một mô hình SVM, việc lựa chọn kernel thích hợp và việc điều chỉnh để có được tham số thích hợp cho kernel đó là yếu tố vô cùng quan trọng. 
-\textcite{hsu2003practical} đưa ra một quy trình để có thể đạt được kết quả chấp nhận được đối với hầu hết các trường hợp. Quy trình đó như sau:
-
-\begin{itemize}
-  \item Thực hiện chuẩn hoá bộ số liệu
-  \item Ưu tiên sử dụng kernel tròn (RBF): $K(x, x_i) = e^{-\sigma{\|x - x_i\|}^2}$
-  \item Sử dụng kiểm định chéo để tìm tham số tốt nhất cho $C$ và $\sigma$.
-  \item Sử dụng tham số $C$ và $\sigma$ tốt nhất ước lượng được để ước lượng trên toàn bộ bộ số liệu dùng để xây dựng mô hình.
-  \item Kiểm tra hiệu quả mô hình.
-\end{itemize}
-
-Trong bài này ta sẽ đi theo quy trình này để xây dựng mô hình SVM, sử dụng phần mềm \texttt{LIBSVM} \textcite{CC01a}, một phần mềm phổ biến được sử dụng rộng rãi để xây dựng các mô hình SVM.
+và $y_i(\beta_0 + \beta_1x_{i2} + ... + \beta_px_{ip}) \geq M \forall i = 1, 2, ...n$
 % \section{Đánh giá mô hình}
 % \subsection{Đường ROC và phần diện tích dưới đường cong (AUC)}
 % \subsection{Thang đo H}
@@ -481,6 +307,20 @@ Trong bài này ta sẽ đi theo quy trình này để xây dựng mô hình SVM
 %knit_child('./Ch3/3.2/var_select.rnw')
 
 \section{Ứng dụng mô hình SVM}
+
+Trong xây dựng một mô hình SVM, việc lựa chọn kernel thích hợp và việc điều chỉnh để có được tham số thích hợp cho kernel đó là yếu tố vô cùng quan trọng. 
+\textcite{hsu2003practical} đưa ra một quy trình để có thể đạt được kết quả chấp nhận được đối với hầu hết tất cả mọi trường hợp. Quy trình đó như sau:
+
+\begin{itemize}
+  \item Biến đổi số liệu phù hợp với gói ứng dụng SVM
+  \item Thực hiện chuẩn hoá bộ số liệu
+  \item Sử dụng kernel RBF $K(x, y) = e^{-\gamma{\|x - y\|}^2}$
+  \item Sử dụng kiểm định chéo để tìm tham số tốt nhất cho $C$ và $\gamma$
+  \item Sử dụng tham số $C$ và $\gamma$ tốt nhất ước lượng được để ước lượng trên toàn bộ bộ số liệu dùng để xây dựng mô hình.
+  \item Kiểm tra hiệu quả mô hình.
+\end{itemize}
+
+
 
 %%%%%%%%%%%%
 % Kết luận %
@@ -529,28 +369,31 @@ Trong bài này ta sẽ đi theo quy trình này để xây dựng mô hình SVM
 ## [13] knitr_1.15.1   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.10       RColorBrewer_1.1-2
-##  [3] nloptr_1.0.4       compiler_3.4.0    
-##  [5] plyr_1.8.4         iterators_1.0.8   
-##  [7] tools_3.4.0        lme4_1.1-13       
-##  [9] evaluate_0.10      tibble_1.3.0      
-## [11] gtable_0.2.0       nlme_3.1-131      
-## [13] mgcv_1.8-17        psych_1.7.3.21    
-## [15] DBI_0.6-1          parallel_3.4.0    
-## [17] SparseM_1.77       gridExtra_2.2.1   
-## [19] stringr_1.2.0      MatrixModels_0.4-1
-## [21] hms_0.3            stats4_3.4.0      
-## [23] grid_3.4.0         nnet_7.3-12       
-## [25] reshape_0.8.6      R6_2.2.0          
-## [27] foreign_0.8-67     minqa_1.2.4       
-## [29] reshape2_1.4.2     car_2.1-4         
-## [31] magrittr_1.5       splines_3.4.0     
-## [33] scales_0.4.1       codetools_0.2-15  
-## [35] ModelMetrics_1.1.0 MASS_7.3-47       
-## [37] assertthat_0.2.0   pbkrtest_0.4-7    
-## [39] mnormt_1.5-5       colorspace_1.3-2  
-## [41] quantreg_5.33      stringi_1.1.5     
-## [43] lazyeval_0.2.0     munsell_0.4.3
+##  [1] reshape2_1.4.2     splines_3.4.0     
+##  [3] latex2exp_0.4.0    colorspace_1.3-2  
+##  [5] stats4_3.4.0       mgcv_1.8-17       
+##  [7] ModelMetrics_1.1.0 nloptr_1.0.4      
+##  [9] foreign_0.8-67     DBI_0.6-1         
+## [11] RColorBrewer_1.1-2 plyr_1.8.4        
+## [13] stringr_1.2.0      MatrixModels_0.4-1
+## [15] munsell_0.4.3      gtable_0.2.0      
+## [17] codetools_0.2-15   psych_1.7.3.21    
+## [19] evaluate_0.10      labeling_0.3      
+## [21] SparseM_1.77       quantreg_5.33     
+## [23] pbkrtest_0.4-7     parallel_3.4.0    
+## [25] Rcpp_0.12.10       xtable_1.8-2      
+## [27] scales_0.4.1       lme4_1.1-13       
+## [29] gridExtra_2.2.1    mnormt_1.5-5      
+## [31] hms_0.3            digest_0.6.12     
+## [33] stringi_1.1.5      ggrepel_0.6.5     
+## [35] grid_3.4.0         tools_3.4.0       
+## [37] magrittr_1.5       lazyeval_0.2.0    
+## [39] tibble_1.3.0       car_2.1-4         
+## [41] MASS_7.3-47        assertthat_0.2.0  
+## [43] minqa_1.2.4        reshape_0.8.6     
+## [45] iterators_1.0.8    R6_2.2.0          
+## [47] nnet_7.3-12        nlme_3.1-131      
+## [49] compiler_3.4.0
 \end{verbatim}
 \end{kframe}
 \end{knitrout}

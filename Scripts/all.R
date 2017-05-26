@@ -1,4 +1,3 @@
-
 ## PACKAGES ####################################################################
 
 pkgs <- c("tidyr", "readr", "ggplot2", "dplyr", "broom", "scales", 
@@ -67,15 +66,10 @@ test_y_set <- y_set[-train_obs, ]
 test_set <- cbind(test_x_set, test_y_set) %>%
   as_data_frame()
 
-## test_set <- credit[-train_obs, ]
-
-## x_set %>% as_data_frame() %>%
-##   select(starts_with("BILL"), starts_with("PAY"), LIMIT_BAL) %>%
-##   gather(col, value, everything()) %>%
-##   ggplot(aes(col, value, group = col)) +
-##   geom_boxplot() +
-##   scale_color_manual(values = c("#00bfff", "#8b0000"))
-
+train_downsample <- downSample(x = train_x_set,
+                             y = factor(train_y_set$DEFAULT,
+                                        labels = c("non_default", "default")),
+                             list = TRUE)
 
 ## Exploratory #################################################################
 
@@ -107,10 +101,6 @@ pca_result %>%
 
 
 ## Lasso #######################################################################
-train_downsample <- downSample(x = train_x_set,
-                             y = factor(train_y_set$DEFAULT,
-                                        labels = c("non_default", "default")),
-                             list = TRUE)
 
 lasso_downsample <-glmnet(train_downsample$x, train_downsample$y,
                    family = "binomial", alpha = 1)
@@ -145,7 +135,7 @@ lasso_downsample_cv$lambda.min
 
 lasso_full_cv$lambda.min
 
---
+## --
 
 data_frame(
  m1 = predict.glmnet(lasso_full_fit, newx = test_x_set,
@@ -159,7 +149,7 @@ data_frame(
   geom_roc(aes(m = m2, d = as.numeric(d)), color = "red")
 
 
---
+## --
 result <- data_frame(
   Predict = (predict.glmnet(lasso_full_fit, newx = test_x_set,
                            s = lasso_full_cv$lambda.min)[,1] > 0.5),
@@ -219,7 +209,7 @@ result %>%
 ## svm_fit <-
 ##   read_rds("/media/Logical_Drive/Study/Graduation Thesis/svm_small.rds")
 
-geom_roc()
+## First grid
 
 set.seed(0)
 small_sample <- sample(length(train_downsample$y), 1000)
@@ -227,31 +217,8 @@ small_sample <- sample(length(train_downsample$y), 1000)
 small_set_x <- train_downsample$x[small_sample,]
 small_set_y <- train_downsample$y[small_sample]
 
-small_set_x %>% as.data.frame() %>%
-  sapply(moments::skewness)
-
-set.seed(0)
-svm_linear_small <- 
-  train(
-    x = small_set_x, y = small_set_y,
-    method = "svmLinear",
-    metric = "ROC",
-    tuneGrid = expand.grid(C = 10^(-3:3)),
-    trControl = trainControl(method = "cv", number = 10,
-                             summaryFunction=twoClassSummary,
-                             classProbs = TRUE)
-  )
-
-ggplot(svm_small) +
-  scale_x_log10()
-
-write_rds(svm_linear_small, 
-          "/media/Logical_Drive/Study/Graduation Thesis/Thesis/Scripts/svm_linear_small.rds")
-
-
-
-grid <- expand.grid(sigma = c(.03, .035, 0.4),
-                    C = c(0.1, 0.2, 0.3, 0.4, 0.5))
+grid <- expand.grid(sigma = 10^c(-3:3),
+                    C = 10^c(-3:3))
 set.seed(0)
 svm_rbf_small <- 
   train(
@@ -264,9 +231,25 @@ svm_rbf_small <-
                              summaryFunction=twoClassSummary,
                              classProbs = TRUE)
   )
+
+
 ggplot(svm_rbf_small)
-write_rds(svm_rbf_small, 
-          "/media/Logical_Drive/Study/Graduation Thesis/svm_rbf_small.rds")
+
+svm_rbf_small$results %>%
+  mutate(scale = scale(ROC)) %>%
+  ggplot(aes(x = factor(sigma), y = factor(C), fill = scale)) +
+  geom_tile() +
+  geom_text(aes(label = round(ROC, 2))) +
+  labs(x = latex2exp::TeX("Giá trị rủa $\\sigma$"),
+       y = latex2exp::TeX("Giá trị của $C$")) +
+  scale_fill_continuous(low = "grey25", high = "white") +
+  theme(axis.line = element_blank(),
+        legend.position = "none")
+
+write_rds(svm_rbf_small, "./svm_rbf_small.rds")
+
+ggsave(filename = "svm_rbf1", path = "../Figures/", device = "pdf")
+
 
 svm_fit <- 
   ksvm(x = train_downsample$x, y = train_downsample$y,
@@ -277,8 +260,8 @@ data_frame(
 ) %>% table()
 
 
-result <- data_frame(
-  Predict = ifelse(predict(svm_fit, test_x_set) == "default", TRUE, FALSE),
+result1 <- data_frame(
+  Predict = ifelse(predict(svm_fit_continous, test_x_set)[,1] > 0.5, TRUE, FALSE),
   Actual = test_set$DEFAULT
 ) %>% table() %>% as.data.frame(stringsAsFactors = FALSE) %>%
   mutate(color = ifelse(Predict == Actual, Freq, -1*Freq),
@@ -298,6 +281,45 @@ result %>%
         panel.grid.major = element_blank(),
         axis.line = element_blank(),
         axis.ticks = element_blank())
+
+
+
+
+svm_fit_continous <- readRDS("./Scripts/svm_fit_continous.rds")
+
+
+result <- data_frame(
+  predict_svm = predict(svm_fit_continous, test_x_set)[,1],
+  predict_lasso = predict.glmnet(lasso_downsample, newx = test_x_set,
+                     s = lasso_downsample_cv$lambda.min)[,1],
+  actual = test_set$DEFAULT
+)
+
+
+gridExtra::grid.arrange(
+  result %>%
+    ggplot(aes(x = predict_lasso, group = actual)) +
+    geom_density(aes(fill = actual), alpha = 0.5) +
+    scale_fill_manual(values = c("skyblue", "darkred")),
+  result %>%
+    ggplot(aes(x = predict_svm, group = actual)) +
+    geom_density(aes(fill = actual), alpha = 0.5) +
+    scale_fill_manual(values = c("skyblue", "darkred"))
+)
+  
+
+result %>%
+  ggplot() +
+  geom_roc(aes(m = predict_svm, d = as.numeric(actual)), color = "blue",
+           labels = FALSE)+
+  geom_roc(aes(m = predict_lasso, d = as.numeric(actual)), color = "red",
+           labels = FALSE)
+  
+## 
+
+
+
+
 
 
 # Backtest #####################################################################
@@ -413,6 +435,7 @@ rocplot <-
   scale_x_continuous(expand = c(0, 0), limits = c(0,1)) + 
   scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
   theme(axis.line = element_blank())
+
 
 rocplot + 
   annotate("text", x = .75, y = .25, 

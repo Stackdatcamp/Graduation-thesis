@@ -576,6 +576,42 @@
     \field{year}{2003}
   \endentry
 
+  \entry{963105}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=dSEM}{%
+         prefix={dos},
+         prefixi={d\bibinitperiod},
+         family={Santos},
+         familyi={S\bibinitperiod},
+         given={E.\bibnamedelima M.},
+         giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=GHM}{%
+         family={Gomes},
+         familyi={G\bibinitperiod},
+         given={H.\bibnamedelima M.},
+         giveni={H\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SEMdGHM1}
+    \strng{fullhash}{SEMdGHM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2001}
+    \field{sortinit}{7}
+    \field{sortinithash}{7}
+    \field{booktitle}{Proceedings XIV Brazilian Symposium on Computer Graphics
+  and Image Processing}
+    \verb{doi}
+    \verb 10.1109/SIBGRAPI.2001.963105
+    \endverb
+    \field{pages}{399\bibrangedash }
+    \field{title}{Appearance-based object recognition using support vector
+  machines}
+    \field{year}{2001}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
   \entry{scholkopf1999advances}{book}{}
     \name{author}{2}{}{%
       {{hash=SB}{%

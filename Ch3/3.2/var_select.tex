@@ -7,18 +7,18 @@ Tuy nhiên trong bộ số liệu chúng ta nghiên cứu này, tỷ lệ  $\tex
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlstd{lasso_fit} \hlkwb{<-}\hlkwd{glmnet}\hlstd{(train_x_matrix}\hlopt{$}\hlstd{x, train_x_matrix}\hlopt{$}\hlstd{y,}
+\hlstd{lasso_fit} \hlkwb{<-}\hlkwd{glmnet}\hlstd{(train_downsample}\hlopt{$}\hlstd{x, train_downsample}\hlopt{$}\hlstd{y,}
                    \hlkwc{family} \hlstd{=} \hlstr{"binomial"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{1}\hlstd{)}
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): could not find function "{}glmnet"{}}}\begin{alltt}
-\hlstd{lasso_cv} \hlkwb{<-} \hlkwd{cv.glmnet}\hlstd{(train_x_matrix}\hlopt{$}\hlstd{x, train_x_matrix}\hlopt{$}\hlstd{y,}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in glmnet(train\_downsample\$x, train\_downsample\$y, family = "{}binomial"{}, : could not find function "{}glmnet"{}}}\begin{alltt}
+\hlstd{lasso_cv} \hlkwb{<-} \hlkwd{cv.glmnet}\hlstd{(train_downsample}\hlopt{$}\hlstd{x, train_downsample}\hlopt{$}\hlstd{y,}
                       \hlkwc{family} \hlstd{=} \hlstr{"binomial"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{1}\hlstd{)}
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): could not find function "{}cv.glmnet"{}}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in cv.glmnet(train\_downsample\$x, train\_downsample\$y, family = "{}binomial"{}, : could not find function "{}cv.glmnet"{}}}\end{kframe}
 \end{knitrout}
 
 Chúng ta thực hiện mô hình logit, sử dụng phương pháp Lasso để giới hạn giá trị của các hệ số ước lượng. 
@@ -41,9 +41,9 @@ Với mỗi gía trị của tham số $\lambda$, giá trị của các hệ s�
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): could not find function "{}\%>\%"{}}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in lasso\_fit\$beta \%>\% as.matrix() \%>\% t() \%>\% as.data.frame() \%>\% : could not find function "{}\%>\%"{}}}\end{kframe}
 \end{knitrout}
-\caption{}
+\caption{Giá trị ước lượng của các hệ số theo chiều tăng của $\log(\lambda)$}
 \label{fig:lasso_coef}
 \end{figure}
 
@@ -66,12 +66,12 @@ Từ kết quả của 10 phép ước lượng kiểm định chéo này, chún
              \hlkwc{color} \hlstd{=} \hlstr{"darkblue"}\hlstd{)} \hlopt{+}
   \hlkwd{geom_errorbar}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{ymax} \hlstd{= cvup,} \hlkwc{ymin} \hlstd{= cvlo))} \hlopt{+}
   \hlkwd{geom_point}\hlstd{(}\hlkwc{color} \hlstd{=} \hlstr{"red"}\hlstd{)} \hlopt{+}
-  \hlkwd{labs}\hlstd{(}\hlkwc{y} \hlstd{=} \hlstr{"Deviance trung bình của kiểm định chéo"}\hlstd{,}
+  \hlkwd{labs}\hlstd{(}\hlkwc{y} \hlstd{=} \hlstr{"Deviance trung bình kiểm định chéo"}\hlstd{,}
        \hlkwc{x} \hlstd{= latex2exp}\hlopt{::}\hlkwd{TeX}\hlstd{(}\hlstr{"$\textbackslash{}\textbackslash{}log(\textbackslash{}\textbackslash{}lambda)$"}\hlstd{))}
 \end{alltt}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): could not find function "{}\%>\%"{}}}\end{kframe}
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in do.call(data.frame, lasso\_cv[1:6]) \%>\% ggplot(aes(x = log(lambda), : could not find function "{}\%>\%"{}}}\end{kframe}
 \end{knitrout}
 
 

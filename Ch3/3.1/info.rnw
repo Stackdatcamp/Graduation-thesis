@@ -40,8 +40,10 @@ Trong số các biến trong bộ số liệu, các biến \texttt{PAY} là có 
 \centering
 \capstart
 <<corr_mat,echo=FALSE, fig.width=10>>=
-train_set %>% select(everything(), - MARRIAGE, -SEX, 
-                     -EDUCATION, - DEFAULT) %>% 
+select(as_data_frame(train_x_set),
+       starts_with("PAY"),
+       starts_with("BILL"),
+       LIMIT_BAL) %>% 
   ggcorr(palette = "RdBu", label = TRUE, layout.exp = 1,
          hjust=0.75,size =3, name = "Hệ số tương quan") +
   theme(legend.box.background = element_blank())
@@ -57,32 +59,27 @@ Với phương pháp này, chúng ta tìm một hệ tọa độ trực giao m�
 \centering
 \capstart
 <<pca,out.height='10cm', out.width='10cm'>>=
-train_set1 <- train_set %>% 
-  mutate(
-    DEFAULT = ifelse(DEFAULT == 1, "1 (Vỡ nợ)", "0 (Không vỡ nợ)")
-  )
 
 # Kết quả phân tích thành phần chính
-pca_result <- train_set1 %>%
-  select(everything(), -DEFAULT, -EDUCATION, - MARRIAGE, -SEX) %>% 
-  prcomp(scale = TRUE)
+pca_result <- prcomp(select(as_data_frame(train_x_set),
+                            starts_with("PAY"),
+                            starts_with("BILL"),
+                            LIMIT_BAL)
+                     )
 
 # Phần trăm phương sai thể hiện trên các thành phần chính
 pc_percent <- pca_result$sdev^2/sum(pca_result$sdev^2)*100
 
 # Vẽ đồ thị
 pca_result %>% 
-  autoplot(data = train_set1, colour = 'DEFAULT',
-           loadings = TRUE, 
-           loadings.colour = 'black',
-           loadings.label = TRUE, 
-           loadings.label.colour = "#005000",
-           loadings.label.repel = TRUE, 
-           label.size = 3,
+  autoplot(data = train_set,
+           colour = 'DEFAULT',
+           loadings = TRUE, loadings.colour = 'black',
+           loadings.label = TRUE, loadings.label.colour = "#005000",
+           loadings.label.repel = TRUE, label.size = 3,
            alpha = 0.5) +
-  geom_rug(aes(color = DEFAULT), alpha = 0.5) +
-  scale_color_manual(values = c("lightskyblue", 
-                                "darkred")) +
+  geom_rug(aes(color = DEFAULT)) +
+  scale_color_manual(values = c("skyblue", "darkred")) +
   labs(x = paste0("Thành phần chính 1 (giải thích ", 
                   round(pc_percent[1], 2),
                   "% phương sai)"),

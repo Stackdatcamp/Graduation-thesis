@@ -5,11 +5,12 @@ Tuy nhiên trong bộ số liệu chúng ta nghiên cứu này, tỷ lệ  $\tex
 
 \subsection{Ước lượng mô hình} 
 <<>>= 
-lasso_fit <-glmnet(train_x_matrix$x, train_x_matrix$y,
+lasso_fit <-glmnet(train_downsample$x, train_downsample$y,
                    family = "binomial", alpha = 1)
 
-lasso_cv <- cv.glmnet(train_x_matrix$x, train_x_matrix$y,
+lasso_cv <- cv.glmnet(train_downsample$x, train_downsample$y,
                       family = "binomial", alpha = 1)
+
 @
 
 Chúng ta thực hiện mô hình logit, sử dụng phương pháp Lasso để giới hạn giá trị của các hệ số ước lượng. 
@@ -19,6 +20,7 @@ Với mỗi gía trị của tham số $\lambda$, giá trị của các hệ s�
 \centering
 \capstart
 <<lasso_coef, fig.width=9,out.height='12cm',fig.widht='13cm'>>=
+
 lasso_fit$beta %>% as.matrix() %>% t() %>% as.data.frame() %>% 
   mutate(lambda = lasso_fit$lambda) %>% 
   gather(Varname, Beta, everything(), -lambda) %>% 
@@ -27,6 +29,7 @@ lasso_fit$beta %>% as.matrix() %>% t() %>% as.data.frame() %>%
   labs(x = latex2exp::TeX("Giá trị của $\\log(\\lambda)$"), 
        y = "Hệ số ước lượng", color = "Biến") +
   theme(legend.position = "top")
+
 @
 \caption{Giá trị ước lượng của các hệ số theo chiều tăng của $\log(\lambda)$}
 \label{fig:lasso_coef}
@@ -43,6 +46,7 @@ Từ kết quả của 10 phép ước lượng kiểm định chéo này, chún
 \centering
 \capstart
 <<lasso_cv, fig.width=4,fig.height=4,out.height='10cm', out.width='10cm'>>=
+
 do.call(data.frame, lasso_cv[1:6]) %>% 
   ggplot(aes(x = log(lambda), y = cvm)) +
   geom_vline(xintercept = log(lasso_cv$lambda.min), 
@@ -51,6 +55,7 @@ do.call(data.frame, lasso_cv[1:6]) %>%
   geom_point(color = "red") +
   labs(y = "Deviance trung bình kiểm định chéo",
        x = latex2exp::TeX("$\\log(\\lambda)$"))
+
 @
 \caption{Giá trị trung bình của Deviance tương ứng với mỗi giá trị tương ứng của $\lambda$}
 \label{fig:lasso_cv}
@@ -61,6 +66,7 @@ Hình \ref{fig:lasso_cv} mô tả mối quan hệ của Deviance (trên trục t
 Hệ số ước lượng $\beta$ của mô hình được thể hiện trong bảng \ref{tab:lasso_final}). 
 
 <<results='asis'>>=
+
 tidy(lasso_fit) %>% filter(lambda == lasso_cv$lambda.min) %>% 
   mutate(estimate = as.character(round(estimate,7)),
          term = ifelse(term == "(Intercept)","Hệ số chặn", term)) %>% 
@@ -68,45 +74,9 @@ tidy(lasso_fit) %>% filter(lambda == lasso_cv$lambda.min) %>%
   xtable::xtable(
     caption = "Hệ số ước lượng",
     label = "tab:lasso_final"
-  ) %>% print()
+  ) %>% print(include.rownames=FALSE,
+              math.style.exponents=TRUE,
+              floating = TRUE,
+              table.placement = "htb!")
 @
-
-\subsection{Kiểm tra hiệu quả của mô hình}
-
-
-\begin{figure}
-\centering
-\capstart
-<<lasso_confusion_mat, fig.width=5,fig.height=4,out.width='10cm', out.heith='8cm'>>=
-result <- data_frame(
-  Predict = (predict.glmnet(lasso_fit, newx = test_x_matrix,
-                           s = lasso_cv$lambda.min)[,1] > 0.5),
-  Actual = test_set$DEFAULT
-) %>% table() %>% as.data.frame(stringsAsFactors = FALSE) %>%
-  mutate(color = ifelse(Predict == Actual, Freq, -1*Freq),
-         percent = round(Freq/sum(Freq) * 100, 2))
-result[result == TRUE] <- "Vỡ nợ"
-result[result == FALSE] <- "Không vỡ nợ"
-
-result %>%  
-  ggplot(aes(y = Predict, x = Actual)) + 
-  geom_tile(aes(fill = color), color = "black", size = 1) +
-  geom_text(aes(label = paste0(Freq,"\n(", percent,"%)"))) +
-  scale_fill_gradient2(low = "red", high = "light blue") +
-  labs(x = "Giá trị thực", y = "Giá trị dự báo") +
-  theme(legend.position = "none", 
-        panel.grid.major = element_blank(),
-        axis.line = element_blank(),
-        axis.ticks = element_blank())
-@
-\caption{Confusion matrix cho mô hình logit (phương pháp Lasso)}
-\label{fig:lasso_confusion_mat}
-\end{figure}
-
-Chúng ta sử dụng mô hình ước lượng được để dự báo trên tập số liệu kiểm tra. Hình \ref{fig:lasso_confusion_mat} minh họa một ma trận thể hiện độ chính xác của mô hình khi áp dụng lên tập số liệu kiểm tra, với màu xanh thể hiện các quan sát được dự đoán đúng và màu đỏ thể hiện các quan sát được dự đoán sai.
-
-Trong tổng cộng \Sexpr{nrow(test_set)} dòng của bộ số liệu dùng để kiểm tra, có \Sexpr{sum(result[result$Actual  == "Vỡ nợ", "Freq"])} trường hợp vỡ nợ, trong đó mô hình dự đoán đúng \Sexpr{sum(result[result$Actual == "Vỡ nợ" & result$Predict == "Vỡ nợ", "Freq"])} trường hợp. 
-Đồng thời, trong các quan sát thuộc nhóm không vỡ nợ còn lại, có \Sexpr{sum(result[result$Actual == "Không vỡ nợ" & result$Predict == "Vỡ nợ", "Freq"])} quan sát bị mô hình đánh giá nhầm là có vỡ nợ.
-
-Nhìn chung tỉ lệ dự đoán chính xác của mô hình trên tập số liệu kiểm tra là \Sexpr{sum(result[result$color > 0, "percent"])}\%, tỷ lệ của sai lầm loại I (không vỡ nợ nhưng mô hình dự đoán là có) là \Sexpr{sum(result[result$Actual == "Không vỡ nợ" & result$Predict == "Vỡ nợ", "percent"])}\%, tỷ lệ của sai lầm loại II (có vỡ nợ nhưng dự đoán là không vỡ nợ) là \Sexpr{sum(result[result$Predict == "Không vỡ nợ" & result$Actual == "Vỡ nợ", "percent"])}\%.
 

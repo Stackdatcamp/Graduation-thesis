@@ -16,9 +16,9 @@ $$
 Mô hình véc tơ máy hỗ trợ (Support Vector Machine - SVM) là một trong những mô hình thuộc loại này. SVM phát triển từ những năm 1990 và nhanh chóng được mọi người đón nhận vì khả năng phân loại tốt trong nhiều trường hợp khác nhau.
 
 \paragraph{Phân loại lề cực đại (Maximal Marginal Classifier)}
-Mô hình SVM được phát triển từ một phương pháp phân loại khá đơn giản gọi là phương pháp maximal margin classifier \parencite{boser1992training}. Thông thường, nếu như một bộ số liệu có thể được chia ra bởi một siêu mặt phẳng ngăn cách, chúng ta sẽ có thể tìm được vô siêu mặt phẳng như thế. Điều này là do các mặt phẳng có di chuyển nhẹ lên xuống hoặc quay mà không chạm tới các quan sát. Để xây dựng một mô hình phân loại dựa trên một siêu mặt phẳng phân loại,  chúng ta phải có một phương pháp hợp lý để chọn mặt phẳng hợp lý trong số vô số siêu mặt phẳng này.
+Mô hình SVM được phát triển từ một mô hình phân loại khá đơn giản gọi là mô hình maximal margin classifier \parencite{boser1992training}. Thông thường, nếu như một bộ số liệu có thể được chia ra bởi một siêu mặt phẳng ngăn cách, chúng ta sẽ có thể tìm được vô siêu mặt phẳng như thế. Điều này là do các mặt phẳng có di chuyển nhẹ lên xuống hoặc quay mà không chạm tới các quan sát. Để xây dựng một mô hình phân loại dựa trên một siêu mặt phẳng phân loại,  chúng ta phải có một mô hình hợp lý để chọn mặt phẳng hợp lý trong số vô số siêu mặt phẳng này.
 
-Phương pháp Maximal Marginal Classifier lựa chọn siêu mặt phẳng mà nằm xa nhất các quan sát trong bộ số liệu. Nếu chúng ta tính khoảng cách từ các quan sát tới siêu mặt phẳng đã cho, khoảng cách nhỏ nhất từ các quan sát đến siêu mặt phẳng này gọi là lề (margin) của siêu mặt phẳng. Siêu mặt phẳng lề cực đại mà chúng ta chọn trong phương pháp này là siêu mặt phẳng mà lề là lớn nhất.
+mô hình Maximal Marginal Classifier lựa chọn siêu mặt phẳng mà nằm xa nhất các quan sát trong bộ số liệu. Nếu chúng ta tính khoảng cách từ các quan sát tới siêu mặt phẳng đã cho, khoảng cách nhỏ nhất từ các quan sát đến siêu mặt phẳng này gọi là lề (margin) của siêu mặt phẳng. Siêu mặt phẳng lề cực đại mà chúng ta chọn trong mô hình này là siêu mặt phẳng mà lề là lớn nhất.
 
 \begin{figure}
   \centering
@@ -54,11 +54,11 @@ y_i(\beta_0 + \beta_1x_{i2} + ... + \beta_px_{ip})
 $$
 
 
-\paragraph{Phương pháp phân loại hỗ trợ máy}
+\paragraph{Mô hình phân loại véc tơ hỗ trợ}
 
-Phương pháp phân loại lề cực đại không thể thực hiện được trong trường hợp không tồn tại một siêu mặt phẳng nào có thể chia tách bộ số liệu ra thành 2 nhóm.
+Mô hình phân loại lề cực đại không thể thực hiện được trong trường hợp không tồn tại một siêu mặt phẳng nào có thể chia tách bộ số liệu ra thành 2 nhóm.
 
-Một cải tiến của phương pháp này là phương pháp hỗ trợ máy, trong đó siêu mặt phẳng được ước lượng bằng phương trình:
+Một cải tiến của mô hình này là mô hình hỗ trợ máy, trong đó siêu mặt phẳng được ước lượng bằng phương trình:
 
 $$
 \large
@@ -92,7 +92,7 @@ Một số hàm kernel phổ biến được sử dụng rộng rãi là:
 \begin{itemize}
   \item{$K(x, x_i) = x_i^T x$}: Hàm kernel tuyến tính, đây thực chất là hàm kernel của mô hình phân loại vec tơ hỗ trợ bình thường.
   \item{$K(x, x_i) =  (1 + \sum_{j = 1}^p x_i x)^d$}: Hàm kernel đa thức với tham số $d$ là bậc của đa thức ước lượng.
-  \item{$K(x, x_i) = e^{-\sigma{\|x - x_i\|}^2}$}: Hàm kernel tròn với tham số $\sigma$ quyết định bán kính của đường tròn phân chia các quan sát
+  \item{$K(x, x_i) = e^{-\frac{{\|x - x_i\|}^2}{2 \sigma^2}}$}: Hàm kernel tròn với tham số $\sigma$ quyết định bán kính của đường tròn phân chia các quan sát
 \end{itemize}
 
 \begin{figure}
@@ -109,7 +109,7 @@ Trong xây dựng một mô hình SVM, việc lựa chọn kernel thích hợp v
 
 \begin{itemize}
   \item Thực hiện chuẩn hoá bộ số liệu
-  \item Ưu tiên sử dụng kernel tròn (RBF): $K(x, x_i) = e^{-\sigma{\|x - x_i\|}^2}$
+  \item Ưu tiên sử dụng kernel tròn (RBF): $K(x, x_i) = e^{-\frac{{\|x - x_i\|}^2}{2 \sigma^2}}$
   \item Sử dụng kiểm định chéo để tìm tham số tốt nhất cho $C$ và $\sigma$.
   \item Sử dụng tham số $C$ và $\sigma$ tốt nhất ước lượng được để ước lượng trên toàn bộ bộ số liệu dùng để xây dựng mô hình.
   \item Kiểm tra hiệu quả mô hình.

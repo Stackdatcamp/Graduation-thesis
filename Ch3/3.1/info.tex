@@ -1,0 +1,100 @@
+Chúng ta thực hành trên bộ số liệu mẫu bao gồm 30000 quan sát và 25 biến bao gồm tình trạng trả nợ, các thông tin nhân khẩu học cơ bản cùng với số liệu về tín dụng và tình trạng hồ sơ của các khách hàng thẻ tín dụng ở Đài Loan từ tháng 4 năm 2005 đến tháng 9 năm 2005.
+
+Các tên biến đã được thay đổi để tiện lợi cho việc đọc hiểu và phân tích, cụ thể như sau:
+
+\begin{description}
+  \item [\texttt{ID}] Số ID của mỗi khách hàng tín dụng
+  \item [\texttt{LIMIT\_BAL}] Lượng tín dụng cho vay tính bằng Đô la Đài Loan (bao gồm cả các khoản vay cá nhân và các khoản vay với thẻ tín dụng phụ)
+  \item [\texttt{SEX}] Giới tính (0=Nữ, 1=Nam)
+  \item [\texttt{EDUCATION}] (1=sau đại học, 2=đại học, 3=phổ thông, 4=khác)
+  \item [\texttt{MARRIAGE}] Trạng thái hôn nhân (1=đã cưới, 2=độc thân, 3=khác)
+  \item [\texttt{AGE}] Số tuổi tính bằng năm
+  \item [\texttt{PAY\_0}] Tình trạng hồ sơ vào thời điểm tháng 9/2005 (-1=trả đúng hạn, 1=chậm 1 tháng, 2=chậm 2 tháng, ... 8=chậm 8 tháng, 9=chậm 9 tháng hoặc nhiều hơn)
+  \item [\texttt{PAY\_2}] Tình trạng hồ sơ vào thời điểm tháng 8/2005 (thang điểm như trên)
+  \item [\texttt{PAY\_3}] Tình trạng hồ sơ vào thời điểm tháng 7/2005 (thang điểm như trên)
+  \item [\texttt{PAY\_4}] Tình trạng hồ sơ vào thời điểm tháng 6/2005 (thang điểm như trên)
+  \item [\texttt{PAY\_5}] Tình trạng hồ sơ vào thời điểm tháng 5/2005 (thang điểm như trên)
+  \item [\texttt{PAY\_6}] Tình trạng hồ sơ vào thời điểm tháng 4/2005 (thang điểm như trên)
+  \item [\texttt{BILL\_AMT1}] Hóa đơn thanh toán vào thời điểm 9/2005 (Đô la Đài Loan)
+  \item [\texttt{BILL\_AMT2}] Hóa đơn thanh toán vào thời điểm 8/2005 (Đô la Đài Loan)
+  \item [\texttt{BILL\_AMT3}] Hóa đơn thanh toán vào thời điểm 7/2005 (Đô la Đài Loan)
+  \item [\texttt{BILL\_AMT4}] Hóa đơn thanh toán vào thời điểm 6/2005 (Đô la Đài Loan)
+  \item [\texttt{BILL\_AMT5}] Hóa đơn thanh toán vào thời điểm 5/2005 (Đô la Đài Loan)
+  \item [\texttt{BILL\_AMT6}] Hóa đơn thanh toán vào thời điểm 4/2005 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT1}] Lượng tiền đã thanh toán vào thời điểm tháng 9/2015 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT2}] Lượng tiền đã thanh toán vào thời điểm tháng 8/2015 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT3}] Lượng tiền đã thanh toán vào thời điểm tháng 7/2015 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT4}] Lượng tiền đã thanh toán vào thời điểm tháng 6/2015 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT5}] Lượng tiền đã thanh toán vào thời điểm tháng 5/2015 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT6}] Lượng tiền đã thanh toán vào thời điểm tháng 4/2015 (Đô la Đài Loan)
+  \item [\texttt{DEFAULT}] Có trả nợ hay không (1=có, 0=không)
+\end{description}
+
+
+Hình \ref{fig:corr_mat} (trang \pageref{fig:corr_mat}) mô tả ma trận hệ số tương quan Pearson giữa các biến số trong bộ số liệu. 
+Lưu ý tương quan giữa các biến trong nhóm biến \texttt{PAY} (tình trạng hồ sơ) và 
+giữa các biến trong nhóm biến \texttt{BILL\_AMT} (hoá đơn thanh toán) là khá cao, thể hiện sự tương đồng cao về mặt thông tin thể hiện của các biến này.
+Trong số các biến trong bộ số liệu, các biến \texttt{PAY} là có thể hiện tương quan dương với biến \texttt{DEFAULT}, gợi ý rằng chúng ta có thể sử dụng biến này là biến chính để dự đoán tỉ lệ vỡ nợ của khách hàng.
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in select(as\_data\_frame(train\_x\_set), starts\_with("{}PAY"{}), starts\_with("{}BILL"{}), : could not find function "{}\%>\%"{}}}\end{kframe}
+\end{knitrout}
+\caption[Ma trận hệ số tương quan Pearson]{Ma trận hệ số tương quan Pearson giữa các biến trong bộ số liệu.}
+\label{fig:corr_mat}
+\end{figure}
+
+Để có cái nhìn cụ thể hơn vào bộ số liệu này, chúng ta sử dụng phương pháp phân tích thành phần chính (PCA - Principal Component Analysis) để phân tích bộ số liệu.
+Với phương pháp này, chúng ta tìm một hệ tọa độ trực giao mới để thể hiện bộ số liệu, sao cho với thành phần chính thứ nhất (chiều thứ nhất của hệ tọa độ mới) thể hiện được nhiều nhất có thể thông tin của bộ số liệu, thành phần chính thứ hai (chiều thứ hai của hệ tọa độ mới) thể hiện nhiều nhất có thể lượng thông tin còn lại của bộ số liệu, v...v... Lưu ý rằng vì các biến trong bộ số liệu có thang đo khác nhau, để đảm bảo hiệu quả cho phương pháp phân tích đa biến này, chúng ta chuẩn hóa các biến trước khi thực hiện PCA. Đồng thời, các biến phân loại như \texttt{EDUCATION} và \texttt{MARRIAGE} cũng được lược bỏ.
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# Kết quả phân tích thành phần chính}
+\hlstd{pca_result} \hlkwb{<-} \hlkwd{prcomp}\hlstd{(}\hlkwd{select}\hlstd{(}\hlkwd{as_data_frame}\hlstd{(train_x_set),}
+                            \hlkwd{starts_with}\hlstd{(}\hlstr{"PAY"}\hlstd{),}
+                            \hlkwd{starts_with}\hlstd{(}\hlstr{"BILL"}\hlstd{),}
+                            \hlstd{LIMIT_BAL)}
+                     \hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in select(as\_data\_frame(train\_x\_set), starts\_with("{}PAY"{}), starts\_with("{}BILL"{}), : could not find function "{}select"{}}}\begin{alltt}
+\hlcom{# Phần trăm phương sai thể hiện trên các thành phần chính}
+\hlstd{pc_percent} \hlkwb{<-} \hlstd{pca_result}\hlopt{$}\hlstd{sdev}\hlopt{^}\hlnum{2}\hlopt{/}\hlkwd{sum}\hlstd{(pca_result}\hlopt{$}\hlstd{sdev}\hlopt{^}\hlnum{2}\hlstd{)}\hlopt{*}\hlnum{100}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'pca\_result' not found}}\begin{alltt}
+\hlcom{# Vẽ đồ thị}
+\hlstd{pca_result} \hlopt{%>%}
+  \hlkwd{autoplot}\hlstd{(}\hlkwc{data} \hlstd{= train_set,}
+           \hlkwc{colour} \hlstd{=} \hlstr{'DEFAULT'}\hlstd{,}
+           \hlkwc{loadings} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{loadings.colour} \hlstd{=} \hlstr{'black'}\hlstd{,}
+           \hlkwc{loadings.label} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{loadings.label.colour} \hlstd{=} \hlstr{"#005000"}\hlstd{,}
+           \hlkwc{loadings.label.repel} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{label.size} \hlstd{=} \hlnum{3}\hlstd{,}
+           \hlkwc{alpha} \hlstd{=} \hlnum{0.5}\hlstd{)} \hlopt{+}
+  \hlkwd{geom_rug}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{color} \hlstd{= DEFAULT))} \hlopt{+}
+  \hlkwd{scale_color_manual}\hlstd{(}\hlkwc{values} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"skyblue"}\hlstd{,} \hlstr{"darkred"}\hlstd{))} \hlopt{+}
+  \hlkwd{labs}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{paste0}\hlstd{(}\hlstr{"Thành phần chính 1 (giải thích "}\hlstd{,}
+                  \hlkwd{round}\hlstd{(pc_percent[}\hlnum{1}\hlstd{],} \hlnum{2}\hlstd{),}
+                  \hlstr{"% phương sai)"}\hlstd{),}
+       \hlkwc{y} \hlstd{=} \hlkwd{paste0}\hlstd{(}\hlstr{"Thành phần chính 2 (giải thích "}\hlstd{,}
+                  \hlkwd{round}\hlstd{(pc_percent[}\hlnum{2}\hlstd{],} \hlnum{2}\hlstd{),}
+                  \hlstr{"% phương sai)"}\hlstd{),}
+       \hlkwc{color} \hlstd{=} \hlstr{"Giá trị của biến\textbackslash{}nDEFAULT"}\hlstd{)} \hlopt{+}
+  \hlkwd{theme}\hlstd{(}\hlkwc{legend.position} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0.8}\hlstd{,} \hlnum{0.8}\hlstd{))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in pca\_result \%>\% autoplot(data = train\_set, colour = "{}DEFAULT"{}, : could not find function "{}\%>\%"{}}}\end{kframe}
+\end{knitrout}
+

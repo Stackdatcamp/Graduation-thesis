@@ -1,78 +1,114 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{M\IeC {\d u}c l\IeC {\d u}c}{2}{chapter*.1}
+\contentsline {chapter}{M\IeC {\d u}c l\IeC {\d u}c}{i}{Doc-Start}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Danh s\IeC {\'a}ch b\IeC {\h a}ng}{3}{chapter*.2}
+\contentsline {chapter}{Danh s\IeC {\'a}ch h\IeC {\`\i }nh minh h\IeC {\d o}a}{iii}{chapter*.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Danh s\IeC {\'a}ch h\IeC {\`\i }nh}{4}{chapter*.3}
+\contentsline {chapter}{Danh s\IeC {\'a}ch b\IeC {\h a}ng}{iii}{chapter*.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{L\IeC {\`\ohorn }i m\IeC {\h \ohorn } \IeC {\dj }\IeC {\`\acircumflex }u}{5}{chapter*.4}
+\contentsline {chapter}{L\IeC {\`\ohorn }i m\IeC {\h \ohorn } \IeC {\dj }\IeC {\`\acircumflex }u}{1}{chapter*.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {I}T\IeC {\h \ocircumflex }ng quan v\IeC {\`\ecircumflex } qu\IeC {\h a}n tr\IeC {\d i} r\IeC {\h u}i ro t\IeC {\'\i }n d\IeC {\d u}ng \IeC {\dj }\IeC {\'\ocircumflex }i v\IeC {\'\ohorn }i kh\IeC {\'a}ch h\IeC {\`a}ng c\IeC {\'a} nh\IeC {\^a}n}{7}{chapter.1}
+\contentsline {chapter}{\numberline {I}T\IeC {\h \ocircumflex }ng quan v\IeC {\`\ecircumflex } qu\IeC {\h a}n tr\IeC {\d i} r\IeC {\h u}i ro t\IeC {\'\i }n d\IeC {\d u}ng \IeC {\dj }\IeC {\'\ocircumflex }i v\IeC {\'\ohorn }i kh\IeC {\'a}ch h\IeC {\`a}ng c\IeC {\'a} nh\IeC {\^a}n}{3}{chapter.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.1}T\IeC {\h \ocircumflex }ng quan v\IeC {\`\ecircumflex } r\IeC {\h u}i ro t\IeC {\'\i }n d\IeC {\d u}ng v\IeC {\`a} v\IeC {\'\acircumflex }n \IeC {\dj }\IeC {\`\ecircumflex } qu\IeC {\h a}n tr\IeC {\d i} r\IeC {\h u}i ro trong ng\IeC {\^a}n h\IeC {\`a}ng}{7}{section.1.1}
+\contentsline {section}{\numberline {1.1}T\IeC {\h \ocircumflex }ng quan v\IeC {\`\ecircumflex } r\IeC {\h u}i ro t\IeC {\'\i }n d\IeC {\d u}ng v\IeC {\`a} v\IeC {\'\acircumflex }n \IeC {\dj }\IeC {\`\ecircumflex } qu\IeC {\h a}n tr\IeC {\d i} r\IeC {\h u}i ro trong ng\IeC {\^a}n h\IeC {\`a}ng}{3}{section.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.1.1}R\IeC {\h u}i ro v\IeC {\`a} c\IeC {\'a}c kh\IeC {\'a}i ni\IeC {\d \ecircumflex }m li\IeC {\^e}n quan trong ng\IeC {\^a}n h\IeC {\`a}ng}{7}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Kh\IeC {\'a}i ni\IeC {\d \ecircumflex }m v\IeC {\`\ecircumflex } r\IeC {\h u}i ro v\IeC {\`a} ch\IeC {\'\acircumflex }m \IeC {\dj }i\IeC {\h \ecircumflex }m t\IeC {\'\i }n d\IeC {\d u}ng}{3}{subsection.1.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {1.1.1.1}T\IeC {\'\i }n d\IeC {\d u}ng}{7}{subsubsection.1.1.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1.1}Kh\IeC {\'a}i ni\IeC {\d \ecircumflex }m r\IeC {\h u}i ro t\IeC {\'\i }n d\IeC {\d u}ng}{3}{subsubsection.1.1.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {1.1.1.2}R\IeC {\h u}i ro t\IeC {\'\i }n d\IeC {\d u}ng trong ng\IeC {\^a}n h\IeC {\`a}ng}{7}{subsubsection.1.1.1.2}
+\contentsline {paragraph}{\numberline {a,}R\IeC {\h u}i ro}{3}{paragraph.1.1.1.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.1.2}Qu\IeC {\h a}n tr\IeC {\d i} r\IeC {\h u}i ro trong ng\IeC {\^a}n h\IeC {\`a}ng}{7}{subsection.1.1.2}
+\contentsline {paragraph}{\numberline {b,}R\IeC {\h u}i ro t\IeC {\'\i }n d\IeC {\d u}ng}{3}{paragraph.1.1.1.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {1.1.2.1}Ho\IeC {\d a}t \IeC {\dj }\IeC {\d \ocircumflex }ng qu\IeC {\h a}n tr\IeC {\d i} r\IeC {\h u}i ro trong ng\IeC {\^a}n h\IeC {\`a}ng}{7}{subsubsection.1.1.2.1}
+\contentsline {subsubsection}{\numberline {1.1.1.2}Nguy\IeC {\^e}n nh\IeC {\^a}n d\IeC {\~\acircumflex }n \IeC {\dj }\IeC {\'\ecircumflex }n r\IeC {\h u}i ro t\IeC {\'\i }n d\IeC {\d u}ng}{4}{subsubsection.1.1.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {1.1.2.2}Qu\IeC {\h a}n tr\IeC {\d i} r\IeC {\h u}i ro t\IeC {\'\i }n d\IeC {\d u}ng trong l\IeC {\d i}ch s\IeC {\h \uhorn }}{7}{subsubsection.1.1.2.2}
+\contentsline {paragraph}{\numberline {a,}Nguy\IeC {\^e}n nh\IeC {\^a}n t\IeC {\`\uhorn } ph\IeC {\'\i }a Ng\IeC {\^a}n h\IeC {\`a}ng}{4}{paragraph.1.1.1.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {1.1.2.3}}{7}{subsubsection.1.1.2.3}
+\contentsline {paragraph}{\numberline {b,}Nguy\IeC {\^e}n nh\IeC {\^a}n t\IeC {\`\uhorn } ph\IeC {\'\i }a kh\IeC {\'a}ch h\IeC {\`a}ng.}{5}{paragraph.1.1.1.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Th\IeC {\d \uhorn }c tr\IeC {\d a}ng c\IeC {\h u}a vi\IeC {\d \ecircumflex }c ch\IeC {\'\acircumflex }m \IeC {\dj }i\IeC {\h \ecircumflex }m t\IeC {\'\i }n d\IeC {\d u}ng t\IeC {\d a}i Vi\IeC {\d \ecircumflex }t Nam}{7}{section.1.2}
+\contentsline {paragraph}{\numberline {c,}Nguy\IeC {\^e}n nh\IeC {\^a}n kh\IeC {\'a}c.}{6}{paragraph.1.1.1.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{7}{section.1.3}
+\contentsline {subsubsection}{\numberline {1.1.1.3}S\IeC {\d \uhorn } c\IeC {\`\acircumflex }n thi\IeC {\'\ecircumflex }t ph\IeC {\h a}i ph\IeC {\`o}ng ng\IeC {\`\uhorn }a r\IeC {\h u}i ro t\IeC {\'\i }n d\IeC {\d u}ng.}{6}{subsubsection.1.1.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {II}C\IeC {\'a}c M\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i kh\IeC {\'a}ch h\IeC {\`a}ng vay th\IeC {\h e} t\IeC {\'\i }n d\IeC {\d u}ng}{8}{chapter.2}
+\contentsline {paragraph}{\numberline {a,}\IeC {\DJ }\IeC {\'\ocircumflex }i v\IeC {\'\ohorn }i b\IeC {\h a}n th\IeC {\^a}n Ng\IeC {\^a}n h\IeC {\`a}ng}{6}{paragraph.1.1.1.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}C\IeC {\'a}c m\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i}{8}{section.2.1}
+\contentsline {paragraph}{\numberline {b,}\IeC {\DJ }\IeC {\'\ocircumflex }i v\IeC {\'\ohorn }i n\IeC {\`\ecircumflex }n kinh t\IeC {\'\ecircumflex }}{7}{paragraph.1.1.1.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.1}M\IeC {\^o} h\IeC {\`\i }nh logit}{8}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {1.1.2}T\IeC {\h \ocircumflex }ng quan v\IeC {\`\ecircumflex } ch\IeC {\'\acircumflex }m \IeC {\dj }i\IeC {\h \ecircumflex }m t\IeC {\'\i }n d\IeC {\d u}ng t\IeC {\d a}i c\IeC {\'a}c ng\IeC {\^a}n h\IeC {\`a}ng}{7}{subsection.1.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.1.1}Kh\IeC {\'a}i ni\IeC {\d \ecircumflex }m}{8}{subsubsection.2.1.1.1}
+\contentsline {subsubsection}{\numberline {1.1.2.1}Kh\IeC {\'a}i ni\IeC {\d \ecircumflex }m v\IeC {\`\ecircumflex } ch\IeC {\'\acircumflex }m \IeC {\dj }i\IeC {\h \ecircumflex }m t\IeC {\'\i }n d\IeC {\d u}ng}{7}{subsubsection.1.1.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.1.2}\IeC {\UHORN }\IeC {\'\ohorn }c l\IeC {\uhorn }\IeC {\d \ohorn }ng m\IeC {\^o} h\IeC {\`\i }nh logit}{9}{subsubsection.2.1.1.2}
+\contentsline {subsubsection}{\numberline {1.1.2.2}M\IeC {\d u}c \IeC {\dj }\IeC {\'\i }ch c\IeC {\h u}a ch\IeC {\'\acircumflex }m \IeC {\dj }i\IeC {\h \ecircumflex }m t\IeC {\'\i }n d\IeC {\d u}ng}{8}{subsubsection.1.1.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\numberline {a,}\IeC {\UHORN }\IeC {\'\ohorn }c l\IeC {\uhorn }\IeC {\d \ohorn }ng h\IeC {\d \ohorn }p l\IeC {\'y} t\IeC {\'\ocircumflex }i \IeC {\dj }a}{9}{paragraph.2.1.1.2.1}
+\contentsline {subsubsection}{\numberline {1.1.2.3}Vai tr\IeC {\`o} c\IeC {\h u}a ch\IeC {\'\acircumflex }m \IeC {\dj }i\IeC {\h \ecircumflex }m t\IeC {\'\i }n d\IeC {\d u}ng}{9}{subsubsection.1.1.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\numberline {b,}R\IeC {\`a}ng bu\IeC {\d \ocircumflex }c L1 hay m\IeC {\^o} h\IeC {\`\i }nh Lasso}{9}{paragraph.2.1.1.2.2}
+\contentsline {subsection}{\numberline {1.1.3}Hi\IeC {\d \ecircumflex }n tr\IeC {\d a}ng c\IeC {\h u}a c\IeC {\'a}c h\IeC {\d \ecircumflex } th\IeC {\'\ocircumflex }ng ch\IeC {\'\acircumflex }m \IeC {\dj }i\IeC {\h \ecircumflex }m t\IeC {\'\i }n d\IeC {\d u}ng}{9}{subsection.1.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.1.3}Di\IeC {\~\ecircumflex }n gi\IeC {\h a}i k\IeC {\'\ecircumflex }t qu\IeC {\h a} \IeC {\uhorn }\IeC {\'\ohorn }c l\IeC {\uhorn }\IeC {\d \ohorn }ng m\IeC {\^o} h\IeC {\`\i }nh}{10}{subsubsection.2.1.1.3}
+\contentsline {subsubsection}{\numberline {1.1.3.1}C\IeC {\'a}c h\IeC {\d \ecircumflex } th\IeC {\'\ocircumflex }ng ch\IeC {\'\acircumflex }m \IeC {\dj }i\IeC {\h \ecircumflex }m t\IeC {\'\i }n d\IeC {\d u}ng tr\IeC {\^e}n th\IeC {\'\ecircumflex } gi\IeC {\'\ohorn }i}{9}{subsubsection.1.1.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.2}M\IeC {\^o} h\IeC {\`\i }nh SVM (Support Vector Machine)}{10}{subsection.2.1.2}
+\contentsline {subsubsection}{\numberline {1.1.3.2}C\IeC {\'a}c h\IeC {\d \ecircumflex } th\IeC {\'\ocircumflex }ng ch\IeC {\'\acircumflex }m \IeC {\dj }i\IeC {\h \ecircumflex }m t\IeC {\'\i }n d\IeC {\d u}ng \IeC {\h \ohorn } Vi\IeC {\d \ecircumflex }t Nam}{9}{subsubsection.1.1.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.2.1}Kh\IeC {\'a}i ni\IeC {\d \ecircumflex }m}{10}{subsubsection.2.1.2.1}
+\contentsline {chapter}{\numberline {II}C\IeC {\'a}c M\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i kh\IeC {\'a}ch h\IeC {\`a}ng vay th\IeC {\h e} t\IeC {\'\i }n d\IeC {\d u}ng}{11}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\numberline {a,}Ph\IeC {\^a}n lo\IeC {\d a}i l\IeC {\`\ecircumflex } c\IeC {\d \uhorn }c \IeC {\dj }\IeC {\d a}i (Maximal Marginal Classifier)}{11}{paragraph.2.1.2.1.1}
+\contentsline {section}{\numberline {2.1}C\IeC {\'a}c m\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i}{11}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\numberline {b,}Ph\IeC {\uhorn }\IeC {\ohorn }ng ph\IeC {\'a}p ph\IeC {\^a}n lo\IeC {\d a}i h\IeC {\~\ocircumflex } tr\IeC {\d \ohorn } m\IeC {\'a}y}{12}{paragraph.2.1.2.1.2}
+\contentsline {subsection}{\numberline {2.1.1}M\IeC {\^o} h\IeC {\`\i }nh logit}{11}{subsection.2.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\numberline {c,}C\IeC {\'a}c kernel v\IeC {\`a} m\IeC {\^o} h\IeC {\`\i }nh v\IeC {\'e}c t\IeC {\ohorn } h\IeC {\~\ocircumflex } tr\IeC {\d \ohorn } m\IeC {\'a}y}{12}{paragraph.2.1.2.1.3}
+\contentsline {subsubsection}{\numberline {2.1.1.1}Kh\IeC {\'a}i ni\IeC {\d \ecircumflex }m}{11}{subsubsection.2.1.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.2.2}Quy tr\IeC {\`\i }nh x\IeC {\^a}y d\IeC {\d \uhorn }ng m\IeC {\d \ocircumflex }t m\IeC {\^o} h\IeC {\`\i }nh v\IeC {\'e}c t\IeC {\ohorn } m\IeC {\'a}y h\IeC {\~\ocircumflex } tr\IeC {\d \ohorn }}{14}{subsubsection.2.1.2.2}
+\contentsline {subsubsection}{\numberline {2.1.1.2}\IeC {\UHORN }\IeC {\'\ohorn }c l\IeC {\uhorn }\IeC {\d \ohorn }ng m\IeC {\^o} h\IeC {\`\i }nh logit}{12}{subsubsection.2.1.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {III}T\IeC {\`\i }nh hu\IeC {\'\ocircumflex }ng nghi\IeC {\^e}n c\IeC {\'\uhorn }u}{15}{chapter.3}
+\contentsline {paragraph}{\numberline {a,}\IeC {\UHORN }\IeC {\'\ohorn }c l\IeC {\uhorn }\IeC {\d \ohorn }ng h\IeC {\d \ohorn }p l\IeC {\'y} t\IeC {\'\ocircumflex }i \IeC {\dj }a}{12}{paragraph.2.1.1.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}S\IeC {\'\ocircumflex } li\IeC {\d \ecircumflex }u v\IeC {\`a} c\IeC {\'a}c bi\IeC {\'\ecircumflex }n s\IeC {\'\ocircumflex }}{15}{section.3.1}
+\contentsline {paragraph}{\numberline {b,}R\IeC {\`a}ng bu\IeC {\d \ocircumflex }c L1 hay m\IeC {\^o} h\IeC {\`\i }nh Lasso}{12}{paragraph.2.1.1.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh logit}{15}{section.3.2}
+\contentsline {subsubsection}{\numberline {2.1.1.3}Di\IeC {\~\ecircumflex }n gi\IeC {\h a}i k\IeC {\'\ecircumflex }t qu\IeC {\h a} \IeC {\uhorn }\IeC {\'\ohorn }c l\IeC {\uhorn }\IeC {\d \ohorn }ng m\IeC {\^o} h\IeC {\`\i }nh}{13}{subsubsection.2.1.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}\IeC {\'\UHORN }ng d\IeC {\d u}ng m\IeC {\^o} h\IeC {\`\i }nh SVM}{15}{section.3.3}
+\contentsline {subsection}{\numberline {2.1.2}M\IeC {\^o} h\IeC {\`\i }nh v\IeC {\'e}c t\IeC {\ohorn } m\IeC {\'a}y h\IeC {\~\ocircumflex } tr\IeC {\d \ohorn } (Support Vector Machine - SVM)}{13}{subsection.2.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {IV}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{16}{chapter.4}
+\contentsline {subsubsection}{\numberline {2.1.2.1}Kh\IeC {\'a}i ni\IeC {\d \ecircumflex }m}{13}{subsubsection.2.1.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\numberline {a,}Ph\IeC {\^a}n lo\IeC {\d a}i l\IeC {\`\ecircumflex } c\IeC {\d \uhorn }c \IeC {\dj }\IeC {\d a}i (Maximal Marginal Classifier)}{14}{paragraph.2.1.2.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\numberline {b,}M\IeC {\^o} h\IeC {\`\i }nh ph\IeC {\^a}n lo\IeC {\d a}i v\IeC {\'e}c t\IeC {\ohorn } h\IeC {\~\ocircumflex } tr\IeC {\d \ohorn }}{15}{paragraph.2.1.2.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\numberline {c,}C\IeC {\'a}c kernel v\IeC {\`a} m\IeC {\^o} h\IeC {\`\i }nh v\IeC {\'e}c t\IeC {\ohorn } h\IeC {\~\ocircumflex } tr\IeC {\d \ohorn } m\IeC {\'a}y}{15}{paragraph.2.1.2.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.1.2.2}Quy tr\IeC {\`\i }nh x\IeC {\^a}y d\IeC {\d \uhorn }ng m\IeC {\d \ocircumflex }t m\IeC {\^o} h\IeC {\`\i }nh v\IeC {\'e}c t\IeC {\ohorn } m\IeC {\'a}y h\IeC {\~\ocircumflex } tr\IeC {\d \ohorn }}{17}{subsubsection.2.1.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {III}T\IeC {\`\i }nh hu\IeC {\'\ocircumflex }ng nghi\IeC {\^e}n c\IeC {\'\uhorn }u}{18}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}S\IeC {\'\ocircumflex } li\IeC {\d \ecircumflex }u v\IeC {\`a} c\IeC {\'a}c bi\IeC {\'\ecircumflex }n s\IeC {\'\ocircumflex }}{18}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}X\IeC {\^a}y d\IeC {\d \uhorn }ng m\IeC {\^o} h\IeC {\`\i }nh logit}{22}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}Ti\IeC {\`\ecircumflex }n x\IeC {\h \uhorn } l\IeC {\'y} b\IeC {\d \ocircumflex } s\IeC {\'\ocircumflex } li\IeC {\d \ecircumflex }u}{22}{subsection.3.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.2}\IeC {\UHORN }\IeC {\'\ohorn }c l\IeC {\uhorn }\IeC {\d \ohorn }ng m\IeC {\^o} h\IeC {\`\i }nh}{22}{subsection.3.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}X\IeC {\^a}y d\IeC {\d \uhorn }ng m\IeC {\^o} h\IeC {\`\i }nh SVM}{26}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.1}Ti\IeC {\`\ecircumflex }n x\IeC {\h \uhorn } l\IeC {\'y} b\IeC {\d \ocircumflex } s\IeC {\'\ocircumflex } li\IeC {\d \ecircumflex }u}{26}{subsection.3.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.2}X\IeC {\^a}y d\IeC {\d \uhorn }ng m\IeC {\^o} h\IeC {\`\i }nh SVM}{26}{subsection.3.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n v\IeC {\`\ecircumflex } k\IeC {\'\ecircumflex }t qu\IeC {\h a} \IeC {\uhorn }\IeC {\'\ohorn }c l\IeC {\uhorn }\IeC {\d \ohorn }ng c\IeC {\h u}a c\IeC {\'a}c m\IeC {\^o} h\IeC {\`\i }nh}{27}{section.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.1}Nh\IeC {\d \acircumflex }n x\IeC {\'e}t v\IeC {\`\ecircumflex } hi\IeC {\d \ecircumflex }u qu\IeC {\h a} c\IeC {\h u}a c\IeC {\'a}c m\IeC {\^o} h\IeC {\`\i }nh}{27}{subsection.3.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1.1}Nh\IeC {\d \acircumflex }n x\IeC {\'e}t m\IeC {\^o} h\IeC {\`\i }nh Logit}{27}{subsubsection.3.4.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1.2}Nh\IeC {\d \acircumflex }n x\IeC {\'e}t m\IeC {\^o} h\IeC {\`\i }nh SVM}{29}{subsubsection.3.4.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1.3}So s\IeC {\'a}nh gi\IeC {\~\uhorn }a hai m\IeC {\^o} h\IeC {\`\i }nh}{30}{subsubsection.3.4.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {IV}K\IeC {\'\ecircumflex }t lu\IeC {\d \acircumflex }n}{33}{chapter.4}
 \defcounter {refsection}{0}\relax 
 \ttl@change@i {\@ne }{chapter}{0pt}{\bfseries }{\color {blue}PHỤ LỤC \thecontentslabel :\quad }{}{\titlerule *[1pc]{.}\contentspage }\relax 
 \defcounter {refsection}{0}\relax 
 \ttl@change@v {chapter}{}{}{}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Th\IeC {\^o}ng tin v\IeC {\`\ecircumflex } phi\IeC {\^e}n l\IeC {\`a}m vi\IeC {\d \ecircumflex }c tr\IeC {\^e}n R}{17}{appendix.A}
+\contentsline {chapter}{\numberline {A}Th\IeC {\^o}ng tin v\IeC {\`\ecircumflex } phi\IeC {\^e}n l\IeC {\`a}m vi\IeC {\d \ecircumflex }c tr\IeC {\^e}n R}{34}{appendix.A}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{T\IeC {\`a}i li\IeC {\d \ecircumflex }u tham kh\IeC {\h a}o}{20}{Item.15}
+\contentsline {chapter}{T\IeC {\`a}i li\IeC {\d \ecircumflex }u tham kh\IeC {\h a}o}{36}{Item.16}
 \contentsfinish 

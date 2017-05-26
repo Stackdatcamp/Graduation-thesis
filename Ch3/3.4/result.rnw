@@ -1,0 +1,227 @@
+\subsection{Nhận xét về hiệu quả của các mô hình}
+
+\subsubsection{Nhận xét mô hình Logit}
+
+%% \begin{figure}
+%% \centering
+%% \capstart
+
+%% <<lasso_confusion_mat, fig.width=5,fig.height=4,out.width='10cm', out.heith='8cm'>>=
+%% result <- data_frame(
+%%   Predict = (predict.glmnet(lasso_fit, newx = test_x_set,
+%%                            s = lasso_cv$lambda.min)[,1] > 0.5),
+%%   Actual = test_set$DEFAULT
+%% ) %>% table() %>% as.data.frame(stringsAsFactors = FALSE) %>%
+%%   mutate(color = ifelse(Predict == Actual, Freq, -1*Freq),
+%%          percent = round(Freq/sum(Freq) * 100, 2))
+%% result[result == TRUE] <- "Vỡ nợ"
+%% result[result == FALSE] <- "Không vỡ nợ"
+
+%% result %>%  
+%%   ggplot(aes(y = Predict, x = Actual)) + 
+%%   geom_tile(aes(fill = color), color = "black", size = 1) +
+%%   geom_text(aes(label = paste0(Freq,"\n(", percent,"%)"))) +
+%%   scale_fill_gradient2(low = "red", high = "light blue") +
+%%   labs(x = "Giá trị thực", y = "Giá trị dự báo") +
+%%   theme(legend.position = "none", 
+%%         panel.grid.major = element_blank(),
+%%         axis.line = element_blank(),
+%%         axis.ticks = element_blank())
+%% @
+%% \caption{Confusion matrix cho mô hình Logit (phương pháp Lasso)}
+%% \label{fig:lasso_confusion_mat}
+%% \end{figure}
+
+%% Chúng ta sử dụng mô hình ước lượng được để dự báo trên tập số liệu kiểm tra. Hình \ref{fig:lasso_confusion_mat} minh họa một ma trận thể hiện độ chính xác của mô hình khi áp dụng lên tập số liệu kiểm tra, với màu xanh thể hiện các quan sát được dự đoán đúng và màu đỏ thể hiện các quan sát được dự đoán sai.
+
+%% Trong tổng cộng \Sexpr{nrow(test_set)} dòng của bộ số liệu dùng để kiểm tra, có \Sexpr{sum(result[result$Actual  == "Vỡ nợ", "Freq"])} trường hợp vỡ nợ, trong đó mô hình dự đoán đúng \Sexpr{sum(result[result$Actual == "Vỡ nợ" & result$Predict == "Vỡ nợ", "Freq"])} trường hợp. 
+%% Đồng thời, trong các quan sát thuộc nhóm không vỡ nợ còn lại, có \Sexpr{sum(result[result$Actual == "Không vỡ nợ" & result$Predict == "Vỡ nợ", "Freq"])} quan sát bị mô hình đánh giá nhầm là có vỡ nợ.
+
+%% Nhìn chung tỉ lệ dự đoán chính xác của mô hình trên tập số liệu kiểm tra là \Sexpr{sum(result[result$color > 0, "percent"])}\%, tỷ lệ của sai lầm loại I (không vỡ nợ nhưng mô hình dự đoán là có) là \Sexpr{sum(result[result$Actual == "Không vỡ nợ" & result$Predict == "Vỡ nợ", "percent"])}\%, tỷ lệ của sai lầm loại II (có vỡ nợ nhưng dự đoán là không vỡ nợ) là \Sexpr{sum(result[result$Predict == "Không vỡ nợ" & result$Actual == "Vỡ nợ", "percent"])}\%.
+
+Tuy là một trong những mô hình được sử dụng rộng rãi trong các bài toán phân loại nhưng về bản chất mô hình Logit lại là một mô hình hồi quy với giá trị hồi quy chúng ta thu được là xác suất vỡ nợ $P(\texttt{DEFAULT} = \texttt{TRUE})$. Với các hệ số của mô hình ước lượng được ở bảng \ref{tab:lasso_final}, chúng ta tính được xác suất $P$ tương ứng của các quan sát trong bộ dữ liệu dùng để kiểm định mô hình. 
+
+\begin{figure}[h]
+\centering
+\capstart
+<<lasso_dist, fig.width=6,fig.height=6,out.width='12cm', out.heith='12cm'>>=
+result <- data_frame(
+  Predict = (predict.glmnet(lasso_fit, newx = test_x_set,
+                           s = lasso_cv$lambda.min)[,1]),
+  Actual = test_set$DEFAULT)
+
+result %>%
+  ggplot(aes(x = Predict, group = Actual)) +
+  geom_histogram(aes(fill = Actual), alpha = 1, binwidth = 0.05) +
+  geom_vline(xintercept = 0.2, color = "black") +
+  scale_fill_manual(values = c("skyblue", "darkred")) +
+  labs(x = latex2exp::TeX("Kết quả ước lượng của $P$"), y = "Số quan sát", 
+       fill = "Giá trị của biến DEFAULT") +
+  theme(legend.position = c(0.3, 0.8))
+
+@ 
+
+\caption{Phân bố giá trị ước lượng được của biến \texttt{DEFAULT}}
+\label{fig:lasso_dist}
+\end{figure}
+
+Hình \ref{fig:lasso_dist} biểu diễn phân bố của các quan sát trong tập dữ liệu kiểm định đối với giá trị $P$ ước lượng được, với màu đỏ thể hiện cho các quan sát thuộc nhóm vỡ nợ ($\texttt{DEFAULT} = \texttt{TRUE}$) và màu xanh thể hiện cho các quan sát thuộc nhóm không vỡ nợ ($\texttt{DEFAULT} = \texttt{FALSE}$). Chúng ta có thể thấy thang đo $P$ ước lượng được của mô hình chưa thực sự tách các quan sát có giá trị \texttt{DEFAULT} khác nhau ra làm hai phân bố riêng biệt mà vẫn có phần chồng lên nhau giữa phân bố của hai nhóm giá trị. 
+
+Đường thẳng màu đen trong hình thể hiện một điểm cắt cho các quan sát tại giá trị $P = 0,2$. Với mỗi một giá trị khác nhau cho điểm cắt mà ta lựa chọn, chúng ta đánh đổi giữa khả năng dự đoán chính xác cho các điểm thuộc phía bên phải đường cắt (độ nhạy) và khả năng dự báo đúng các điểm nằm phía bên trái đường cắt (độ đặc trưng). Khi giá trị của điểm cắt tăng, độ đặc trưng tăng, độ nhạy giảm và ngược lại.
+
+\begin{figure}[h]
+\centering
+\capstart
+<<lasso_roc,fig.width=6,fig.height=6,out.width='12cm', out.heith='12cm'>>=
+
+rocplot <- result %>% 
+  ggplot(aes(d = as.numeric(Actual), m = Predict)) + 
+  geom_roc(aes(color = ..cutoffs..)) +
+  geom_abline(slope = 1, intercept = 0, alpha = 0.5) +
+  labs(x = "False Positive Rate (1-Độ Đặc Trưng)", 
+       y = "True Positive Rate (Độ Nhạy)") +
+  scale_x_continuous(expand = c(0, 0), limits = c(0,1)) + 
+  scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
+  theme(axis.line = element_blank(),
+        legend.position = "none")
+
+lasso_auc <- calc_auc(rocplot)$AUC
+
+rocplot + 
+  annotate("text", x = .65, y = .45, 
+           label = paste("AUC =", round(calc_auc(rocplot)$AUC, 5))) +
+  labs(x = "1 - Độ đặc trưng", y = "Độ nhạy")
+
+@ 
+\caption{Biểu đồ ROC cho kết quả ước lượng của mô hình Logit}
+\label{fig:lasso_roc}
+\end{figure}
+
+Sự đánh đổi giữa độ đặc trưng và độ nhạy được biểu diễn bởi đường cong ROC (Hình \ref{fig:lasso_roc}). Một mô hình có khả năng dự báo chính xác càng cao thì phần diện tích dưới đường cong càng lớn. Trong trường hợp này, phần diện tích dưới đường cong là $AUC = \Sexpr{lasso_auc}$. Ta có thể thấy, với điểm cắt nằm trong khoảng từ $0,1$ đến $0,3$, đường ROC có vẻ cách xa nhất so với đường chéo $45^\circ$, gợi ý rằng điểm cắt tối ưu có thể nằm trong khoảng này.
+
+
+\subsubsection{Nhận xét mô hình SVM}
+Chúng ta sử dụng tiếp tục sử dụng mô hình SVM ước lượng được để dự báo trên tập số liệu kiểm tra. Hình \ref{fig:svm_confution_mat} minh họa một ma trận (confusion matrix) thể hiện độ chính xác của mô hình khi áp dụng lên tập số liệu kiểm tra, với màu xanh thể hiện các quan sát được dự đoán đúng và màu đỏ thể hiện các quan sát bị dự đoán sai.
+
+\begin{figure}[h]
+\centering
+\capstart
+
+<<svm_confusion_mat, fig.width=5,fig.height=4,out.width='10cm', out.heith='8cm'>>=
+predict_svm <- ifelse(predict(svm_fit, test_x_set) == "default", TRUE, FALSE)
+
+result_svm <- data_frame(
+  Predict = predict_svm,
+  Actual = test_y_set$DEFAULT
+) %>% table() %>% as.data.frame(stringsAsFactors = FALSE) %>%
+  mutate(color = ifelse(Predict == Actual, Freq, -1*Freq),
+         percent = round(Freq/sum(Freq) * 100, 2))
+
+svm_cm <- confusionMatrix(data = test_y_set$DEFAULT, 
+                          reference = predict_svm,
+                          positive = "TRUE")
+
+
+result_svm[result_svm == TRUE] <- "Vỡ nợ"
+result_svm[result_svm == FALSE] <- "Không vỡ nợ"
+
+
+result_svm %>%  
+  ggplot(aes(y = Predict, x = Actual)) + 
+  geom_tile(aes(fill = color), color = "black", size = 1) +
+  geom_text(aes(label = paste0(Freq,"\n(", percent,"%)"))) +
+  scale_fill_gradient2(low = "red", high = "light blue") +
+  labs(x = "Giá trị thực", y = "Giá trị dự báo") +
+  theme(legend.position = "none", 
+        panel.grid.major = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks = element_blank())
+
+@   
+  
+\caption{Confusion matrix cho mô hình SVM (radial kernel)}
+\label{fig:svm_confution_mat}
+\end{figure}
+
+
+
+Trong tổng cộng \Sexpr{nrow(test_set)} dòng của bộ số liệu dùng để kiểm tra, có \Sexpr{sum(result_svm[result_svm$Actual  == "Vỡ nợ", "Freq"])} trường hợp vỡ nợ, trong đó mô hình dự đoán đúng \Sexpr{sum(result_svm[result_svm$Actual == "Vỡ nợ" & result_svm$Predict == "Vỡ nợ", "Freq"])} trường hợp. Đồng thời, trong các quan sát thuộc nhóm không vỡ nợ còn lại, có \Sexpr{sum(result_svm[result_svm$Actual == "Không vỡ nợ" & result_svm$Predict == "Vỡ nợ", "Freq"])} quan sát bị mô hình đánh giá nhầm là có vỡ nợ.
+
+<<results='asis'>>=
+
+svm_cm_table <- 
+  data_frame(v1 = c(names(svm_cm$overall), rep(NA, 4)),
+             v2 = c(svm_cm$overall, rep(NA, 4)),
+             v3 = names(svm_cm$byClass),
+             v4 = svm_cm$byClass)
+
+  xtable::xtable(
+    svm_cm_table,
+    caption = "Một số chỉ tiêu phân tích kết quả phân loại của mô hình SVM",
+    label = "tab:svm_cm",
+    digits = 6
+  ) %>% print(include.rownames=FALSE,
+              include.colnames=FALSE,
+              math.style.exponents=TRUE,
+              floating = TRUE,
+              table.placement = "htb!")
+
+@ 
+
+Một số chỉ tiêu của ma trận này được thể hiện ở bảng \ref{tab:svm_cm}. Ta có thể thấy độ nhạy (sensitivity) của mô hình là $\approx 0,48 \%$, độ đặc trưng (specificity) của mô hình là $\approx 0,87 \%$
+
+
+Nhìn chung tỉ lệ dự đoán chính xác của mô hình trên tập số liệu kiểm tra là \Sexpr{svm_cm$overall["Accuracy"]}\%, tỷ lệ của sai lầm loại I (không vỡ nợ nhưng mô hình dự đoán là có) là \Sexpr{sum(result_svm[result_svm$Actual == "Không vỡ nợ" & result_svm$Predict == "Vỡ nợ", "percent"])}\%, tỷ lệ của sai lầm loại II (có vỡ nợ nhưng dự đoán là không vỡ nợ) là \Sexpr{sum(result_svm[result_svm$Predict == "Không vỡ nợ" & result_svm$Actual == "Vỡ nợ", "percent"])}\%.
+
+
+
+\subsubsection{So sánh giữa hai mô hình}
+
+Mô hình Logit cho ta một thang đo $P$ để xếp hạng các quan sát, tuy nhiên mô hình SVM lại chỉ đưa ra một mặt cắt trong không gian để phân loại các quan sát thành hai nhóm. Để có thể so sánh một cách sơ bộ về khả năng phân biệt của hai mô hình, chúng ta lựa chọn một điểm cắt cho mô hình Logit mà tại đó khả năng phân loại khách hàng vỡ nợ của mô hình (sensitivity) tương đồng với của mô hình SVM. Confusion matrix tương ứng của Logit tại điểm cắt này được thể hiện ở hình \ref{fig:lasso_confusion_mat}.
+
+<<>>=
+lasso_cutoff <- result$Predict[result$Actual == TRUE] %>% sort()
+
+lasso_cutoff <- 
+  lasso_cutoff[result_svm$Freq[result_svm$Predict == "Không vỡ nợ" &
+                                 result_svm$Actual == "Vỡ nợ"]]
+@ 
+
+
+\begin{figure}[h]
+\centering
+\capstart
+<<lasso_confusion_mat, fig.width=5,fig.height=4,out.width='10cm',out.heith='8cm'>>=
+
+result_lasso <- data_frame(
+  Predict = (predict.glmnet(lasso_fit, newx = test_x_set,
+                           s = lasso_cv$lambda.min)[,1] > lasso_cutoff),
+  Actual = test_set$DEFAULT
+) %>% table() %>% as.data.frame(stringsAsFactors = FALSE) %>%
+  mutate(color = ifelse(Predict == Actual, Freq, -1*Freq),
+         percent = round(Freq/sum(Freq) * 100, 2))
+result_lasso[result_lasso == TRUE] <- "Vỡ nợ"
+result_lasso[result_lasso == FALSE] <- "Không vỡ nợ"
+
+result_lasso %>%  
+  ggplot(aes(y = Predict, x = Actual)) + 
+  geom_tile(aes(fill = color), color = "black", size = 1) +
+  geom_text(aes(label = paste0(Freq,"\n(", percent,"%)"))) +
+  scale_fill_gradient2(low = "red", high = "light blue") +
+  labs(x = "Giá trị thực", y = "Giá trị dự báo") +
+  theme(legend.position = "none", 
+        panel.grid.major = element_blank(),
+        axis.line = element_blank(),
+        axis.ticks = element_blank())
+@
+\caption[Confusion matrix cho mô hình Logit]{Confusion matrix cho mô hình Logit với điểm mức điểm phân loại vào nhóm vỡ nợ là \Sexpr{lasso_cutoff}}
+\label{fig:lasso_confusion_mat}
+\end{figure}
+
+So sánh ma trận ở Hình \ref{fig:lasso_confusion_mat} với ma trận ở Hình \ref{fig:svm_confution_mat}. Ta có thể thấy là với tỷ lệ dự báo các đối tượng thuộc nhóm vỡ nợ tương đồng ($12,87\%$), khả năng phân loại các khác hàng thuộc nhóm không vỡ nợ của mô hình Logit là thấp hẳn hơn so với mô hình SVM. Tỉ lệ đánh dấu nhầm các trường hợp không vỡ nợ của mô hình Logit là $17,65\%$, so với tỉ lệ $13,63\%$ của mô hình SVM.
+
+Qua những phân tích ở trên chúng ta có thể rút ra các điêm khác biệt giữa hai mô hình Logit và SVM:
+\begin{itemize}
+  \item Mô hình Logit cho phép chúng ta ước lượng xác suất vỡ nợ phụ thuộc vào tác động của các biến trong mô hình. Các hệ số ước lượng của mô hình cũng là một cách để chúng ta rút ra được ý nghĩa của các biến số trong bộ số liệu lên xác suất vỡ nợ của khách hàng. Bằng cách sử dụng các giá trị cắt khác nhau, ta có thể điều chỉnh mức độ nhạy cảm của mô hình đối với việc phân loại các khách hàng xấu, phục vụ cho chính sách của ngân hàng.
+  \item Mô hình SVM tuy không đưa ra một thang đo cụ thể cho các quan sát, nhưng lại là một mô hình có hiệu năng phân loại cao hơn, do quan hệ giữa các biến và khả năng vỡ nợ không bị ràng buộc bởi mô hình tuyến tính. Việc lựa chọn và ứng dụng các kernel và điều chỉnh các tham số của mô hình khiến cho mô hình rất linh hoạt, tuy nhiên lại làm cho ý nghĩa của các hệ số trong mô hình khó có thể diễn giải.
+\end{itemize}

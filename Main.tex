@@ -133,7 +133,7 @@
   {}
 
 \titleformat{\paragraph}[block]
-  {\hspace{2em}}
+  {\hspace{1em}}
   {\theparagraph}{1em}
   {}
 
@@ -173,7 +173,7 @@
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
 \usepackage[all]{hypcap}
 % Customise for table of contents labeling
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
 %%%%%%%%%%%%
 % CITATION %
@@ -203,24 +203,33 @@
 %         TITLE PAGE          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\input{./Cover/front-cover.tex}
+\input{./Cover/front-cover.tex}
 
 %%%%%%%
 % TOC %
 %%%%%%%
-\clearpage\tableofcontents
-\addcontentsline{toc}{chapter}{Mục lục}
+\pagenumbering{roman}
 
-\listoftables
-\addcontentsline{toc}{chapter}{Danh sách bảng}
+\addcontentsline{toc}{chapter}{Mục lục}
+\clearpage\tableofcontents
 
 \listoffigures
-\addcontentsline{toc}{chapter}{Danh sách hình}
+\addcontentsline{toc}{chapter}{Danh sách hình minh họa}
+
+\begingroup
+\let\clearpage\relax
+\addcontentsline{toc}{chapter}{Danh sách bảng}
+\listoftables
+\endgroup
+
+
+
 
 %%%%%%%%%%%%%%%
 % Lời mở đầu %
 %%%%%%%%%%%%%%%
 \chapter*{Lời mở đầu}
+\pagenumbering{arabic}
 \addcontentsline{toc}{chapter}{Lời mở đầu}
 
 % LỜI MỞ ĐẦU  
@@ -255,6 +264,7 @@ Mô hình SVM được thực hiện với gói \texttt{kernlab} \parencite{r:ke
 
 %  Cảm ơn bla bla
 Em xin cảm ơn giáo viên hướng dẫn, cô Nguyễn Thị Minh, cùng với các thầy cô giáo khác trong khoa đã tạo điều kiện cho em thực hiện đề tài này.
+
 
 %%%%%%%%%%%%
 % Chương 1 %
@@ -343,7 +353,7 @@ Sử dụng các giá trị khác nhau của tham số $\lambda$, phương pháp
 
 \subsubsection{Diễn giải kết quả ước lượng mô hình}
 
-\subsection{Mô hình SVM (Support Vector Machine)}
+\subsection{Mô hình véc tơ máy hỗ trợ (Support Vector Machine - SVM)}
 
 \subsubsection{Khái niệm}
 Thay vì đi tìm mô mô hình ước lượng tỷ lệ $P(Y =1)$ như trong mô hình logit. một hướng tiếp cận khác là đi tìm một siêu mặt phẳng có khả năng chia cắt không gian của bộ số liệu ra làm 2 phần. Nói cách khác là ước lượng một hàm:
@@ -363,9 +373,9 @@ $$
 Mô hình véc tơ máy hỗ trợ (Support Vector Machine - SVM) là một trong những mô hình thuộc loại này. SVM phát triển từ những năm 1990 và nhanh chóng được mọi người đón nhận vì khả năng phân loại tốt trong nhiều trường hợp khác nhau.
 
 \paragraph{Phân loại lề cực đại (Maximal Marginal Classifier)}
-Mô hình SVM được phát triển từ một phương pháp phân loại khá đơn giản gọi là phương pháp maximal margin classifier \parencite{boser1992training}. Thông thường, nếu như một bộ số liệu có thể được chia ra bởi một siêu mặt phẳng ngăn cách, chúng ta sẽ có thể tìm được vô siêu mặt phẳng như thế. Điều này là do các mặt phẳng có di chuyển nhẹ lên xuống hoặc quay mà không chạm tới các quan sát. Để xây dựng một mô hình phân loại dựa trên một siêu mặt phẳng phân loại,  chúng ta phải có một phương pháp hợp lý để chọn mặt phẳng hợp lý trong số vô số siêu mặt phẳng này.
+Mô hình SVM được phát triển từ một mô hình phân loại khá đơn giản gọi là mô hình maximal margin classifier \parencite{boser1992training}. Thông thường, nếu như một bộ số liệu có thể được chia ra bởi một siêu mặt phẳng ngăn cách, chúng ta sẽ có thể tìm được vô siêu mặt phẳng như thế. Điều này là do các mặt phẳng có di chuyển nhẹ lên xuống hoặc quay mà không chạm tới các quan sát. Để xây dựng một mô hình phân loại dựa trên một siêu mặt phẳng phân loại,  chúng ta phải có một mô hình hợp lý để chọn mặt phẳng hợp lý trong số vô số siêu mặt phẳng này.
 
-Phương pháp Maximal Marginal Classifier lựa chọn siêu mặt phẳng mà nằm xa nhất các quan sát trong bộ số liệu. Nếu chúng ta tính khoảng cách từ các quan sát tới siêu mặt phẳng đã cho, khoảng cách nhỏ nhất từ các quan sát đến siêu mặt phẳng này gọi là lề (margin) của siêu mặt phẳng. Siêu mặt phẳng lề cực đại mà chúng ta chọn trong phương pháp này là siêu mặt phẳng mà lề là lớn nhất.
+mô hình Maximal Marginal Classifier lựa chọn siêu mặt phẳng mà nằm xa nhất các quan sát trong bộ số liệu. Nếu chúng ta tính khoảng cách từ các quan sát tới siêu mặt phẳng đã cho, khoảng cách nhỏ nhất từ các quan sát đến siêu mặt phẳng này gọi là lề (margin) của siêu mặt phẳng. Siêu mặt phẳng lề cực đại mà chúng ta chọn trong mô hình này là siêu mặt phẳng mà lề là lớn nhất.
 
 \begin{figure}
   \centering
@@ -401,11 +411,11 @@ y_i(\beta_0 + \beta_1x_{i2} + ... + \beta_px_{ip})
 $$
 
 
-\paragraph{Phương pháp phân loại hỗ trợ máy}
+\paragraph{Mô hình phân loại véc tơ hỗ trợ}
 
-Phương pháp phân loại lề cực đại không thể thực hiện được trong trường hợp không tồn tại một siêu mặt phẳng nào có thể chia tách bộ số liệu ra thành 2 nhóm.
+Mô hình phân loại lề cực đại không thể thực hiện được trong trường hợp không tồn tại một siêu mặt phẳng nào có thể chia tách bộ số liệu ra thành 2 nhóm.
 
-Một cải tiến của phương pháp này là phương pháp hỗ trợ máy, trong đó siêu mặt phẳng được ước lượng bằng phương trình:
+Một cải tiến của mô hình này là mô hình hỗ trợ máy, trong đó siêu mặt phẳng được ước lượng bằng phương trình:
 
 $$
 \large
@@ -439,7 +449,7 @@ Một số hàm kernel phổ biến được sử dụng rộng rãi là:
 \begin{itemize}
   \item{$K(x, x_i) = x_i^T x$}: Hàm kernel tuyến tính, đây thực chất là hàm kernel của mô hình phân loại vec tơ hỗ trợ bình thường.
   \item{$K(x, x_i) =  (1 + \sum_{j = 1}^p x_i x)^d$}: Hàm kernel đa thức với tham số $d$ là bậc của đa thức ước lượng.
-  \item{$K(x, x_i) = e^{-\sigma{\|x - x_i\|}^2}$}: Hàm kernel tròn với tham số $\sigma$ quyết định bán kính của đường tròn phân chia các quan sát
+  \item{$K(x, x_i) = e^{-\frac{{\|x - x_i\|}^2}{2 \sigma^2}}$}: Hàm kernel tròn với tham số $\sigma$ quyết định bán kính của đường tròn phân chia các quan sát
 \end{itemize}
 
 \begin{figure}
@@ -456,7 +466,7 @@ Trong xây dựng một mô hình SVM, việc lựa chọn kernel thích hợp v
 
 \begin{itemize}
   \item Thực hiện chuẩn hoá bộ số liệu
-  \item Ưu tiên sử dụng kernel tròn (RBF): $K(x, x_i) = e^{-\sigma{\|x - x_i\|}^2}$
+  \item Ưu tiên sử dụng kernel tròn (RBF): $K(x, x_i) = e^{-\frac{{\|x - x_i\|}^2}{2 \sigma^2}}$
   \item Sử dụng kiểm định chéo để tìm tham số tốt nhất cho $C$ và $\sigma$.
   \item Sử dụng tham số $C$ và $\sigma$ tốt nhất ước lượng được để ước lượng trên toàn bộ bộ số liệu dùng để xây dựng mô hình.
   \item Kiểm tra hiệu quả mô hình.
@@ -474,15 +484,383 @@ Trong bài này ta sẽ đi theo quy trình này để xây dựng mô hình SVM
 \chapter{Tình huống nghiên cứu}
 
 \section{Số liệu và các biến số}
-%knit_child('./Ch3/3.1/info.rnw')
+
+Chúng ta thực hành trên bộ số liệu mẫu bao gồm 30000 quan sát và 25 biến bao gồm tình trạng trả nợ, các thông tin nhân khẩu học cơ bản cùng với số liệu về tín dụng và tình trạng hồ sơ của các khách hàng thẻ tín dụng ở Đài Loan từ tháng 4 năm 2005 đến tháng 9 năm 2005.
+
+Các tên biến đã được thay đổi để tiện lợi cho việc đọc hiểu và phân tích, cụ thể như sau:
+
+\begin{description}
+  \item [\texttt{ID}] Số ID của mỗi khách hàng tín dụng
+  \item [\texttt{LIMIT\_BAL}] Lượng tín dụng cho vay tính bằng Đô la Đài Loan (bao gồm cả các khoản vay cá nhân và các khoản vay với thẻ tín dụng phụ)
+  \item [\texttt{SEX}] Giới tính (0=Nữ, 1=Nam)
+  \item [\texttt{EDUCATION}] (1=sau đại học, 2=đại học, 3=phổ thông, 4=khác)
+  \item [\texttt{MARRIAGE}] Trạng thái hôn nhân (1=đã cưới, 2=độc thân, 3=khác)
+  \item [\texttt{AGE}] Số tuổi tính bằng năm
+  \item [\texttt{PAY\_0}] Tình trạng hồ sơ vào thời điểm tháng 9/2005 (-1=trả đúng hạn, 1=chậm 1 tháng, 2=chậm 2 tháng, ... 8=chậm 8 tháng, 9=chậm 9 tháng hoặc nhiều hơn)
+  \item [\texttt{PAY\_2}] Tình trạng hồ sơ vào thời điểm tháng 8/2005 (thang điểm như trên)
+  \item [\texttt{PAY\_3}] Tình trạng hồ sơ vào thời điểm tháng 7/2005 (thang điểm như trên)
+  \item [\texttt{PAY\_4}] Tình trạng hồ sơ vào thời điểm tháng 6/2005 (thang điểm như trên)
+  \item [\texttt{PAY\_5}] Tình trạng hồ sơ vào thời điểm tháng 5/2005 (thang điểm như trên)
+  \item [\texttt{PAY\_6}] Tình trạng hồ sơ vào thời điểm tháng 4/2005 (thang điểm như trên)
+  \item [\texttt{BILL\_AMT1}] Hóa đơn thanh toán vào thời điểm 9/2005 (Đô la Đài Loan)
+  \item [\texttt{BILL\_AMT2}] Hóa đơn thanh toán vào thời điểm 8/2005 (Đô la Đài Loan)
+  \item [\texttt{BILL\_AMT3}] Hóa đơn thanh toán vào thời điểm 7/2005 (Đô la Đài Loan)
+  \item [\texttt{BILL\_AMT4}] Hóa đơn thanh toán vào thời điểm 6/2005 (Đô la Đài Loan)
+  \item [\texttt{BILL\_AMT5}] Hóa đơn thanh toán vào thời điểm 5/2005 (Đô la Đài Loan)
+  \item [\texttt{BILL\_AMT6}] Hóa đơn thanh toán vào thời điểm 4/2005 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT1}] Lượng tiền đã thanh toán vào thời điểm tháng 9/2015 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT2}] Lượng tiền đã thanh toán vào thời điểm tháng 8/2015 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT3}] Lượng tiền đã thanh toán vào thời điểm tháng 7/2015 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT4}] Lượng tiền đã thanh toán vào thời điểm tháng 6/2015 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT5}] Lượng tiền đã thanh toán vào thời điểm tháng 5/2015 (Đô la Đài Loan)
+  \item [\texttt{PAY\_AMT6}] Lượng tiền đã thanh toán vào thời điểm tháng 4/2015 (Đô la Đài Loan)
+  \item [\texttt{DEFAULT}] Có trả nợ hay không (1=có, 0=không)
+\end{description}
 
 
-\section{Ứng dụng mô hình logit}
-%knit_child('./Ch3/3.2/var_select.rnw')
+Hình \ref{fig:corr_mat} (trang \pageref{fig:corr_mat}) mô tả ma trận hệ số tương quan Pearson giữa các biến số trong bộ số liệu. 
+Lưu ý tương quan giữa các biến trong nhóm biến \texttt{PAY} (tình trạng hồ sơ) và 
+giữa các biến trong nhóm biến \texttt{BILL\_AMT} (hoá đơn thanh toán) là khá cao, thể hiện sự tương đồng cao về mặt thông tin thể hiện của các biến này.
+Trong số các biến trong bộ số liệu, các biến \texttt{PAY} là có thể hiện tương quan dương với biến \texttt{DEFAULT}, gợi ý rằng chúng ta có thể sử dụng biến này là biến chính để dự đoán tỉ lệ vỡ nợ của khách hàng.
 
-\section{Ứng dụng mô hình SVM}
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\textwidth]{Figures/corr_mat-1} 
 
-%%%%%%%%%%%%
+\end{knitrout}
+\caption[Ma trận hệ số tương quan Pearson]{Ma trận hệ số tương quan Pearson giữa các biến trong bộ số liệu.}
+\label{fig:corr_mat}
+\end{figure}
+
+Để có cái nhìn cụ thể hơn vào bộ số liệu này, chúng ta sử dụng phương pháp phân tích thành phần chính (PCA - Principal Component Analysis) để phân tích bộ số liệu.
+Với phương pháp này, chúng ta tìm một hệ tọa độ trực giao mới để thể hiện bộ số liệu, sao cho với thành phần chính thứ nhất (chiều thứ nhất của hệ tọa độ mới) thể hiện được nhiều nhất có thể thông tin của bộ số liệu, thành phần chính thứ hai (chiều thứ hai của hệ tọa độ mới) thể hiện nhiều nhất có thể lượng thông tin còn lại của bộ số liệu, v...v... Lưu ý rằng vì các biến trong bộ số liệu có thang đo khác nhau, để đảm bảo hiệu quả cho phương pháp phân tích đa biến này, chúng ta chuẩn hóa các biến trước khi thực hiện PCA. Đồng thời, các biến phân loại như \texttt{EDUCATION} và \texttt{MARRIAGE} cũng được lược bỏ.
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=10cm,height=10cm]{Figures/pca-1} 
+
+\end{knitrout}
+\caption{Phép chiếu bộ số liệu trên hai thành phần chính.}
+\label{fig:pca}
+\end{figure}
+
+Phép chiếu của các biến và các quan sát trong bộ số liệu trên hai thành phần chính đầu tiên được thể hiện trong hình \ref{fig:pca} (trang \pageref{fig:pca}), với mỗi véc tơ thể hiện một biến và mỗi điểm thể hiện một quan sát trong bộ số liệu. Các quan sát thuộc vào nhóm vỡ nợ (biến \texttt{DEFAULT} bằng 1) có màu đỏ và các quan sát thuộc nhóm không vỡ nợ (biến \texttt{DEFAULT} bằng 0) có màu xanh. 
+Quan sát đồ thị này, chúng ta nhận thấy các quan sát thuộc nhóm vỡ nợ (màu đỏ) tập trung nhiều ở phía dưới đồ thị, hay là giá trị của các biến này chiếu trên thành phần chính thứ 2 (trục tung) là thấp hơn. 
+Như chúng ta nhận xét ở ma trận hệ số tương quan phía trên, véc tơ chiếu các biến thuộc cùng nhóm \texttt{PAY}, \texttt{PAY\_ATM} và \texttt{BILL\_ATM} nằm khá gần nhau, thể hiện mức độ tương quan cao giữa các biến số thuộc cùng một trong ba nhóm này. Các biến thuộc nhóm \texttt{PAY} có hướng trùng với hướng phân bố của các quan sát thuộc nhóm vỡ nợ, trong khi các biến thuộc nhóm \texttt{PAY\_ATM} có hướng trùng với hướng phân bố của các quan sát thuộc nhóm không vỡ nợ, gợi ý tiềm năng dùng để dự báo của các nhóm biến này. 
+Ngoài ra các quan sát nhóm vỡ nợ cũng có xu hướng thể hiện cao trên biến 
+\texttt{SEX}. Nhóm các quan sát không vỡ nợ cũng phân bố nhiều theo chiều tăng của các biến \texttt{AGE} và \texttt{LIMIT\_BAL}.
+
+Lưu ý rằng đồ thị \ref{fig:pca} chỉ thể hiện $\text{55,7}$ phần trăm lượng thông tin của bộ số liệu, chưa kể các biến phân loại như \texttt{EDUCATION} hay \texttt{MARRIAGE}. Bằng cách sử dụng các phương pháp phân tích cụ thể hơn, chúng ta có thể đưa ra một mô hình phân loại chính xác hơn đối với khả năng vỡ nợ của các khách hàng dùng thẻ tín dụng trong bộ số liệu này.
+
+Trong 30000 quan sát của bộ số liệu này, sau khi làm sạch, chúng ta chọn ngẫu nhiên 75\% (Khoảng hơn 22000 quan sát) để xây dựng các mô hình. Số lượng quan sát còn lại sẽ được dùng để kiểm tra các mô hình xây dựng được và cho chúng ta cái nhìn về hiệu quả của chúng.
+
+
+\section{Xây dựng mô hình logit}
+
+\subsection{Tiền xử lý bộ số liệu}
+Mô hình logit giả định xác suất dự báo  $P(y = 1|X)$  phân phối chuẩn với trung bình là 0,5 và thực hiện ước lượng có hiệu quả hơn trên bộ số liệu có tỉ lệ biến phụ thiộc là 0,5. 
+Tuy nhiên trong bộ số liệu chúng ta nghiên cứu này, tỷ lệ  $\texttt{DEFAULT} = 1$ là $22.34\%$.
+Để đảm bảo cho hiệu quả của mô hình logit, trong bộ số liệu dùng để ước lượng mô hình, chúng ta lấy tập con của số mẫu thuộc nhóm $\texttt{DEFAULT} = 1$ một cách ngẫu nhiên, sao cho tỷ lệ  $P(\texttt{DEFAULT} = 1)$ trong bộ số liệu ước lượng bây giờ là 0,5. 
+
+\subsection{Ước lượng mô hình} 
+
+
+Chúng ta thực hiện mô hình logit, sử dụng phương pháp Lasso để giới hạn giá trị của các hệ số ước lượng. 
+Với mỗi gía trị của tham số $\lambda$, giá trị của các hệ số ước lượng $\beta$ càng bị ràng buộc chặt, các hệ số ước lượng có giá trị bằng 0 có thể coi là bị loại khỏi mô hình.
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\textwidth,height=12cm]{Figures/lasso_coef-1} 
+
+\end{knitrout}
+\caption{Giá trị ước lượng của các hệ số theo chiều tăng của $\log(\lambda)$}
+\label{fig:lasso_coef}
+\end{figure}
+
+Hình \ref{fig:lasso_coef} mô tả xu hướng của các hệ số ước lượng $\beta$ khi giá trị của $\log\lambda$ thay đổi.
+Với hướng tăng của $\log\lambda$ các biến thuộc nhóm \texttt{BILL} nhanh chóng hội tụ về $0$, thể hiện mức ý nghĩa thống kê thấp của các hệ số này trong mô hình. Trong khi đó, các biến thuộc nhóm \texttt{PAY} chậm hội tụ về $0$ hơn, với biến \texttt{PAY\_0} là biến cuối cùng có hệ số ước lượng $\beta$ tương ứng hội tụ về 0.
+Với các giá trị $\lambda$ lớn hơn từ sau thời điểm này, có thể nói mô hình chỉ còn hệ số chặn $\beta_0$.
+
+Để xác định giá trị hợp lý cho tham số $\lambda$ trong mô hình này. Chúng ta thực hiện bằng cách chia bộ số liệu thử nghiệm thành 10 phần nhỏ, chạy mô hình logit sử dụng phương pháp Lasso này trên từng bộ số liệu con này, rồi kiểm định kết quả mô hình dựa trên các bộ số liệu còn lại.
+Từ kết quả của 10 phép ước lượng kiểm định chéo này, chúng ta có thể tính được giá trị trung bình của Deviance tại các giá trị của $\lambda$, qua đó chúng ta có thể xác định được giá trị của $\lambda$ mà Deviance là thấp nhất.
+
+\begin{figure}
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=10cm,height=10cm]{Figures/lasso_cv-1} 
+
+\end{knitrout}
+\caption{Giá trị trung bình của Deviance tương ứng với mỗi giá trị tương ứng của $\lambda$}
+\label{fig:lasso_cv}
+\end{figure}
+
+Hình \ref{fig:lasso_cv} mô tả mối quan hệ của Deviance (trên trục tung) khi giá trị của $\lambda$ thay đổi (giá trị của $\lambda$ trên trục hoành đã được logarit hóa). Các chấm màu đỏ biểu diễn giá trị Deviance trung bình của kiểm định chéo tại các giá trị khác nhau của $\log(\lambda)$, thanh màu đen thể hiện sai số chuẩn tương ứng của giá trị trung bình này. Đường kẻ dọc màu xanh đậm đánh dấu giá trị của $\log(\lambda)$ mà tại đó gía trị của Deviance là thấp nhất($\lambda \approx\ $\text{0,002725}), tương đương với giá trị của $\lambda$ mà chúng ta lựa chọn cho mô hình này.
+
+Hệ số ước lượng $\beta$ của mô hình được thể hiện trong bảng \ref{tab:lasso_final}). 
+
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Sat May 27 03:05:18 2017
+\begin{table}[htb!]
+\centering
+\begin{tabular}{ll}
+  \hline
+Tên biến & Hệ số \\ 
+  \hline
+Hệ số chặn & -0,0790705 \\ 
+  LIMIT\_BAL & -0,0949844 \\ 
+  SEXFALSE & -0,0617021 \\ 
+  SEXTRUE & 0,0002595 \\ 
+  EDUCATION\_Đại học & -0,01836 \\ 
+  EDUCATION\_Khác & -0,4910211 \\ 
+  MARRIAGE\_Đã cưới & 0,0068734 \\ 
+  MARRIAGE\_Độc thân & -0,1172755 \\ 
+  AGE & 0,0725433 \\ 
+  PAY\_0 & 0,6006201 \\ 
+  PAY\_2 & 0,0829978 \\ 
+  PAY\_3 & 0,0974986 \\ 
+  PAY\_4 & 0,0049178 \\ 
+  PAY\_5 & 0,0288028 \\ 
+  BILL\_AMT1 & -0,1086513 \\ 
+  PAY\_AMT1 & -0,2221284 \\ 
+  PAY\_AMT2 & -0,1073109 \\ 
+  PAY\_AMT3 & -0,0552885 \\ 
+  PAY\_AMT4 & -0,0642869 \\ 
+  PAY\_AMT5 & -0,0166451 \\ 
+  PAY\_AMT6 & -0,0578704 \\ 
+   \hline
+\end{tabular}
+\caption{Hệ số ước lượng} 
+\label{tab:lasso_final}
+\end{table}
+
+
+
+\section{Xây dựng mô hình SVM}
+
+\subsection{Tiền xử lý bộ số liệu}
+Trong số liệu được sử dụng để xây dựng mô hình SVM cũng được xử lý tương tự như xử lý cho mô hình Logit.
+
+\subsection{Xây dựng mô hình SVM}
+% Sig range.... from 0.1 - 0.9 quantile
+Theo \textcite{963105}, tham số $\sigma$ hiệu qủa cho mô hình SVM đều nằm trong khoảng phân vị 0.1 đến phân vị 0.9 của $\|x - x_i\|$. Các giá trị phân vị của $\|x - x_i\|$ trong bộ số liệu đã được xử lý như sau:
+
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##         90%         50%         10% 
+## 0,009507368 0,027192205 0,059278172
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+Để lựa chọn tham số hợp lý cho $C$ và $\sigma$ chúng ta thực hiện phép thử với từng cặp của hai tham số này. Với mỗi cặp của $C$ và $\sigma$, chúng ta thực hiện phép kiểm định chéo 5 lớp trên bộ số liệu dùng để xây dựng mô hình và tính phần diện tích dưới đường cong ROC trung bình.
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=\textwidth]{Figures/svm_train-1} 
+
+\end{knitrout}
+\caption{Kết quả SVM cho các giá trị khác nhau cuả tham số $C$ và $\sigma$}
+\label{fig:svm_train}
+\end{figure}
+
+Hình \ref{fig:svm_train} cho thấy kết quả của phép thử này.  Giá trị lớn nhất của chỉ số ROC đạt được tại $C = 1$ và $\sigma \approx 0.0275$, sử dụng giá trị tham số này, ta ước lượng mô hình SVM trên toàn bộ tập số liệu dùng để xây dựng mô hình:
+
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+## Support Vector Machine object of class "ksvm" 
+## 
+## SV type: C-svc  (classification) 
+##  parameter : cost C = 1 
+## 
+## Gaussian Radial Basis kernel function. 
+##  Hyperparameter : sigma =  0,0336744006003365 
+## 
+## Number of Support Vectors : 6709 
+## 
+## Objective Function Value : -6079,479 
+## Training error : 0,276116
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+\section{Kết luận về kết quả ước lượng của các mô hình}
+
+\subsection{Nhận xét về hiệu quả của các mô hình}
+
+\subsubsection{Nhận xét mô hình Logit}
+
+%% \begin{figure}
+%% \centering
+%% \capstart
+
+%% <<lasso_confusion_mat, fig.width=5,fig.height=4,out.width='10cm', out.heith='8cm'>>=
+%% result <- data_frame(
+%%   Predict = (predict.glmnet(lasso_fit, newx = test_x_set,
+%%                            s = lasso_cv$lambda.min)[,1] > 0.5),
+%%   Actual = test_set$DEFAULT
+%% ) %>% table() %>% as.data.frame(stringsAsFactors = FALSE) %>%
+%%   mutate(color = ifelse(Predict == Actual, Freq, -1*Freq),
+%%          percent = round(Freq/sum(Freq) * 100, 2))
+%% result[result == TRUE] <- "Vỡ nợ"
+%% result[result == FALSE] <- "Không vỡ nợ"
+
+%% result %>%  
+%%   ggplot(aes(y = Predict, x = Actual)) + 
+%%   geom_tile(aes(fill = color), color = "black", size = 1) +
+%%   geom_text(aes(label = paste0(Freq,"\n(", percent,"%)"))) +
+%%   scale_fill_gradient2(low = "red", high = "light blue") +
+%%   labs(x = "Giá trị thực", y = "Giá trị dự báo") +
+%%   theme(legend.position = "none", 
+%%         panel.grid.major = element_blank(),
+%%         axis.line = element_blank(),
+%%         axis.ticks = element_blank())
+%% @
+%% \caption{Confusion matrix cho mô hình Logit (phương pháp Lasso)}
+%% \label{fig:lasso_confusion_mat}
+%% \end{figure}
+
+%% Chúng ta sử dụng mô hình ước lượng được để dự báo trên tập số liệu kiểm tra. Hình \ref{fig:lasso_confusion_mat} minh họa một ma trận thể hiện độ chính xác của mô hình khi áp dụng lên tập số liệu kiểm tra, với màu xanh thể hiện các quan sát được dự đoán đúng và màu đỏ thể hiện các quan sát được dự đoán sai.
+
+%% Trong tổng cộng nrow(test_set) dòng của bộ số liệu dùng để kiểm tra, có sum(result[result$Actual  == "Vỡ nợ", "Freq"]) trường hợp vỡ nợ, trong đó mô hình dự đoán đúng sum(result[result$Actual == "Vỡ nợ" & result$Predict == "Vỡ nợ", "Freq"]) trường hợp. 
+%% Đồng thời, trong các quan sát thuộc nhóm không vỡ nợ còn lại, có sum(result[result$Actual == "Không vỡ nợ" & result$Predict == "Vỡ nợ", "Freq"]) quan sát bị mô hình đánh giá nhầm là có vỡ nợ.
+
+%% Nhìn chung tỉ lệ dự đoán chính xác của mô hình trên tập số liệu kiểm tra là sum(result[result$color > 0, "percent"])\%, tỷ lệ của sai lầm loại I (không vỡ nợ nhưng mô hình dự đoán là có) là sum(result[result$Actual == "Không vỡ nợ" & result$Predict == "Vỡ nợ", "percent"])\%, tỷ lệ của sai lầm loại II (có vỡ nợ nhưng dự đoán là không vỡ nợ) là sum(result[result$Predict == "Không vỡ nợ" & result$Actual == "Vỡ nợ", "percent"])\%.
+
+Tuy là một trong những mô hình được sử dụng rộng rãi trong các bài toán phân loại nhưng về bản chất mô hình Logit lại là một mô hình hồi quy với giá trị hồi quy chúng ta thu được là xác suất vỡ nợ $P(\texttt{DEFAULT} = \texttt{TRUE})$. Với các hệ số của mô hình ước lượng được ở bảng \ref{tab:lasso_final}, chúng ta tính được xác suất $P$ tương ứng của các quan sát trong bộ dữ liệu dùng để kiểm định mô hình. 
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=12cm]{Figures/lasso_dist-1} 
+
+\end{knitrout}
+
+\caption{Phân bố giá trị ước lượng được của biến \texttt{DEFAULT}}
+\label{fig:lasso_dist}
+\end{figure}
+
+Hình \ref{fig:lasso_dist} biểu diễn phân bố của các quan sát trong tập dữ liệu kiểm định đối với giá trị $P$ ước lượng được, với màu đỏ thể hiện cho các quan sát thuộc nhóm vỡ nợ ($\texttt{DEFAULT} = \texttt{TRUE}$) và màu xanh thể hiện cho các quan sát thuộc nhóm không vỡ nợ ($\texttt{DEFAULT} = \texttt{FALSE}$). Chúng ta có thể thấy thang đo $P$ ước lượng được của mô hình chưa thực sự tách các quan sát có giá trị \texttt{DEFAULT} khác nhau ra làm hai phân bố riêng biệt mà vẫn có phần chồng lên nhau giữa phân bố của hai nhóm giá trị. 
+
+Đường thẳng màu đen trong hình thể hiện một điểm cắt cho các quan sát tại giá trị $P = 0,2$. Với mỗi một giá trị khác nhau cho điểm cắt mà ta lựa chọn, chúng ta đánh đổi giữa khả năng dự đoán chính xác cho các điểm thuộc phía bên phải đường cắt (độ nhạy) và khả năng dự báo đúng các điểm nằm phía bên trái đường cắt (độ đặc trưng). Khi giá trị của điểm cắt tăng, độ đặc trưng tăng, độ nhạy giảm và ngược lại.
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=12cm]{Figures/lasso_roc-1} 
+
+\end{knitrout}
+\caption{Biểu đồ ROC cho kết quả ước lượng của mô hình Logit}
+\label{fig:lasso_roc}
+\end{figure}
+
+Sự đánh đổi giữa độ đặc trưng và độ nhạy được biểu diễn bởi đường cong ROC (Hình \ref{fig:lasso_roc}). Một mô hình có khả năng dự báo chính xác càng cao thì phần diện tích dưới đường cong càng lớn. Trong trường hợp này, phần diện tích dưới đường cong là $AUC = \text{0,7127241}$. Ta có thể thấy, với điểm cắt nằm trong khoảng từ $0,1$ đến $0,3$, đường ROC có vẻ cách xa nhất so với đường chéo $45^\circ$, gợi ý rằng điểm cắt tối ưu có thể nằm trong khoảng này.
+
+
+\subsubsection{Nhận xét mô hình SVM}
+Chúng ta sử dụng tiếp tục sử dụng mô hình SVM ước lượng được để dự báo trên tập số liệu kiểm tra. Hình \ref{fig:svm_confution_mat} minh họa một ma trận (confusion matrix) thể hiện độ chính xác của mô hình khi áp dụng lên tập số liệu kiểm tra, với màu xanh thể hiện các quan sát được dự đoán đúng và màu đỏ thể hiện các quan sát bị dự đoán sai.
+
+\begin{figure}[h]
+\centering
+\capstart
+
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=10cm]{Figures/svm_confusion_mat-1} 
+
+\end{knitrout}
+  
+\caption{Confusion matrix cho mô hình SVM (radial kernel)}
+\label{fig:svm_confution_mat}
+\end{figure}
+
+
+
+Trong tổng cộng \text{7382} dòng của bộ số liệu dùng để kiểm tra, có \text{1649} trường hợp vỡ nợ, trong đó mô hình dự đoán đúng \text{950} trường hợp. Đồng thời, trong các quan sát thuộc nhóm không vỡ nợ còn lại, có \text{1006} quan sát bị mô hình đánh giá nhầm là có vỡ nợ.
+
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Sat May 27 03:05:30 2017
+\begin{table}[htb!]
+\centering
+\begin{tabular}{lrlr}
+  \hline
+  \hline
+Accuracy & 0,769033 & Sensitivity & 0,485685 \\ 
+  Kappa & 0,375717 & Specificity & 0,871176 \\ 
+  AccuracyLower & 0,759246 & Pos Pred Value & 0,576107 \\ 
+  AccuracyUpper & 0,778607 & Neg Pred Value & 0,824525 \\ 
+  AccuracyNull & 0,735031 & Precision & 0,576107 \\ 
+  AccuracyPValue & 0,000000 & Recall & 0,485685 \\ 
+  McnemarPValue & 0,000000 & F1 & 0,527046 \\ 
+   &  & Prevalence & 0,264969 \\ 
+   &  & Detection Rate & 0,128691 \\ 
+   &  & Detection Prevalence & 0,223381 \\ 
+   &  & Balanced Accuracy & 0,678430 \\ 
+   \hline
+\end{tabular}
+\caption{Một số chỉ tiêu phân tích kết quả phân loại của mô hình SVM} 
+\label{tab:svm_cm}
+\end{table}
+
+
+Một số chỉ tiêu của ma trận này được thể hiện ở bảng \ref{tab:svm_cm}. Ta có thể thấy độ nhạy (sensitivity) của mô hình là $\approx 0,48 \%$, độ đặc trưng (specificity) của mô hình là $\approx 0,87 \%$
+
+
+Nhìn chung tỉ lệ dự đoán chính xác của mô hình trên tập số liệu kiểm tra là \text{0,7690328}\%, tỷ lệ của sai lầm loại I (không vỡ nợ nhưng mô hình dự đoán là có) là \text{13,63}\%, tỷ lệ của sai lầm loại II (có vỡ nợ nhưng dự đoán là không vỡ nợ) là \text{9,47}\%.
+
+
+
+\subsubsection{So sánh giữa hai mô hình}
+
+Mô hình Logit cho ta một thang đo $P$ để xếp hạng các quan sát, tuy nhiên mô hình SVM lại chỉ đưa ra một mặt cắt trong không gian để phân loại các quan sát thành hai nhóm. Để có thể so sánh một cách sơ bộ về khả năng phân biệt của hai mô hình, chúng ta lựa chọn một điểm cắt cho mô hình Logit mà tại đó khả năng phân loại khách hàng vỡ nợ của mô hình (sensitivity) tương đồng với của mô hình SVM. Confusion matrix tương ứng của Logit tại điểm cắt này được thể hiện ở hình \ref{fig:lasso_confusion_mat}.
+
+
+
+
+\begin{figure}[h]
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=10cm]{Figures/lasso_confusion_mat-1} 
+
+\end{knitrout}
+\caption{Confusion matrix cho mô hình Logit với điểm mức điểm phân loại vào nhóm vỡ nợ là \text{0,1117041}}
+\label{fig:lasso_confusion_mat}
+\end{figure}
+
+So sánh ma trận ở Hình \ref{fig:lasso_confusion_mat} với ma trận ở Hình \ref{fig:svm_confution_mat}. Ta có thể thấy là với tỷ lệ dự báo các đối tượng thuộc nhóm vỡ nợ tương đồng ($12,87\%$), khả năng phân loại các khác hàng thuộc nhóm không vỡ nợ của mô hình Logit là thấp hẳn hơn so với mô hình SVM. Tỉ lệ đánh dấu nhầm các trường hợp không vỡ nợ của mô hình Logit là $17,65\%$, so với tỉ lệ $13,63\%$ của mô hình SVM.
+
+Qua những phân tích ở trên chúng ta có thể rút ra các điêm khác biệt giữa hai mô hình Logit và SVM:
+\begin{itemize}
+  \item Mô hình Logit cho phép chúng ta ước lượng xác suất vỡ nợ phụ thuộc vào tác động của các biến trong mô hình. Các hệ số ước lượng của mô hình cũng là một cách để chúng ta rút ra được ý nghĩa của các biến số trong bộ số liệu lên xác suất vỡ nợ của khách hàng. Bằng cách sử dụng các giá trị cắt khác nhau, ta có thể điều chỉnh mức độ nhạy cảm của mô hình đối với việc phân loại các khách hàng xấu, phục vụ cho chính sách của ngân hàng.
+  \item Mô hình SVM tuy không đưa ra một thang đo cụ thể cho các quan sát, nhưng lại là một mô hình có hiệu năng phân loại cao hơn, do quan hệ giữa các biến và khả năng vỡ nợ không bị ràng buộc bởi mô hình tuyến tính. Việc lựa chọn và ứng dụng các kernel và điều chỉnh các tham số của mô hình khiến cho mô hình rất linh hoạt, tuy nhiên lại làm cho ý nghĩa của các hệ số trong mô hình khó có thể diễn giải.
+\end{itemize}
+
+%%%%%%%%%%%% 
 % Kết luận %
 %%%%%%%%%%%%
 
@@ -495,64 +873,15 @@ Trong bài này ta sẽ đi theo quy trình này để xây dựng mô hình SVM
 \titlecontents{chapter}[0pt]{\bfseries}
   {\color{blue}PHỤ LỤC \thecontentslabel:\quad}
   {}{\titlerule*[1pc]{.}\contentspage}
+  
 
 \chapter{Thông tin về phiên làm việc trên R}
 
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{verbatim}
-## R version 3.4.0 (2017-04-21)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.2 LTS
-## 
-## Matrix products: default
-## BLAS: /usr/lib/libblas/libblas.so.3.6.0
-## LAPACK: /usr/lib/lapack/liblapack.so.3.6.0
-## 
-## locale:
-##  [1] LC_CTYPE=en_US.UTF-8    LC_NUMERIC=C           
-##  [3] LC_TIME=vi_VN           LC_COLLATE=en_US.UTF-8 
-##  [5] LC_MONETARY=vi_VN       LC_MESSAGES=en_US.UTF-8
-##  [7] LC_PAPER=vi_VN          LC_NAME=C              
-##  [9] LC_ADDRESS=C            LC_TELEPHONE=C         
-## [11] LC_MEASUREMENT=vi_VN    LC_IDENTIFICATION=C    
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets 
-## [6] methods   base     
-## 
-## other attached packages:
-##  [1] glmnet_2.0-5    foreach_1.4.3   Matrix_1.2-8   
-##  [4] ggfortify_0.4.1 GGally_1.3.0    caret_6.0-76   
-##  [7] ggplot2_2.2.1   lattice_0.20-35 broom_0.4.2    
-## [10] dplyr_0.5.0     tidyr_0.6.1     readr_1.1.0    
-## [13] knitr_1.15.1   
-## 
-## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.10       RColorBrewer_1.1-2
-##  [3] nloptr_1.0.4       compiler_3.4.0    
-##  [5] plyr_1.8.4         iterators_1.0.8   
-##  [7] tools_3.4.0        lme4_1.1-13       
-##  [9] evaluate_0.10      tibble_1.3.0      
-## [11] gtable_0.2.0       nlme_3.1-131      
-## [13] mgcv_1.8-17        psych_1.7.3.21    
-## [15] DBI_0.6-1          parallel_3.4.0    
-## [17] SparseM_1.77       gridExtra_2.2.1   
-## [19] stringr_1.2.0      MatrixModels_0.4-1
-## [21] hms_0.3            stats4_3.4.0      
-## [23] grid_3.4.0         nnet_7.3-12       
-## [25] reshape_0.8.6      R6_2.2.0          
-## [27] foreign_0.8-67     minqa_1.2.4       
-## [29] reshape2_1.4.2     car_2.1-4         
-## [31] magrittr_1.5       splines_3.4.0     
-## [33] scales_0.4.1       codetools_0.2-15  
-## [35] ModelMetrics_1.1.0 MASS_7.3-47       
-## [37] assertthat_0.2.0   pbkrtest_0.4-7    
-## [39] mnormt_1.5-5       colorspace_1.3-2  
-## [41] quantreg_5.33      stringi_1.1.5     
-## [43] lazyeval_0.2.0     munsell_0.4.3
-\end{verbatim}
-\end{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in system(paste(which, shQuote(names[i])), intern = TRUE, ignore.stderr = TRUE): cannot popen '/usr/bin/which 'uname' 2>/dev/null', probable reason 'Cannot allocate memory'}}\end{kframe}
 \end{knitrout}
 
 % \chapter{Code}

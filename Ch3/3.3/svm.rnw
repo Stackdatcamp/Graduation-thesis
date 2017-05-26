@@ -1,0 +1,62 @@
+\subsection{Tiền xử lý bộ số liệu}
+Trong số liệu được sử dụng để xây dựng mô hình SVM cũng được xử lý tương tự như xử lý cho mô hình Logit.
+
+\subsection{Xây dựng mô hình SVM}
+% Sig range.... from 0.1 - 0.9 quantile
+Theo \textcite{963105}, tham số $\sigma$ hiệu qủa cho mô hình SVM đều nằm trong khoảng phân vị 0.1 đến phân vị 0.9 của $\|x - x_i\|$. Các giá trị phân vị của $\|x - x_i\|$ trong bộ số liệu đã được xử lý như sau:
+
+<<result='asis'>>=
+
+sigma_range <- sigest(train_downsample$x)
+sigma_range
+
+@
+
+<<>>=
+
+svm_train <- readRDS("/media/Logical_Drive/Study/Graduation Thesis/Thesis/Scripts/svm_train.rds")
+
+@
+
+Để lựa chọn tham số hợp lý cho $C$ và $\sigma$ chúng ta thực hiện phép thử với từng cặp của hai tham số này. Với mỗi cặp của $C$ và $\sigma$, chúng ta thực hiện phép kiểm định chéo 5 lớp trên bộ số liệu dùng để xây dựng mô hình và tính phần diện tích dưới đường cong ROC trung bình.
+
+\begin{figure}[h]
+\centering
+\capstart
+<<svm_train,echo=FALSE, fig.width=8, fig.height=7>>=
+
+svm_train$results %>%
+  mutate(scale = scale(ROC)) %>%
+  ggplot(aes(x = factor(round(sigma, 4)), y = factor(C), fill = scale)) +
+  geom_tile() +
+  geom_text(aes(label = round(ROC, 2))) +
+  labs(x = latex2exp::TeX("Giá trị của $\\sigma$"),
+       y = latex2exp::TeX("Giá trị của $C$")) +
+  scale_fill_continuous(low = "grey25", high = "white") +
+  theme(axis.line = element_blank(),
+        # axis.text.x= element_text(angle=45),
+        legend.position = "none")
+
+@
+\caption{Kết quả SVM cho các giá trị khác nhau cuả tham số $C$ và $\sigma$}
+\label{fig:svm_train}
+\end{figure}
+
+Hình \ref{fig:svm_train} cho thấy kết quả của phép thử này.  Giá trị lớn nhất của chỉ số ROC đạt được tại $C = 1$ và $\sigma \approx 0.0275$, sử dụng giá trị tham số này, ta ước lượng mô hình SVM trên toàn bộ tập số liệu dùng để xây dựng mô hình:
+
+<<include=TRUE>>=
+
+## svm_fit <- 
+##   ksvm(x = train_downsample$x, y = train_downsample$y,
+##        C = svm_train$bestTune$C, sigma = svm_train$bestTune$sigma,
+##        kernel = "rbfdot")
+
+## saveRDS(svm_fit, "./Scripts/svm_fit.rds")
+
+svm_fit <- readRDS("/media/Logical_Drive/Study/Graduation Thesis/Thesis/Scripts/svm_fit.rds")
+
+svm_fit
+
+@ 
+
+

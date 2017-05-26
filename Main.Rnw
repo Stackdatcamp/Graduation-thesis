@@ -305,6 +305,9 @@ train_downsample <- downSample(x = train_x_set,
 %%%%%%%%%%%%
 
 \chapter{Kết luận}
+\input{./Ch4/closing.tex}
+
+
 
 %%%%%%%%%%%
 % Phụ lục %

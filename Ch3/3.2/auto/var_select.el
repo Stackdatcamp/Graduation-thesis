@@ -3,7 +3,6 @@
  (lambda ()
    (LaTeX-add-labels
     "fig:lasso_coef"
-    "fig:lasso_cv"
-    "fig:lasso_confusion_mat"))
+    "fig:lasso_cv"))
  :latex)
 

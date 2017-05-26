@@ -260,7 +260,7 @@ Trong bài này, chúng ta sẽ tiếp cận đến một số phương pháp ph
 \parencite{r:knitr}. Tất cả phân tích được thực hiện trên phần mềm thống kê 
 R version 3.4.0 (2017-04-21) \parencite{r:rbase},  
 các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{caret}\parencite{r:caret}, \texttt{tidyverse} \parencite{r:tidyverse}... Mô hình logit được thực hiện với gói \texttt{glmnet}\parencite{r:glmnet}. 
-Mô hình SVM được thực hiện với gói \texttt{kernlab} \parencite{r:kernlab}, là một giao diện của phần mềm \texttt{LIBSVM} \parencite{CC01a} trong môi trường \texttt{R}.
+Mô hình SVM được thực hiện với gói \texttt{kernlab} \parencite{r:kernlab}, là một giao diện của phần mềm \texttt{LIBSVM} \parencite{CC01a} trong môi trường R.
 
 %  Cảm ơn bla bla
 Em xin cảm ơn giáo viên hướng dẫn, cô Nguyễn Thị Minh, cùng với các thầy cô giáo khác trong khoa đã tạo điều kiện cho em thực hiện đề tài này.
@@ -432,11 +432,11 @@ $$
 
 Trong đó $C$ là một tham số không âm do ta lựa chọn. $\epsilon_i$ là các hệ số không âm cho phép quan sát thứ $i$ vi phạm quy tắc của siêu mặt phẳng biên cực đại, với $C$ là giới hạn cho số sai phạm này. Nếu $0 < \epsilon_i < 1$, điểm $i$ nằm ở phía trong biên nhưng vẫn đúng phía của siêu mặt phẳng phân loại. Nếu $\epsilon_i = 1$, điểm $i$ nằm ở sai phía của siêu mặt phẳng phân loại.
 
-\paragraph{Các kernel và mô hình véc tơ hỗ trợ máy}
+\paragraph{Các kernel và mô hình máy véc tơ hỗ trợ}
 
-Mô hình véc tơ hỗ trợ máy (Support Vector Machine) là một mở rộng của mô hình phân loại vectơ hỗ trợ, giúp xây dựng các mô hình phân loại phi tuyến. Mô hình này sử dụng một phép chiếu $\Phi$, chiếu các quan sát từ một không gian không phân biệt tuyến tính lên một chiều không gian mới mà ở đó các quan sát trở nên phân biệt tuyến tính.
+Mô hình máy véc tơ hỗ trợ (Support Vector Machine) là một mở rộng của mô hình phân loại vectơ hỗ trợ, giúp xây dựng các mô hình phân loại phi tuyến. Mô hình này sử dụng một phép chiếu $\Phi$, chiếu các quan sát từ một không gian không phân biệt tuyến tính lên một chiều không gian mới mà ở đó các quan sát trở nên phân biệt tuyến tính.
 
-Trong thực tế, việc thực hiện phép chiếu $\Phi$ này có thể trở nên rất khó khăn khi kích cỡ của bộ số liệu lớn. \textcite{scholkopf1999advances} chỉ ra rằng đối với một số phép chiếu, để ước lượng được mô hình véc tơ hỗ trợ, chúng ta chỉ cần tính được tích vô hướng của các quan sát trong bộ dữ liệu, thủ thuật này được gọi là thủ thuật kernel. Mô hình véc tơ hỗ trợ sử dụng thủ thuật kernel này được gọi là mô hình véc tơ hỗ trợ máy (SVM). Một cách tổng quát, mô hình SVM ước lượng:
+Trong thực tế, việc thực hiện phép chiếu $\Phi$ này có thể trở nên rất khó khăn khi kích cỡ của bộ số liệu lớn. \textcite{scholkopf1999advances} chỉ ra rằng đối với một số phép chiếu, để ước lượng được mô hình véc tơ hỗ trợ, chúng ta chỉ cần tính được tích vô hướng của các quan sát trong bộ dữ liệu, thủ thuật này được gọi là thủ thuật kernel. Mô hình véc tơ hỗ trợ sử dụng thủ thuật kernel này được gọi là mô hình máy véc tơ hỗ trợ (SVM). Một cách tổng quát, mô hình SVM ước lượng:
 
 $$
 f(x) = \beta_0 + \sum\alpha_i K(x, x_i)
@@ -586,6 +586,19 @@ Với mỗi gía trị của tham số $\lambda$, giá trị của các hệ s�
 \label{fig:lasso_coef}
 \end{figure}
 
+
+\begin{figure}[htb!]
+\centering
+\capstart
+\begin{knitrout}\small
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+\includegraphics[width=8cm,height=8cm]{Figures/lasso_cv-1} 
+
+\end{knitrout}
+\caption{Giá trị trung bình của Deviance tương ứng với mỗi giá trị tương ứng của $\lambda$}
+\label{fig:lasso_cv}
+\end{figure}
+
 Hình \ref{fig:lasso_coef} mô tả xu hướng của các hệ số ước lượng $\beta$ khi giá trị của $\log\lambda$ thay đổi.
 Với hướng tăng của $\log\lambda$ các biến thuộc nhóm \texttt{BILL} nhanh chóng hội tụ về $0$, thể hiện mức ý nghĩa thống kê thấp của các hệ số này trong mô hình. Trong khi đó, các biến thuộc nhóm \texttt{PAY} chậm hội tụ về $0$ hơn, với biến \texttt{PAY\_0} là biến cuối cùng có hệ số ước lượng $\beta$ tương ứng hội tụ về 0.
 Với các giá trị $\lambda$ lớn hơn từ sau thời điểm này, có thể nói mô hình chỉ còn hệ số chặn $\beta_0$.
@@ -593,24 +606,12 @@ Với các giá trị $\lambda$ lớn hơn từ sau thời điểm này, có th�
 Để xác định giá trị hợp lý cho tham số $\lambda$ trong mô hình này. Chúng ta thực hiện bằng cách chia bộ số liệu thử nghiệm thành 10 phần nhỏ, chạy mô hình logit sử dụng phương pháp Lasso này trên từng bộ số liệu con này, rồi kiểm định kết quả mô hình dựa trên các bộ số liệu còn lại.
 Từ kết quả của 10 phép ước lượng kiểm định chéo này, chúng ta có thể tính được giá trị trung bình của Deviance tại các giá trị của $\lambda$, qua đó chúng ta có thể xác định được giá trị của $\lambda$ mà Deviance là thấp nhất.
 
-\begin{figure}
-\centering
-\capstart
-\begin{knitrout}\small
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
-\includegraphics[width=10cm,height=10cm]{Figures/lasso_cv-1} 
-
-\end{knitrout}
-\caption{Giá trị trung bình của Deviance tương ứng với mỗi giá trị tương ứng của $\lambda$}
-\label{fig:lasso_cv}
-\end{figure}
-
 Hình \ref{fig:lasso_cv} mô tả mối quan hệ của Deviance (trên trục tung) khi giá trị của $\lambda$ thay đổi (giá trị của $\lambda$ trên trục hoành đã được logarit hóa). Các chấm màu đỏ biểu diễn giá trị Deviance trung bình của kiểm định chéo tại các giá trị khác nhau của $\log(\lambda)$, thanh màu đen thể hiện sai số chuẩn tương ứng của giá trị trung bình này. Đường kẻ dọc màu xanh đậm đánh dấu giá trị của $\log(\lambda)$ mà tại đó gía trị của Deviance là thấp nhất($\lambda \approx\ $\text{0,002725}), tương đương với giá trị của $\lambda$ mà chúng ta lựa chọn cho mô hình này.
 
-Hệ số ước lượng $\beta$ của mô hình được thể hiện trong bảng \ref{tab:lasso_final}). 
+Hệ số ước lượng $\beta$ của mô hình được thể hiện trong bảng \ref{tab:lasso_final}. 
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
-% Sat May 27 03:05:18 2017
+% Sat May 27 05:52:58 2017
 \begin{table}[htb!]
 \centering
 \begin{tabular}{ll}
@@ -643,6 +644,7 @@ Hệ số chặn & -0,0790705 \\
 \caption{Hệ số ước lượng} 
 \label{tab:lasso_final}
 \end{table}
+
 
 
 
@@ -802,7 +804,7 @@ Chúng ta sử dụng tiếp tục sử dụng mô hình SVM ước lượng đ�
 Trong tổng cộng \text{7382} dòng của bộ số liệu dùng để kiểm tra, có \text{1649} trường hợp vỡ nợ, trong đó mô hình dự đoán đúng \text{950} trường hợp. Đồng thời, trong các quan sát thuộc nhóm không vỡ nợ còn lại, có \text{1006} quan sát bị mô hình đánh giá nhầm là có vỡ nợ.
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
-% Sat May 27 03:05:30 2017
+% Sat May 27 05:53:09 2017
 \begin{table}[htb!]
 \centering
 \begin{tabular}{lrlr}
@@ -848,11 +850,11 @@ Mô hình Logit cho ta một thang đo $P$ để xếp hạng các quan sát, tu
 \includegraphics[width=10cm]{Figures/lasso_confusion_mat-1} 
 
 \end{knitrout}
-\caption{Confusion matrix cho mô hình Logit với điểm mức điểm phân loại vào nhóm vỡ nợ là \text{0,1117041}}
+\caption[Confusion matrix cho mô hình Logit]{Confusion matrix cho mô hình Logit với điểm mức điểm phân loại vào nhóm vỡ nợ là \text{0,1117041}}
 \label{fig:lasso_confusion_mat}
 \end{figure}
 
-So sánh ma trận ở Hình \ref{fig:lasso_confusion_mat} với ma trận ở Hình \ref{fig:svm_confution_mat}. Ta có thể thấy là với tỷ lệ dự báo các đối tượng thuộc nhóm vỡ nợ tương đồng ($12,87\%$), khả năng phân loại các khác hàng thuộc nhóm không vỡ nợ của mô hình Logit là thấp hẳn hơn so với mô hình SVM. Tỉ lệ đánh dấu nhầm các trường hợp không vỡ nợ của mô hình Logit là $17,65\%$, so với tỉ lệ $13,63\%$ của mô hình SVM.
+So sánh ma trận ở Hình \ref{fig:lasso_confusion_mat} với ma trận ở Hình \ref{fig:svm_confution_mat}, ta có thể thấy là với tỷ lệ dự báo các đối tượng thuộc nhóm vỡ nợ tương đồng ($12,87\%$), khả năng phân loại các khác hàng thuộc nhóm không vỡ nợ của mô hình Logit là thấp hẳn hơn so với mô hình SVM. Tỉ lệ đánh dấu nhầm các trường hợp không vỡ nợ của mô hình Logit là $17,65\%$, so với tỉ lệ $13,63\%$ của mô hình SVM.
 
 Qua những phân tích ở trên chúng ta có thể rút ra các điêm khác biệt giữa hai mô hình Logit và SVM:
 \begin{itemize}
@@ -865,6 +867,9 @@ Qua những phân tích ở trên chúng ta có thể rút ra các điêm khác 
 %%%%%%%%%%%%
 
 \chapter{Kết luận}
+\input{./Ch4/closing.tex}
+
+
 
 %%%%%%%%%%%
 % Phụ lục %
@@ -879,9 +884,63 @@ Qua những phân tích ở trên chúng ta có thể rút ra các điêm khác 
 
 \begin{knitrout}\small
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in system(paste(which, shQuote(names[i])), intern = TRUE, ignore.stderr = TRUE): cannot popen '/usr/bin/which 'uname' 2>/dev/null', probable reason 'Cannot allocate memory'}}\end{kframe}
+\begin{verbatim}
+## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.2 LTS
+## 
+## Matrix products: default
+## BLAS: /usr/lib/libblas/libblas.so.3.6.0
+## LAPACK: /usr/lib/lapack/liblapack.so.3.6.0
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8    LC_NUMERIC=C           
+##  [3] LC_TIME=vi_VN           LC_COLLATE=en_US.UTF-8 
+##  [5] LC_MONETARY=vi_VN       LC_MESSAGES=en_US.UTF-8
+##  [7] LC_PAPER=vi_VN          LC_NAME=C              
+##  [9] LC_ADDRESS=C            LC_TELEPHONE=C         
+## [11] LC_MEASUREMENT=vi_VN    LC_IDENTIFICATION=C    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets 
+## [6] methods   base     
+## 
+## other attached packages:
+##  [1] plotROC_2.0.1   kernlab_0.9-25  glmnet_2.0-10  
+##  [4] foreach_1.4.3   Matrix_1.2-10   ggfortify_0.4.1
+##  [7] GGally_1.3.0    caret_6.0-76    ggplot2_2.2.1  
+## [10] lattice_0.20-35 broom_0.4.2     dplyr_0.5.0    
+## [13] tidyr_0.6.3     readr_1.1.1     knitr_1.16     
+## 
+## loaded via a namespace (and not attached):
+##  [1] reshape2_1.4.2     splines_3.4.0     
+##  [3] latex2exp_0.4.0    colorspace_1.3-2  
+##  [5] stats4_3.4.0       mgcv_1.8-17       
+##  [7] rlang_0.1.1        e1071_1.6-8       
+##  [9] ModelMetrics_1.1.0 nloptr_1.0.4      
+## [11] foreign_0.8-68     DBI_0.6-1         
+## [13] RColorBrewer_1.1-2 plyr_1.8.4        
+## [15] stringr_1.2.0      MatrixModels_0.4-1
+## [17] munsell_0.4.3      gtable_0.2.0      
+## [19] codetools_0.2-15   psych_1.7.5       
+## [21] evaluate_0.10      labeling_0.3      
+## [23] SparseM_1.77       class_7.3-14      
+## [25] quantreg_5.33      pbkrtest_0.4-7    
+## [27] parallel_3.4.0     Rcpp_0.12.11      
+## [29] xtable_1.8-2       scales_0.4.1      
+## [31] lme4_1.1-13        gridExtra_2.2.1   
+## [33] mnormt_1.5-5       digest_0.6.12     
+## [35] hms_0.3            stringi_1.1.5     
+## [37] ggrepel_0.6.5      grid_3.4.0        
+## [39] tools_3.4.0        magrittr_1.5      
+## [41] lazyeval_0.2.0     tibble_1.3.1      
+## [43] car_2.1-4          MASS_7.3-47       
+## [45] assertthat_0.2.0   minqa_1.2.4       
+## [47] reshape_0.8.6      iterators_1.0.8   
+## [49] R6_2.2.1           nnet_7.3-12       
+## [51] nlme_3.1-131       compiler_3.4.0
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 % \chapter{Code}

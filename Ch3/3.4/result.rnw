@@ -218,7 +218,7 @@ result_lasso %>%
 \label{fig:lasso_confusion_mat}
 \end{figure}
 
-So sánh ma trận ở Hình \ref{fig:lasso_confusion_mat} với ma trận ở Hình \ref{fig:svm_confution_mat}. Ta có thể thấy là với tỷ lệ dự báo các đối tượng thuộc nhóm vỡ nợ tương đồng ($12,87\%$), khả năng phân loại các khác hàng thuộc nhóm không vỡ nợ của mô hình Logit là thấp hẳn hơn so với mô hình SVM. Tỉ lệ đánh dấu nhầm các trường hợp không vỡ nợ của mô hình Logit là $17,65\%$, so với tỉ lệ $13,63\%$ của mô hình SVM.
+So sánh ma trận ở Hình \ref{fig:lasso_confusion_mat} với ma trận ở Hình \ref{fig:svm_confution_mat}, ta có thể thấy là với tỷ lệ dự báo các đối tượng thuộc nhóm vỡ nợ tương đồng ($12,87\%$), khả năng phân loại các khác hàng thuộc nhóm không vỡ nợ của mô hình Logit là thấp hẳn hơn so với mô hình SVM. Tỉ lệ đánh dấu nhầm các trường hợp không vỡ nợ của mô hình Logit là $17,65\%$, so với tỉ lệ $13,63\%$ của mô hình SVM.
 
 Qua những phân tích ở trên chúng ta có thể rút ra các điêm khác biệt giữa hai mô hình Logit và SVM:
 \begin{itemize}

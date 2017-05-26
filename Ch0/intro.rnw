@@ -26,7 +26,7 @@ Trong bài này, chúng ta sẽ tiếp cận đến một số phương pháp ph
 \parencite{r:knitr}. Tất cả phân tích được thực hiện trên phần mềm thống kê 
 \Sexpr{R.Version()$version.string} \parencite{r:rbase},  
 các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{caret}\parencite{r:caret}, \texttt{tidyverse} \parencite{r:tidyverse}... Mô hình logit được thực hiện với gói \texttt{glmnet}\parencite{r:glmnet}. 
-Mô hình SVM được thực hiện với gói \texttt{kernlab} \parencite{r:kernlab}, là một giao diện của phần mềm \texttt{LIBSVM} \parencite{CC01a} trong môi trường \texttt{R}.
+Mô hình SVM được thực hiện với gói \texttt{kernlab} \parencite{r:kernlab}, là một giao diện của phần mềm \texttt{LIBSVM} \parencite{CC01a} trong môi trường R.
 
 %  Cảm ơn bla bla
 Em xin cảm ơn giáo viên hướng dẫn, cô Nguyễn Thị Minh, cùng với các thầy cô giáo khác trong khoa đã tạo điều kiện cho em thực hiện đề tài này.

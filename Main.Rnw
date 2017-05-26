@@ -198,7 +198,7 @@ train_downsample <- downSample(x = train_x_set,
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
 \usepackage[all]{hypcap}
 % Customise for table of contents labeling
-\setcounter{tocdepth}{4}
+\setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{4}
 %%%%%%%%%%%%
 % CITATION %
@@ -235,16 +235,16 @@ train_downsample <- downSample(x = train_x_set,
 %%%%%%%
 \pagenumbering{roman}
 
-\addcontentsline{toc}{chapter}{Mục lục}
 \clearpage\tableofcontents
+\addcontentsline{toc}{chapter}{Mục lục}
 
 \listoffigures
 \addcontentsline{toc}{chapter}{Danh sách hình minh họa}
 
 \begingroup
 \let\clearpage\relax
-\addcontentsline{toc}{chapter}{Danh sách bảng}
 \listoftables
+\addcontentsline{toc}{chapter}{Danh sách bảng}
 \endgroup
 
 

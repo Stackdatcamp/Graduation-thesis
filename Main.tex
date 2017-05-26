@@ -173,7 +173,7 @@
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
 \usepackage[all]{hypcap}
 % Customise for table of contents labeling
-\setcounter{tocdepth}{4}
+\setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{4}
 %%%%%%%%%%%%
 % CITATION %
@@ -210,16 +210,16 @@
 %%%%%%%
 \pagenumbering{roman}
 
-\addcontentsline{toc}{chapter}{Mục lục}
 \clearpage\tableofcontents
+\addcontentsline{toc}{chapter}{Mục lục}
 
 \listoffigures
 \addcontentsline{toc}{chapter}{Danh sách hình minh họa}
 
 \begingroup
 \let\clearpage\relax
-\addcontentsline{toc}{chapter}{Danh sách bảng}
 \listoftables
+\addcontentsline{toc}{chapter}{Danh sách bảng}
 \endgroup
 
 
@@ -259,7 +259,7 @@ Trong bài này, chúng ta sẽ tiếp cận đến một số phương pháp ph
 Đề tài này được soạn thảo bằng \LaTeX{} kết hợp với \texttt{Sweave} và \texttt{knitr} 
 \parencite{r:knitr}. Tất cả phân tích được thực hiện trên phần mềm thống kê 
 R version 3.4.0 (2017-04-21) \parencite{r:rbase},  
-các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{caret}\parencite{r:caret}, \texttt{tidyverse} \parencite{r:tidyverse}... Mô hình logit được thực hiện với gói \texttt{glmnet}\parencite{r:glmnet}. 
+các phân tích cụ thể được thực hiện sử dụng các gói mở rộng \texttt{caret} \parencite{r:caret}, \texttt{tidyverse} \parencite{r:tidyverse}... Mô hình logit được thực hiện với gói \texttt{glmnet} \parencite{r:glmnet}. 
 Mô hình SVM được thực hiện với gói \texttt{kernlab} \parencite{r:kernlab}, là một giao diện của phần mềm \texttt{LIBSVM} \parencite{CC01a} trong môi trường R.
 
 %  Cảm ơn bla bla
@@ -611,7 +611,7 @@ Hình \ref{fig:lasso_cv} mô tả mối quan hệ của Deviance (trên trục t
 Hệ số ước lượng $\beta$ của mô hình được thể hiện trong bảng \ref{tab:lasso_final}. 
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
-% Sat May 27 05:52:58 2017
+% Sat May 27 06:40:07 2017
 \begin{table}[htb!]
 \centering
 \begin{tabular}{ll}
@@ -707,9 +707,7 @@ Hình \ref{fig:svm_train} cho thấy kết quả của phép thử này.  Giá t
 
 \section{Kết luận về kết quả ước lượng của các mô hình}
 
-\subsection{Nhận xét về hiệu quả của các mô hình}
-
-\subsubsection{Nhận xét mô hình Logit}
+\subsection{Nhận xét mô hình Logit}
 
 %% \begin{figure}
 %% \centering
@@ -782,7 +780,7 @@ Hình \ref{fig:lasso_dist} biểu diễn phân bố của các quan sát trong t
 Sự đánh đổi giữa độ đặc trưng và độ nhạy được biểu diễn bởi đường cong ROC (Hình \ref{fig:lasso_roc}). Một mô hình có khả năng dự báo chính xác càng cao thì phần diện tích dưới đường cong càng lớn. Trong trường hợp này, phần diện tích dưới đường cong là $AUC = \text{0,7127241}$. Ta có thể thấy, với điểm cắt nằm trong khoảng từ $0,1$ đến $0,3$, đường ROC có vẻ cách xa nhất so với đường chéo $45^\circ$, gợi ý rằng điểm cắt tối ưu có thể nằm trong khoảng này.
 
 
-\subsubsection{Nhận xét mô hình SVM}
+\subsection{Nhận xét mô hình SVM}
 Chúng ta sử dụng tiếp tục sử dụng mô hình SVM ước lượng được để dự báo trên tập số liệu kiểm tra. Hình \ref{fig:svm_confution_mat} minh họa một ma trận (confusion matrix) thể hiện độ chính xác của mô hình khi áp dụng lên tập số liệu kiểm tra, với màu xanh thể hiện các quan sát được dự đoán đúng và màu đỏ thể hiện các quan sát bị dự đoán sai.
 
 \begin{figure}[h]
@@ -804,7 +802,7 @@ Chúng ta sử dụng tiếp tục sử dụng mô hình SVM ước lượng đ�
 Trong tổng cộng \text{7382} dòng của bộ số liệu dùng để kiểm tra, có \text{1649} trường hợp vỡ nợ, trong đó mô hình dự đoán đúng \text{950} trường hợp. Đồng thời, trong các quan sát thuộc nhóm không vỡ nợ còn lại, có \text{1006} quan sát bị mô hình đánh giá nhầm là có vỡ nợ.
 
 % latex table generated in R 3.4.0 by xtable 1.8-2 package
-% Sat May 27 05:53:09 2017
+% Sat May 27 06:40:17 2017
 \begin{table}[htb!]
 \centering
 \begin{tabular}{lrlr}
@@ -835,10 +833,12 @@ Nhìn chung tỉ lệ dự đoán chính xác của mô hình trên tập số l
 
 
 
-\subsubsection{So sánh giữa hai mô hình}
+\subsection{So sánh giữa hai mô hình}
 
-Mô hình Logit cho ta một thang đo $P$ để xếp hạng các quan sát, tuy nhiên mô hình SVM lại chỉ đưa ra một mặt cắt trong không gian để phân loại các quan sát thành hai nhóm. Để có thể so sánh một cách sơ bộ về khả năng phân biệt của hai mô hình, chúng ta lựa chọn một điểm cắt cho mô hình Logit mà tại đó khả năng phân loại khách hàng vỡ nợ của mô hình (sensitivity) tương đồng với của mô hình SVM. Confusion matrix tương ứng của Logit tại điểm cắt này được thể hiện ở hình \ref{fig:lasso_confusion_mat}.
 
+
+
+Mô hình Logit cho ta một thang đo $P$ để xếp hạng các quan sát, tuy nhiên mô hình SVM lại chỉ đưa ra một mặt cắt trong không gian để phân loại các quan sát thành hai nhóm. Để có thể so sánh một cách sơ bộ về khả năng phân biệt của hai mô hình, chúng ta lựa chọn một điểm cắt cho mô hình Logit mà tại đó khả năng phân loại khách hàng vỡ nợ của mô hình (sensitivity) tương đồng với của mô hình SVM. Confusion matrix tương ứng của Logit tại điểm cắt này ($\text{0,1117041}$) được thể hiện ở hình \ref{fig:lasso_confusion_mat}.
 
 
 
@@ -854,7 +854,7 @@ Mô hình Logit cho ta một thang đo $P$ để xếp hạng các quan sát, tu
 \label{fig:lasso_confusion_mat}
 \end{figure}
 
-So sánh ma trận ở Hình \ref{fig:lasso_confusion_mat} với ma trận ở Hình \ref{fig:svm_confution_mat}, ta có thể thấy là với tỷ lệ dự báo các đối tượng thuộc nhóm vỡ nợ tương đồng ($12,87\%$), khả năng phân loại các khác hàng thuộc nhóm không vỡ nợ của mô hình Logit là thấp hẳn hơn so với mô hình SVM. Tỉ lệ đánh dấu nhầm các trường hợp không vỡ nợ của mô hình Logit là $17,65\%$, so với tỉ lệ $13,63\%$ của mô hình SVM.
+So sánh ma trận ở Hình \ref{fig:lasso_confusion_mat} với ma trận ở Hình \ref{fig:svm_confution_mat}, ta có thể thấy là với tỷ lệ dự báo các đối tượng thuộc nhóm vỡ nợ tương đồng ($12,87\%$), khả năng phân loại các khác hàng thuộc nhóm không vỡ nợ của mô hình Logit là thấp hơn hẳn so với mô hình SVM. Tỉ lệ đánh dấu nhầm các trường hợp không vỡ nợ của mô hình Logit là $17,65\%$, so với tỉ lệ $13,63\%$ của mô hình SVM.
 
 Qua những phân tích ở trên chúng ta có thể rút ra các điêm khác biệt giữa hai mô hình Logit và SVM:
 \begin{itemize}
@@ -955,3 +955,8 @@ Qua những phân tích ở trên chúng ta có thể rút ra các điêm khác 
 \addcontentsline{toc}{chapter}{Tài liệu tham khảo}
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

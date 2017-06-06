@@ -1,4 +1,4 @@
-\subsubsection{Khái niệm}
+\subsection{Khái niệm}
 Thay vì đi tìm mô mô hình ước lượng tỷ lệ $P(Y =1)$ như trong mô hình logit. một hướng tiếp cận khác là đi tìm một siêu mặt phẳng có khả năng chia cắt không gian của bộ số liệu ra làm 2 phần. Nói cách khác là ước lượng một hàm:
 
 $$
@@ -15,7 +15,7 @@ $$
 
 Mô hình véc tơ máy hỗ trợ (Support Vector Machine - SVM) là một trong những mô hình thuộc loại này. SVM phát triển từ những năm 1990 và nhanh chóng được mọi người đón nhận vì khả năng phân loại tốt trong nhiều trường hợp khác nhau.
 
-\paragraph{Phân loại lề cực đại (Maximal Marginal Classifier)}
+\subsubsection{Phân loại lề cực đại (Maximal Marginal Classifier)}
 Mô hình SVM được phát triển từ một mô hình phân loại khá đơn giản gọi là mô hình maximal margin classifier \parencite{boser1992training}. Thông thường, nếu như một bộ số liệu có thể được chia ra bởi một siêu mặt phẳng ngăn cách, chúng ta sẽ có thể tìm được vô siêu mặt phẳng như thế. Điều này là do các mặt phẳng có di chuyển nhẹ lên xuống hoặc quay mà không chạm tới các quan sát. Để xây dựng một mô hình phân loại dựa trên một siêu mặt phẳng phân loại,  chúng ta phải có một mô hình hợp lý để chọn mặt phẳng hợp lý trong số vô số siêu mặt phẳng này.
 
 mô hình Maximal Marginal Classifier lựa chọn siêu mặt phẳng mà nằm xa nhất các quan sát trong bộ số liệu. Nếu chúng ta tính khoảng cách từ các quan sát tới siêu mặt phẳng đã cho, khoảng cách nhỏ nhất từ các quan sát đến siêu mặt phẳng này gọi là lề (margin) của siêu mặt phẳng. Siêu mặt phẳng lề cực đại mà chúng ta chọn trong mô hình này là siêu mặt phẳng mà lề là lớn nhất.
@@ -54,7 +54,7 @@ y_i(\beta_0 + \beta_1x_{i2} + ... + \beta_px_{ip})
 $$
 
 
-\paragraph{Mô hình phân loại véc tơ hỗ trợ}
+\subsubsection{Mô hình phân loại véc tơ hỗ trợ}
 
 Mô hình phân loại lề cực đại không thể thực hiện được trong trường hợp không tồn tại một siêu mặt phẳng nào có thể chia tách bộ số liệu ra thành 2 nhóm.
 
@@ -75,7 +75,7 @@ $$
 
 Trong đó $C$ là một tham số không âm do ta lựa chọn. $\epsilon_i$ là các hệ số không âm cho phép quan sát thứ $i$ vi phạm quy tắc của siêu mặt phẳng biên cực đại, với $C$ là giới hạn cho số sai phạm này. Nếu $0 < \epsilon_i < 1$, điểm $i$ nằm ở phía trong biên nhưng vẫn đúng phía của siêu mặt phẳng phân loại. Nếu $\epsilon_i = 1$, điểm $i$ nằm ở sai phía của siêu mặt phẳng phân loại.
 
-\paragraph{Các kernel và mô hình máy véc tơ hỗ trợ}
+\subsubsection{Các kernel và mô hình máy véc tơ hỗ trợ}
 
 Mô hình máy véc tơ hỗ trợ (Support Vector Machine) là một mở rộng của mô hình phân loại vectơ hỗ trợ, giúp xây dựng các mô hình phân loại phi tuyến. Mô hình này sử dụng một phép chiếu $\Phi$, chiếu các quan sát từ một không gian không phân biệt tuyến tính lên một chiều không gian mới mà ở đó các quan sát trở nên phân biệt tuyến tính.
 
@@ -102,7 +102,7 @@ Một số hàm kernel phổ biến được sử dụng rộng rãi là:
   \label{fig:svm_kernel_example}
 \end{figure}
 
-\subsubsection{Quy trình xây dựng một mô hình véc tơ máy hỗ trợ}
+\subsection{Xây dựng mô hình véc tơ máy hỗ trợ}
 
 Trong xây dựng một mô hình SVM, việc lựa chọn kernel thích hợp và việc điều chỉnh để có được tham số thích hợp cho kernel đó là yếu tố vô cùng quan trọng. 
 \textcite{hsu2003practical} đưa ra một quy trình để có thể đạt được kết quả chấp nhận được đối với hầu hết các trường hợp. Quy trình đó như sau:

@@ -37,8 +37,8 @@ theme_thesis <- theme_bw() +
   )
 theme_set(theme_thesis)
 
-# Data loadings
 credit <- read_csv("./Data/UCI_Credit_Card.csv", col_types = list(
+# Data loadings
   ID = col_skip(),
   DEFAULT = col_logical(),
   SEX = col_logical()
@@ -269,17 +269,13 @@ train_downsample <- downSample(x = train_x_set,
 % Chương 2 %
 %%%%%%%%%%%%
 
-\chapter{Các Mô hình phân loại khách hàng vay thẻ tín dụng}
-\section{Các mô hình phân loại}
+\chapter{Một số mô hình phân loại khách hàng vay thẻ tín dụng}
 
-\subsection{Mô hình logit}
+\section{Mô hình logit}
 \Sexpr{knit_child('./Ch2/2.1/def-logistics.rnw')}
 
-\subsection{Mô hình véc tơ máy hỗ trợ (Support Vector Machine - SVM)}
+\section{Mô hình véc tơ máy hỗ trợ (Support Vector Machine - SVM)}
 \Sexpr{knit_child('./Ch2/2.2/def-svm.tex')}
-% \section{Đánh giá mô hình}
-% \subsection{Đường ROC và phần diện tích dưới đường cong (AUC)}
-% \subsection{Thang đo H}
 
 %%%%%%%%%%%%
 % Chương 3 %

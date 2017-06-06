@@ -1,0 +1,1 @@
+pandoc Main.tex --biliography=reference.bib --reference-docx=word_template.docx -S -s -o 11131371-Nguyễn_Đức_Hiếu-Ứng_dụng,_đánh_giá,_và_so_sánh_một_số_mô_hình_phân_loại_trong_phân_loại_khách_hàng_thẻ_tín_dụng.doc
